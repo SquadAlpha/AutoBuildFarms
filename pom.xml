@@ -14,6 +14,10 @@
             <url>http://repo.lucko.me/</url>
         </repository>
         <repository>
+            <id>vault-fake-repo</id>
+            <url>http://ci.dingemans.mooo.com/plugin/repository/everything/</url>
+        </repository>
+        <repository>
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
@@ -45,7 +49,7 @@
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.6</version>
+            <version>1.6.b</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -90,9 +94,7 @@
                     <shadedClassifierName>shaded</shadedClassifierName>
                     <artifactSet>
                         <excludes>
-                            <exclude>org.spigotmc:spigot-api</exclude>
-                            <exclude>org.bukkit:*</exclude>
-                            <exclude>net.milkbowl.vault:VaultAPI</exclude>
+                            <exclude>*</exclude>
                         </excludes>
                     </artifactSet>
                 </configuration>
