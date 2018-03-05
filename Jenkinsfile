@@ -13,13 +13,19 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+                script {
+                    if (isUnix()) {
+                        sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+                    } else {
+                        bat 'mvn -Dmaven.test.failure.ignore=true clean package'
+                    }
+                }
             }
         }
         stage('Archive') {
             agent any
             steps {
-                archiveArtifacts 'target/*.jar,target/bin/bo*'
+                archiveArtifacts 'target/*.jar'
             }
         }
     }
