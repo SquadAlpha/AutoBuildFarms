@@ -15,9 +15,9 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
-                        sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+                        sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
                     } else {
-                        bat 'mvn -Dmaven.test.failure.ignore=true clean package'
+                        bat 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
                     }
                 }
             }
