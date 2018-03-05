@@ -31,10 +31,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>me.lucko</groupId>
             <artifactId>helper</artifactId>
             <version>4.2.1</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
@@ -80,6 +86,14 @@
                 <version>3.1.0</version>
                 <configuration>
                     <!-- put your configurations here -->
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>shaded</shadedClassifierName>
+                    <artifactSet>
+                        <excludes>
+                            <exclude>org.spigotmc:spigot-api</exclude>
+                            <exclude>org.bukkit:*</exclude>
+                        </excludes>
+                    </artifactSet>
                 </configuration>
                 <executions>
                     <execution>
@@ -95,7 +109,7 @@
             <resource>
                 <directory>./src/main/resources</directory>
                 <includes>
-                    <include>plugin.yml</include>
+                    <include>*</include>
                 </includes>
             </resource>
         </resources>

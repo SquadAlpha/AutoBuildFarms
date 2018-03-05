@@ -1,7 +1,8 @@
 name: AutoBuildFarms
 main: com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms
 version: 0.1
-author: bigibas123
+author: bigibas123&JamesHond7
 database: false
 depend: [Vault]
+softdepend: [helper]
 prefix: ABF

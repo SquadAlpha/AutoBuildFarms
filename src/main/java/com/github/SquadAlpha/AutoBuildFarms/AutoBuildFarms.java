@@ -5,6 +5,8 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
+import java.util.HashMap;
+
 import static com.github.SquadAlpha.AutoBuildFarms.Reference.*;
 
 public class AutoBuildFarms extends ExtendedJavaPlugin{
@@ -17,6 +19,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
     @Override
     protected void enable(){
         plugin = this;
+        farmList = new HashMap<>();
         log = getLogger();
         if(!setupPermissions()){
             log.severe(String.format("[%s] - Disabled due to no Vault Permissions dependency found!", getDescription().getName()));
@@ -28,6 +31,10 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        Config.init();
+        this.registerListener(new Listeners());
+        //TODO this.registerCommand()
+        super.enable();
     }
 
     private boolean setupEconomy() {
@@ -47,8 +54,11 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
         perms = rsp.getProvider();
         return perms != null;
     }
+
     @Override
     protected void disable(){
+        Config.save();
         super.disable();
     }
+
 }

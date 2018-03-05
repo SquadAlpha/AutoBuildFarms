@@ -1,15 +1,19 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
-import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class Reference{
     public static AutoBuildFarms plugin;
     public static Permission perms;
     public static Economy econ;
-    public static Chat chat;
     public static Logger log;
+
+    public static HashMap<String, Farm> farmList;
+    public static String loreHeader;
+    public static ItemStack farmBlock;
 }
