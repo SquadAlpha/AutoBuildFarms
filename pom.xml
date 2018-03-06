@@ -6,15 +6,15 @@
 
     <repositories>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshot/</url>
+            <id>public-spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>luck-repo</id>
             <url>http://repo.lucko.me/</url>
         </repository>
         <repository>
-            <id>vault-fake-repo</id>
+            <id>bigi-vault-repo</id>
             <url>http://ci.dingemans.mooo.com/plugin/repository/everything/</url>
         </repository>
         <repository>
@@ -31,12 +31,6 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
@@ -92,11 +86,6 @@
                     <!-- put your configurations here -->
                     <shadedArtifactAttached>true</shadedArtifactAttached>
                     <shadedClassifierName>shaded</shadedClassifierName>
-                    <artifactSet>
-                        <excludes>
-                            <exclude>*</exclude>
-                        </excludes>
-                    </artifactSet>
                 </configuration>
                 <executions>
                     <execution>

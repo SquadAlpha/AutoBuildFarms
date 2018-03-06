@@ -14,10 +14,9 @@ buildNumber.properties
 #Idea
 .idea/workspace.xml
 .idea/libraries
-.idea/markdown-navigator
-.idea/markdown-navigator.xml
 .idea/uiDesigner.xml
 .idea/AutoBuildFarms.iml
+AutoBuildFarms.iml
 
 #Spigot
 wd/
