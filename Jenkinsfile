@@ -13,8 +13,8 @@ pipeline {
 
         stage('Build') {
             agent any
-            configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
-                steps {
+            steps {
+                configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
                     script {
                         if (isUnix()) {
                             sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
@@ -23,8 +23,8 @@ pipeline {
                         }
                     }
                 }
+            }
         }
-    }
         stage('Archive') {
             agent any
             steps {
