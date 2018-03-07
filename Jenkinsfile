@@ -10,9 +10,10 @@ pipeline {
                 '''
             }
         }
-        configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
-            stage('Build') {
-                agent any
+
+        stage('Build') {
+            agent any
+            configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
                 steps {
                     script {
                         if (isUnix()) {
@@ -22,8 +23,8 @@ pipeline {
                         }
                     }
                 }
-            }
         }
+    }
         stage('Archive') {
             agent any
             steps {
