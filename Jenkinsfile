@@ -10,14 +10,16 @@ pipeline {
                 '''
             }
         }
-        stage('Build') {
-            agent any
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
-                    } else {
-                        bat 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
+        configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
+            stage('Build') {
+                agent any
+                steps {
+                    script {
+                        if (isUnix()) {
+                            sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
+                        } else {
+                            bat 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
+                        }
                     }
                 }
             }

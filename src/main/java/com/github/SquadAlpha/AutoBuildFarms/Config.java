@@ -143,6 +143,10 @@ public class Config{
         return section;
     }
 
+    public static String getSchematicsDirName() {
+        return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.SCHEMATICS_DIR.toString(), "schematics");
+    }
+
     public enum cfgN{
         PREFIX(plugin.getDescription().getPrefix()),
         FARMS_SECTION("farms"),
@@ -153,7 +157,8 @@ public class Config{
         SIZES_SECTION("sizes"),
         SCHEMATIC_FILE("schematic"),
         PRICE("price"),
-        RESOURCES_SECTION("resources");
+        RESOURCES_SECTION("resources"),
+        SCHEMATICS_DIR("schematicdirectory");
 
         private final String toString;
 

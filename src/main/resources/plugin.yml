@@ -4,5 +4,5 @@ version: 0.1
 author: bigibas123&JamesHond7
 database: false
 depend: [Vault]
-softdepend: [helper]
+softdepend: [helper,worldedit]
 prefix: ABF

@@ -1,6 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
-import com.github.SquadAlpha.AutoBuildFarms.utils.Schematic;
+import com.github.SquadAlpha.AutoBuildFarms.utils.Building;
 import lombok.Data;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
@@ -29,7 +29,7 @@ public class Farm{
 
     public void addSize(String sname, String fancyName, String schematic, int price, List<ItemStack> resources){
         sizes.put(sname,
-                new Size(sname, fancyName, schematic, Schematic.loadSchematic(schematic), price, resources));
+                new Size(sname, fancyName, schematic, Building.loadSchematic(schematic), price, resources));
     }
 
     @Data
@@ -37,7 +37,7 @@ public class Farm{
         private final String name;
         private final String fancyName;
         private final String schemName;
-        private final Schematic schem;
+        private final Building schem;
         private final int price;
         private final List<ItemStack> resources;
     }
