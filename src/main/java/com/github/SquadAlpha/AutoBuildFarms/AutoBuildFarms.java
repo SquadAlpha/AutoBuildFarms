@@ -1,5 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
+import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
+import com.github.SquadAlpha.AutoBuildFarms.commands.ABFMain;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -34,6 +36,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
         Config.init();
         this.registerListener(new Listeners());
         //TODO this.registerCommand()
+        this.easyreg(new ABFMain());
         super.enable();
     }
 
@@ -47,6 +50,10 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
         }
         econ = rsp.getProvider();
         return econ != null;
+    }
+
+    private <T extends ABFCommand> T easyreg(T cmd) {
+        return this.registerCommand(cmd, cmd.getAliases().toArray(new String[0]));
     }
 
     private boolean setupPermissions() {

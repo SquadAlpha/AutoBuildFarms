@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.github.SquadAlpha</groupId>
+    <artifactId>AutoBuildFarms</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
     <repositories>
         <repository>
             <id>public-spigot-repo</id>
@@ -28,10 +32,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-    <groupId>com.github.SquadAlpha</groupId>
-    <artifactId>AutoBuildFarms</artifactId>
-    <version>0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -118,5 +118,38 @@
             </resource>
         </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>upstream</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>upstream</id>
+                    <url>${env.Jenkins.Repository}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>upstream</id>
+                    <url>${env.Jenkins.Repository}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
 
 </project>

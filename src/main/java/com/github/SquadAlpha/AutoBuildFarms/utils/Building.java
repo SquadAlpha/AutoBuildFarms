@@ -40,14 +40,12 @@ public class Building {
     }*/
 
     public static Building loadSchematic(String schematic) {
-
-        if (!schematic.endsWith(".schematic")) {
-            schematic = schematic + ".schematic";
+        String schematicFileName = schematic;
+        if (!schematicFileName.endsWith(".schematic")) {
+            schematicFileName = schematicFileName + ".schematic";
         }
 
-        File schemFile = new File(Reference.plugin.getDataFolder().getAbsolutePath() + File.pathSeparator +
-                Config.getSchematicsDirName() + File.pathSeparator +
-                schematic);
+        File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
         return new Building(schematic, schemFile);
     }
 }

@@ -1,26 +1,27 @@
 ABF:
   farms:
     cactusexample:
-      fancyname: §bcactusexample
       sizes:
         small:
-          fancyname: §bsmall
-          schematic: NoSchematicDefined.schematic
+          fancyname: §bSmall
+          schematic: cactusExampleSmall
           price: 10
           resources:
             '0':
               ==: org.bukkit.inventory.ItemStack
-              type: WOOD_BUTTON
+              type: CACTUS
         medium:
-          fancyname: §bmedium
-          schematic: NoSchematicDefined.schematic
-          price: 10
+          fancyname: §6Medium'
+          schematic: cactusExampleMedium
+          price: 100
           resources:
             '0':
               ==: org.bukkit.inventory.ItemStack
-              type: WOOD_BUTTON
+              type: CACTUS
+              amount: 10
   general:
     itemheader: '&6&k|&r&6AutoFarm&k|&r'
     farmblock:
       ==: org.bukkit.inventory.ItemStack
       type: CHEST
+    schematicdirectory: schematics

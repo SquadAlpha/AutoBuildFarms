@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class Config{
     private static void initGeneral(ConfigurationSection configurationSection){
         Reference.loreHeader = configurationSection.getString(cfgN.ITEM_LORE_HEADER.toString(), "&6&k|&r&6AutoFarm&k|&r");
         Reference.farmBlock = configurationSection.getItemStack(cfgN.FARMBLOCK.toString(), new ItemStack(Material.CHEST));
+        getSchematicsDir();
     }
 
     public static void reload(){
@@ -59,6 +61,7 @@ public class Config{
         ConfigurationSection general = getMainSection(cfgN.GENERAL_SECTION);
         general.set(cfgN.ITEM_LORE_HEADER.toString(), Reference.loreHeader);
         general.set(cfgN.FARMBLOCK.toString(), Reference.farmBlock);
+        general.set(cfgN.SCHEMATICS_DIR.toString(), getSchematicsDirName());
         plugin.saveConfig();
     }
 
@@ -143,10 +146,16 @@ public class Config{
         return section;
     }
 
+    public static File getSchematicsDir() {
+        String path = plugin.getDataFolder().getAbsolutePath() + File.separator + getSchematicsDirName();
+        File f = new File(path);
+        f.mkdirs();
+        return f;
+    }
+
     public static String getSchematicsDirName() {
         return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.SCHEMATICS_DIR.toString(), "schematics");
     }
-
     public enum cfgN{
         PREFIX(plugin.getDescription().getPrefix()),
         FARMS_SECTION("farms"),

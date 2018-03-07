@@ -3,7 +3,6 @@ package com.github.SquadAlpha.AutoBuildFarms.commands;
 
 import com.github.SquadAlpha.AutoBuildFarms.Reference;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +11,7 @@ import org.bukkit.command.TabCompleter;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class ABFCommand extends Command implements CommandExecutor, TabCompleter{
+public abstract class ABFCommand extends Command implements TabCompleter, CommandExecutor {
 
 
     protected ABFCommand(String name, String description, String usageMessage, String... aliases){
@@ -27,8 +26,12 @@ public abstract class ABFCommand extends Command implements CommandExecutor, Tab
     public abstract boolean execute(CommandSender sender, String commandLabel, String[] args);
 
     @Override
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException{
-        return super.tabComplete(sender, alias, args);
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return null;
     }
 
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        return this.getName().equalsIgnoreCase(command.getName()) && this.execute(sender, label, args);
+    }
 }
