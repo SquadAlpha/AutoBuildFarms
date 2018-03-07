@@ -17,9 +17,9 @@ pipeline {
                 configFileProvider([configFile('b2da8a78-1b48-48ed-9757-b601da22db66')]) {
                     script {
                         if (isUnix()) {
-                            sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package install'
+                            sh 'mvn -Dmaven.test.failure.ignore=true clean package install'
                         } else {
-                            bat 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package install'
+                            bat 'mvn -Dmaven.test.failure.ignore=true clean package install'
                         }
                     }
                 }

@@ -121,34 +121,38 @@
 
     <profiles>
         <profile>
-            <id>upstream</id>
+            <id>upstream-non-windows</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>env.Jenkins.Repository</name>
+                </property>
             </activation>
             <repositories>
                 <repository>
                     <id>upstream</id>
                     <url>${env.Jenkins.Repository}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
             </repositories>
-            <pluginRepositories>
-                <pluginRepository>
+        </profile>
+        <profile>
+            <id>upstream-windows</id>
+            <activation>
+                <property>
+                    <name>env.JENKINS.REPOSITORY</name>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
                     <id>upstream</id>
-                    <url>${env.Jenkins.Repository}</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
+                    <url>${env.JENKINS.REPOSITORY}</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
 
