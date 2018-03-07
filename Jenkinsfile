@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-                configFileProvider([configFile('e40a45f1-d202-4d5b-9398-bc63231b6812')]) {
+                configFileProvider([configFile('b2da8a78-1b48-48ed-9757-b601da22db66')]) {
                     script {
                         if (isUnix()) {
                             sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
