@@ -16,7 +16,7 @@ node {
                 if (isUnix()) {
                     sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS  -Dmaven.test.failure.ignore clean package deploy"
                 } else {
-                    bat(/"${mvnHome}\bin\mvn" -s $HOME\.m2\settings.xml  -Dmaven.test.failure.ignore clean package deploy/)
+                    bat(/"${mvnHome}\bin\mvn" -s %MAVEN_SETTINGS%  -Dmaven.test.failure.ignore clean package deploy/)
                 }
             }
         }
