@@ -12,14 +12,18 @@ pipeline {
         }
 
         stage('Build') {
-            configFileProvider([configFile(fileId: 'b2da8a78-1b48-48ed-9757-b601da22db66', variable: 'MAVEN_SETTINGS')]) {
-                withMaven(maven: 'M3', mavenSettingsConfig: 'b2da8a78-1b48-48ed-9757-b601da22db66') {
-                    // Run the maven build
+            steps {
+                configFileProvider([configFile(fileId: 'b2da8a78-1b48-48ed-9757-b601da22db66', variable: 'MAVEN_SETTINGS')]) {
+                    withMaven(maven: 'M3', mavenSettingsConfig: 'b2da8a78-1b48-48ed-9757-b601da22db66') {
+                        // Run the maven build
 
-                    if (isUnix()) {
-                        sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS  -Dmaven.test.failure.ignore clean package deploy"
-                    } else {
-                        bat(/"${mvnHome}\bin\mvn" -s $HOME\.m2\settings.xml  -Dmaven.test.failure.ignore clean package deploy/)
+                        if (isUnix()) {
+                            sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS  -Dmaven.test.failure.ignore clean package deploy"
+                        } else {
+                            bat(/"${
+                                mvnHome
+                            }\bin\mvn" -s $HOME\.m2\settings.xml  -Dmaven.test.failure.ignore clean package deploy/)
+                        }
                     }
                 }
             }
