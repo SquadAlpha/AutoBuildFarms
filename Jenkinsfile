@@ -14,7 +14,7 @@ node {
                 // Run the maven build
 
                 if (isUnix()) {
-                    sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS  -Dmaven.test.failure.ignore clean help:effective-pom package deploy"
+                    sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS  -Dmaven.test.failure.ignore clean help:effective-pom help:effective-settings help:system package deploy"
                 } else {
                     bat(/"${mvnHome}\bin\mvn" -s %MAVEN_SETTINGS%  -Dmaven.test.failure.ignore clean help:effective-pom package deploy/)
                 }
