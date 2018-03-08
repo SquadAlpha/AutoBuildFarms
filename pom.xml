@@ -22,8 +22,8 @@
             <url>http://repo.lucko.me/</url>
         </repository>
         <repository>
-            <id>bigi-vault-repo</id>
-            <url>http://ci.dingemans.mooo.com/plugin/repository/everything/</url>
+            <id>bigi-repo</id>
+            <url>http://repo.dingemans.mooo.com/repository/public/</url>
         </repository>
         <repository>
             <id>sk89q-snapshots</id>
