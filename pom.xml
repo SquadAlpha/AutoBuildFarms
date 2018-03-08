@@ -70,6 +70,19 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus-release</id>
+            <url>http://repo.dingemans.mooo.com/repository/public-release/</url>
+            <name>Nexus Releases</name>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshot</id>
+            <url>http://repo.dingemans.mooo.com/repository/public-snapshot/</url>
+            <name>Nexus Snapshot</name>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -122,42 +135,5 @@
             </resource>
         </resources>
     </build>
-
-    <profiles>
-        <profile>
-            <id>upstream-non-windows</id>
-            <activation>
-                <property>
-                    <name>env.Jenkins.Repository</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>upstream</id>
-                    <url>${env.Jenkins.Repository}</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
-        <profile>
-            <id>upstream-windows</id>
-            <activation>
-                <property>
-                    <name>env.JENKINS.REPOSITORY</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>upstream</id>
-                    <url>${env.JENKINS.REPOSITORY}</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
-    </profiles>
 
 </project>
