@@ -12,11 +12,9 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 #Idea
-.idea/workspace.xml
-.idea/libraries
-.idea/uiDesigner.xml
-.idea/AutoBuildFarms.iml
+.idea/
 AutoBuildFarms.iml
 
 #Spigot
 wd/
+
