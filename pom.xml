@@ -40,14 +40,8 @@
 			<url>http://repo.dingemans.mooo.com/repository/public-release/</url>
 		</repository>
 		<repository>
-			<id>sk89q-snapshots</id>
+			<id>sk89q-repo</id>
 			<url>http://maven.sk89q.com/artifactory/repo/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 
