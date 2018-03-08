@@ -22,7 +22,7 @@
             <url>http://repo.lucko.me/</url>
         </repository>
         <repository>
-            <id>nexus-release</id>
+            <id>bigi-nexus</id>
             <url>http://repo.dingemans.mooo.com/repository/public-release/</url>
         </repository>
         <repository>
