@@ -10,7 +10,7 @@ node {
     }
     stage('Build') {
         configFileProvider([configFile(fileId: 'b2da8a78-1b48-48ed-9757-b601da22db66', variable: 'MAVEN_SETTINGS')]) {
-            withMaven(maven: 'M3', mavenSettingsConfig: 'b2da8a78-1b48-48ed-9757-b601da22db66') {
+            withMaven(maven: 'M3') {
                 // Run the maven build
 
                 if (isUnix()) {
