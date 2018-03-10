@@ -1,7 +1,9 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands;
 
 import com.github.SquadAlpha.AutoBuildFarms.Reference;
+import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import lombok.Getter;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -12,12 +14,13 @@ import java.util.stream.Stream;
 
 public class ABFMain extends ABFCommand {
 
+    @Getter
     private final HashMap<String, subOption> subOptions;
 
     public ABFMain() {
         super("ABF", "the main " + Reference.plugin.getName() + " command", "/ABF help", "abf", "autobuildfarms");
         this.subOptions = new HashMap<>();
-        this.subOptions.put("help", new helpOption());
+        this.subOptions.put("help", new helpOption(this));
     }
 
     @Override
@@ -55,10 +58,12 @@ public class ABFMain extends ABFCommand {
         private final String name;
         @Getter
         private final String helpText;
+        protected final ABFMain parent;
 
-        protected subOption(String name, String helpText) {
+        protected subOption(ABFMain abfMain, String name, String helpText) {
             this.name = name;
             this.helpText = helpText;
+            this.parent = abfMain;
         }
 
         public abstract boolean execute(CommandSender sender, String label, ArrayList<String> args);
@@ -67,13 +72,19 @@ public class ABFMain extends ABFCommand {
     }
 
     private class helpOption extends subOption {
-        protected helpOption() {
-            super("help", "shows the help of all subcommands");
+        protected helpOption(ABFMain abfMain) {
+            super(abfMain, "help", "shows the help of all subcommands");
         }
 
         @Override
         public boolean execute(CommandSender sender, String label, ArrayList<String> args) {
-            //TODO write this
+            ChatBuilder builder = new ChatBuilder(sender, ChatColor.WHITE);
+            builder.append(ChatColor.YELLOW, "====ABF Help====");
+            for (subOption opt : this.parent.subOptions.values()) {
+                builder.newLine(ChatColor.WHITE).append(ChatColor.WHITE, "/abf ").append(ChatColor.AQUA, opt.getName())
+                        .append(ChatColor.YELLOW, " = ").append(ChatColor.WHITE, opt.getHelpText());
+            }
+            builder.send();
             return true;
         }
 

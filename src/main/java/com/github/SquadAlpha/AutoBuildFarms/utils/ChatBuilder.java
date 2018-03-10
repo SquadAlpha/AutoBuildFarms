@@ -10,24 +10,24 @@ public class ChatBuilder{
 
     public ChatBuilder(CommandSender target,ChatColor c){
         this.target = target;
-        this.msg = new StringBuilder(ChatColor.COLOR_CHAR + c.getChar() + "["+ Reference.plugin.getDescription().getPrefix()+"]");
+        this.msg = new StringBuilder(ChatColor.GREEN + "[" + Reference.plugin.getDescription().getPrefix() + "] " + c);
     }
     public ChatBuilder append(ChatColor c, String msg){
-        this.msg.append(ChatColor.COLOR_CHAR)
-                .append(c.getChar())
+        this.msg.append(c)
                 .append(msg);
         return this;
     }
 
     public ChatBuilder newLine(ChatColor c){
         this.msg.append("\r\n")
-                .append(ChatColor.COLOR_CHAR)
-                .append(c.getChar())
+                .append(ChatColor.GREEN)
                 .append("[")
                 .append(Reference.plugin.getDescription().getPrefix())
-                .append("]");
+                .append("] ")
+                .append(c);
         return this;
     }
+
 
     public void send(){
         target.sendMessage(this.msg.toString());

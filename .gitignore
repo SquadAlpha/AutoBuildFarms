@@ -17,4 +17,9 @@ buildNumber.properties
 AutoBuildFarms.iml
 
 #Spigot
-wd/
+wd/*
+!/wd/server.properties
+!/wd/bukkit.yml
+!/wd/ops.json
+!/wd/eula.txt
+!/wd/start.bat
