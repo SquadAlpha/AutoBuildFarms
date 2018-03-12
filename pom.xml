@@ -28,21 +28,23 @@
 
 	<repositories>
 		<repository>
-			<id>public-spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-		</repository>
+            <name>Nexus public repo</name>
+            <id>nexus-release</id>
+            <url>http://repo.dingemans.mooo.com/repository/public/</url>
+        </repository>
+        <repository>
+            <id>public-spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
 		<repository>
 			<id>luck-repo</id>
 			<url>http://repo.lucko.me/</url>
 		</repository>
-		<repository>
-			<id>bigi-nexus</id>
-			<url>http://repo.dingemans.mooo.com/repository/public-release/</url>
-		</repository>
-		<repository>
-			<id>sk89q-repo</id>
-			<url>http://maven.sk89q.com/artifactory/repo/</url>
-		</repository>
+        <repository>
+            <name>Nexus private repo (NMS e.t.c.)</name>
+            <id>nexus-private-release</id>
+            <url>http://repo.dingemans.mooo.com/repository/private/</url>
+        </repository>
 	</repositories>
 
 	<dependencies>
@@ -52,12 +54,11 @@
 			<version>1.12.2-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.sk89q.worldedit</groupId>
-			<artifactId>worldedit-core</artifactId>
-			<version>6.1.4-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+        <dependency>
+            <groupId>com.flowpowered</groupId>
+            <artifactId>flow-nbt</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 		<dependency>
 			<groupId>me.lucko</groupId>
 			<artifactId>helper</artifactId>
