@@ -1,6 +1,5 @@
-package com.github.SquadAlpha.AutoBuildFarms;
+package com.github.SquadAlpha.AutoBuildFarms.utils;
 
-import com.github.SquadAlpha.AutoBuildFarms.utils.Building;
 import lombok.Data;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;

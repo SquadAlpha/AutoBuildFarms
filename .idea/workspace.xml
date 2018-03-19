@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="">
+    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="Made the command class automaticly check for permissions&#10;Added some permissions stuff to the main command&#10;Added a main menu title config option&#10;Moved some files into sub packages&#10;Shedules the placement of buildings&#10;Started writing main menu class">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" afterPath="$PROJECT_DIR$/Jenkinsfile" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Config.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Farm.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Reference.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" />
+      <change beforePath="$PROJECT_DIR$/wd/server.properties" afterPath="$PROJECT_DIR$/wd/server.properties" />
+      <change beforePath="$PROJECT_DIR$/wd/start.bat" afterPath="$PROJECT_DIR$/wd/start.bat" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,33 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="ABFMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="-204">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutoBuildFarms.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java">
+      <file leaf-file-name="ABFCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="44" column="25" lean-forward="true" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Jenkinsfile" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Jenkinsfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="55" lean-forward="false" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+            <state relative-caret-position="128">
+              <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -53,27 +51,33 @@
       <file leaf-file-name="Building.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="55" column="49" lean-forward="false" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+            <state relative-caret-position="220">
+              <caret line="118" column="59" lean-forward="true" selection-start-line="118" selection-start-column="59" selection-end-line="118" selection-end-column="59" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#471#503#0" expanded="true" />
-                <element signature="e#5723#5724#0" expanded="true" />
-                <element signature="e#5752#5753#0" expanded="true" />
-                <element signature="e#5823#5824#0" expanded="true" />
-                <element signature="e#5850#5851#0" expanded="true" />
-                <element signature="e#5922#5923#0" expanded="true" />
-                <element signature="e#5950#5951#0" expanded="true" />
-                <element signature="e#6024#6025#0" expanded="true" />
-                <element signature="e#6053#6054#0" expanded="true" />
-                <element signature="e#6127#6128#0" expanded="true" />
-                <element signature="e#6156#6157#0" expanded="true" />
+                <element signature="e#488#520#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="158" column="4" lean-forward="false" selection-start-line="158" selection-start-column="4" selection-end-line="158" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -122,16 +126,21 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/wd/plugins/LuckPerms/config.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" />
-        <option value="$PROJECT_DIR$/wd/start.bat" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" />
         <option value="$PROJECT_DIR$/wd/server.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Reference.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" />
         <option value="$PROJECT_DIR$/Jenkinsfile" />
+        <option value="$PROJECT_DIR$/wd/start.bat" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" />
+        <option value="$PROJECT_DIR$/wd/world/advancements/eaf3965a-1f19-460c-b5dc-23c4ea09d955.json" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
       </list>
     </option>
   </component>
@@ -206,6 +215,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,20 +267,38 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="reference" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -298,7 +328,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Package">
+  <component name="RunManager" selected="Batch.Start">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -539,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520876356694</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="deploy might  work this time">
+      <created>1520876818074</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1520876818074</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -557,6 +594,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -567,8 +605,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26979" sideWeight="0.4956044" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2956381" sideWeight="0.4956044" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -579,8 +616,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -622,7 +659,9 @@
     <MESSAGE value="Git Runs Added" />
     <MESSAGE value="Made the help subcommand work&#10;Changed the chatbuilder for a more readable text&#10;Created server start files via gitignore&#10;Had worldedit be shaded in" />
     <MESSAGE value="Changed schematic loading to to require mcedit&#10;Added private repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed schematic loading to to require mcedit&#10;Added private repo" />
+    <MESSAGE value="deploy might  work this time" />
+    <MESSAGE value="Made the command class automaticly check for permissions&#10;Added some permissions stuff to the main command&#10;Added a main menu title config option&#10;Moved some files into sub packages&#10;Shedules the placement of buildings&#10;Started writing main menu class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the command class automaticly check for permissions&#10;Added some permissions stuff to the main command&#10;Added a main menu title config option&#10;Moved some files into sub packages&#10;Shedules the placement of buildings&#10;Started writing main menu class" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
@@ -633,43 +672,191 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="9" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wd/commands.yml">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/CuboidClipboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="425" column="28" lean-forward="false" selection-start-line="425" selection-start-column="28" selection-end-line="425" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wd/bukkit.yml">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/EditSession.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <caret line="98" column="13" lean-forward="false" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wd/spigot.yml">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/world/AbstractWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/LocalWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/LocalWorldAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="50" column="41" lean-forward="true" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/command/WorldEditBinding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="306" column="33" lean-forward="true" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/EditSessionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/world/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="40" column="3" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/command/SelectionCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/command/WorldEditCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-604">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/PlatformManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/scripting/RhinoCraftScriptEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        <state relative-caret-position="106">
+          <caret line="47" column="18" lean-forward="false" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wd/plugins/LuckPerms/config.yml">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/WorldEdit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="258" column="20" lean-forward="false" selection-start-line="258" selection-start-column="20" selection-end-line="258" selection-end-column="20" />
+        <state relative-caret-position="456">
+          <caret line="773" column="26" lean-forward="false" selection-start-line="773" selection-start-column="26" selection-end-line="773" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/AbstractPlatform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/ServerInterfaceAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="76" column="25" lean-forward="true" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/jnbt/NamedTag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/jnbt/NBTInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="60" column="16" lean-forward="true" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/flowpowered/flow-nbt/1.0.0/flow-nbt-1.0.0-sources.jar!/com/flowpowered/nbt/CompoundTag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/logging/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="1706" column="13" lean-forward="true" selection-start-line="1706" selection-start-column="13" selection-end-line="1706" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/logging/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="97" column="22" lean-forward="false" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="814" column="23" lean-forward="false" selection-start-line="814" selection-start-column="23" selection-end-line="814" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/StackTraceElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="170" column="18" lean-forward="false" selection-start-line="170" selection-start-column="18" selection-end-line="170" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="623" column="30" lean-forward="false" selection-start-line="623" selection-start-column="30" selection-end-line="623" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="234" column="18" lean-forward="false" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -680,69 +867,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/AbstractStringBuilder.java">
+    <entry file="file://$PROJECT_DIR$/wd/plugins/LuckPerms/yaml-storage/users/93338860-cde1-3289-bf17-e8bb14ae7b29.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="759" column="34" lean-forward="true" selection-start-line="759" selection-start-column="34" selection-end-line="759" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java">
+    <entry file="file://$PROJECT_DIR$/wd/plugins/LuckPerms/yaml-storage/groups/owner.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wd/start.bat">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/world/advancements/eaf3965a-1f19-460c-b5dc-23c4ea09d955.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/world/playerdata/eaf3965a-1f19-460c-b5dc-23c4ea09d955.dat">
+      <provider selected="true" editor-type-id="nbt_editor">
         <state relative-caret-position="0">
-          <caret line="0" column="47" lean-forward="false" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180308.072700-121-sources.jar!/org/bukkit/ChatColor.java">
+    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="222" column="25" lean-forward="false" selection-start-line="222" selection-start-column="25" selection-end-line="222" selection-end-column="25" />
+        <state relative-caret-position="256">
+          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/String.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="2993" column="50" lean-forward="false" selection-start-line="2993" selection-start-column="50" selection-end-line="2993" selection-end-column="50" />
-          <folding>
-            <element signature="e#117893#117894#0" expanded="false" />
-            <element signature="e#117955#117956#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="512">
+          <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/StringBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Listeners.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="130" column="30" lean-forward="false" selection-start-line="130" selection-start-column="30" selection-end-line="130" selection-end-column="30" />
-          <folding>
-            <element signature="e#4161#4162#0" expanded="false" />
-            <element signature="e#4211#4212#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/server.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="112">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -750,330 +953,106 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="12" column="112" lean-forward="false" selection-start-line="12" selection-start-column="112" selection-end-line="12" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/world/level.dat">
+      <provider selected="true" editor-type-id="nbt_editor">
+        <state relative-caret-position="-92">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/world/level.dat_old">
+      <provider selected="true" editor-type-id="nbt_editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/world/stats/eaf3965a-1f19-460c-b5dc-23c4ea09d955.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/4.2.1/helper-4.2.1-sources.jar!/me/lucko/helper/menu/paginated/PaginatedGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="70" column="57" lean-forward="false" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/4.2.1/helper-4.2.1-sources.jar!/me/lucko/helper/terminable/TerminableConsumer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="623" column="17" lean-forward="true" selection-start-line="623" selection-start-column="17" selection-end-line="623" selection-end-column="17" />
+        <state relative-caret-position="320">
+          <caret line="43" column="29" lean-forward="false" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180308.072700-121-sources.jar!/org/bukkit/scheduler/BukkitScheduler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/4.2.1/helper-4.2.1-sources.jar!/me/lucko/helper/menu/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="320">
+          <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+          <folding>
+            <element signature="e#5574#5575#0" expanded="false" />
+            <element signature="e#5632#5633#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#295#296#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        <state relative-caret-position="-204">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180308.072700-121-sources.jar!/org/bukkit/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="348" column="27" lean-forward="false" selection-start-line="348" selection-start-column="27" selection-end-line="348" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/jre/lib/ext/jfxrt.jar!/com/sun/javafx/tk/quantum/QuantumToolkit.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/MaxChangedBlocksException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/CuboidClipboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="425" column="28" lean-forward="false" selection-start-line="425" selection-start-column="28" selection-end-line="425" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/EditSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="98" column="13" lean-forward="false" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/world/AbstractWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/LocalWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/LocalWorldAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="50" column="41" lean-forward="true" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
-          <folding>
-            <element signature="e#1923#1955#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/command/WorldEditBinding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="306" column="33" lean-forward="true" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/EditSessionFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/world/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="40" column="3" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/command/SelectionCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/command/WorldEditCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-604">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/PlatformManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/scripting/RhinoCraftScriptEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="47" column="18" lean-forward="false" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/WorldEdit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="773" column="26" lean-forward="false" selection-start-line="773" selection-start-column="26" selection-end-line="773" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/extension/platform/AbstractPlatform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding>
-            <element signature="e#1254#1255#0" expanded="false" />
-            <element signature="e#1300#1301#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/worldedit/internal/ServerInterfaceAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="76" column="25" lean-forward="true" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
-          <folding>
-            <element signature="e#2202#2203#0" expanded="false" />
-            <element signature="e#2263#2264#0" expanded="false" />
-            <element signature="e#2325#2326#0" expanded="false" />
-            <element signature="e#2368#2369#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/jnbt/NamedTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sk89q/worldedit/worldedit-core/6.1.4-SNAPSHOT/worldedit-core-6.1.4-20160806.113546-4-sources.jar!/com/sk89q/jnbt/NBTInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="60" column="16" lean-forward="true" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/flowpowered/flow-nbt/1.0.0/flow-nbt-1.0.0-sources.jar!/com/flowpowered/nbt/CompoundTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <element signature="e#1825#1826#0" expanded="false" />
-            <element signature="e#1853#1854#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/logging/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="1706" column="13" lean-forward="true" selection-start-line="1706" selection-start-column="13" selection-end-line="1706" selection-end-column="13" />
-          <folding>
-            <element signature="e#72773#72774#0" expanded="false" />
-            <element signature="e#72807#72808#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/logging/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="97" column="22" lean-forward="false" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Throwable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="814" column="23" lean-forward="false" selection-start-line="814" selection-start-column="23" selection-end-line="814" selection-end-column="23" />
-          <folding>
-            <element signature="e#33047#33048#0" expanded="false" />
-            <element signature="e#33096#33097#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/StackTraceElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="170" column="18" lean-forward="false" selection-start-line="170" selection-start-column="18" selection-end-line="170" selection-end-column="18" />
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="55" column="49" lean-forward="false" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+        <state relative-caret-position="220">
+          <caret line="118" column="59" lean-forward="true" selection-start-line="118" selection-start-column="59" selection-end-line="118" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#471#503#0" expanded="true" />
-            <element signature="e#5723#5724#0" expanded="true" />
-            <element signature="e#5752#5753#0" expanded="true" />
-            <element signature="e#5823#5824#0" expanded="true" />
-            <element signature="e#5850#5851#0" expanded="true" />
-            <element signature="e#5922#5923#0" expanded="true" />
-            <element signature="e#5950#5951#0" expanded="true" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6053#6054#0" expanded="true" />
-            <element signature="e#6127#6128#0" expanded="true" />
-            <element signature="e#6156#6157#0" expanded="true" />
+            <element signature="e#488#520#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="26" lean-forward="false" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="44" column="25" lean-forward="true" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="55" lean-forward="false" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+        <state relative-caret-position="292">
+          <caret line="158" column="4" lean-forward="false" selection-start-line="158" selection-start-column="4" selection-end-line="158" selection-end-column="4" />
           <folding />
         </state>
       </provider>

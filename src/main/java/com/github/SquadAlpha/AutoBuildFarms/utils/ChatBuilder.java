@@ -1,6 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms.utils;
 
-import com.github.SquadAlpha.AutoBuildFarms.Reference;
+import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 

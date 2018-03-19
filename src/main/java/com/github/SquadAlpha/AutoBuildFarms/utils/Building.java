@@ -2,8 +2,8 @@ package com.github.SquadAlpha.AutoBuildFarms.utils;
 
 import com.flowpowered.nbt.*;
 import com.flowpowered.nbt.stream.NBTInputStream;
-import com.github.SquadAlpha.AutoBuildFarms.Config;
-import com.github.SquadAlpha.AutoBuildFarms.Reference;
+import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -33,9 +33,8 @@ import java.util.zip.GZIPInputStream;
  *
  */
 
-/**
- *
- * @author Max
+/*
+  @author Max
  */
 public class Building {
 
@@ -61,16 +60,18 @@ public class Building {
         short length = building.getLenght();
         short width = building.getWidth();
         short height = building.getHeight();
-
-        for (int x = 0; x < width; ++x) {
-            for (int y = 0; y < height; ++y) {
-                for (int z = 0; z < length; ++z) {
-                    int index = y * width * length + z * width + x;
-                    Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
-                    block.setTypeIdAndData(blocks[index], blockData[index], false);
+        Reference.plugin.getServer().getScheduler().runTaskAsynchronously(Reference.plugin, () -> {
+            for (int x = 0; x < width; ++x) {
+                for (int y = 0; y < height; ++y) {
+                    for (int z = 0; z < length; ++z) {
+                        int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
+                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
+                        block.setTypeIdAndData(blocks[index], blockData[index], false);
+                    }
                 }
             }
-        }
+        });
+
     }
 
     //Loading
@@ -115,9 +116,7 @@ public class Building {
         } catch (IOException e) {
             Reference.log.severe(e.getLocalizedMessage());
             StringBuilder stackTrace = new StringBuilder();
-            Arrays.stream(e.getStackTrace()).forEach(s -> {
-                stackTrace.append(s.toString()).append("\r\n");
-            });
+            Arrays.stream(e.getStackTrace()).forEach(s -> stackTrace.append(s.toString()).append("\r\n"));
             Reference.log.severe(stackTrace.toString());
             return null;
         }

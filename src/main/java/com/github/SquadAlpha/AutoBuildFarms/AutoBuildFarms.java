@@ -2,6 +2,7 @@ package com.github.SquadAlpha.AutoBuildFarms;
 
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFMain;
+import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -9,7 +10,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.util.HashMap;
 
-import static com.github.SquadAlpha.AutoBuildFarms.Reference.*;
+import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.*;
 
 public class AutoBuildFarms extends ExtendedJavaPlugin{
 

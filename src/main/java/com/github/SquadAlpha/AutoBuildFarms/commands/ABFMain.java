@@ -1,11 +1,12 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands;
 
-import com.github.SquadAlpha.AutoBuildFarms.Reference;
+import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,21 +25,22 @@ public class ABFMain extends ABFCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-        if (args.length <= 0) {
-            openMenu();
+    public boolean _execute(CommandSender sender, String commandLabel, String[] args) {
+        if (args.length <= 0 && this.isPlayerAndYell(sender)) {
+            Player p = (Player) sender;
+            openMenu(p);
             return true;
         }
         ArrayList<String> argList = new ArrayList<>();
         Stream.of(args).forEach(arg -> argList.add(arg.toLowerCase()));
         if (this.subOptions.containsKey(argList.get(0))) {
-            return this.subOptions.get(argList.get(0)).execute(sender, commandLabel, argList);
+            return this.subOptions.get(argList.get(0))._execute(sender, commandLabel, argList);
         } else {
-            return this.subOptions.get("help").execute(sender, commandLabel, argList);
+            return this.subOptions.get("help")._execute(sender, commandLabel, argList);
         }
     }
 
-    private void openMenu() {
+    private void openMenu(Player sender) {
 
     }
 
@@ -59,11 +61,26 @@ public class ABFMain extends ABFCommand {
         @Getter
         private final String helpText;
         protected final ABFMain parent;
+        @Getter
+        private final String permission;
 
         protected subOption(ABFMain abfMain, String name, String helpText) {
             this.name = name;
             this.helpText = helpText;
             this.parent = abfMain;
+            this.permission = Reference.plugin.getName().toLowerCase() + "." + this.parent.getName() + "." + this.name;
+        }
+
+        public final boolean _execute(CommandSender sender, String label, ArrayList<String> args) {
+            if (Reference.perms.has(sender, this.getPermission())) {
+                return this.execute(sender, label, args);
+            } else {
+
+                ChatBuilder cb = new ChatBuilder(sender, ChatColor.RED);
+                cb.append(ChatColor.RED, "You don't have permission:").append(ChatColor.AQUA, this.getPermission());
+                cb.append(ChatColor.RED, " to exectute this command");
+                return false;
+            }
         }
 
         public abstract boolean execute(CommandSender sender, String label, ArrayList<String> args);
