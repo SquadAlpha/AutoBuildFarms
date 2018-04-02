@@ -1,44 +1,55 @@
 package com.github.SquadAlpha.AutoBuildFarms.utils;
 
-import com.github.SquadAlpha.AutoBuildFarms.Config;
-import com.github.SquadAlpha.AutoBuildFarms.Reference;
-import com.sk89q.worldedit.CuboidClipboard;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.schematic.SchematicFormat;
-import com.sk89q.worldedit.world.DataException;
-import lombok.Getter;
+import com.flowpowered.nbt.*;
+import com.flowpowered.nbt.stream.NBTInputStream;
+import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
 
 
 @SuppressWarnings("deprecation")
+/*
+ *
+ *    This class is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This class is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this class.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+/*
+  @author Max
+ */
 public class Building {
 
-    @Getter
-    private final String name;
-    @Getter
-    private final CuboidClipboard clipboard;
+    private byte[] blocks;
+    private byte[] data;
+    private short width;
+    private short lenght;
+    private short height;
 
-    public Building(String name, File schem) {
-        this.name = name;
-        CuboidClipboard clip = null;
-        try {
-            clip = SchematicFormat.MCEDIT.load(schem);
-        } catch (IOException | DataException e) {
-            Reference.log.severe("Could not load schematic:" + name + " at " + schem.getAbsolutePath());
-            Reference.log.severe(e.getLocalizedMessage());
-            clip = new CuboidClipboard(new Vector());
-        } finally {
-            this.clipboard = clip;
-        }
+    public Building(byte[] blocks, byte[] data, short width, short lenght, short height) {
+        this.blocks = blocks;
+        this.data = data;
+        this.width = width;
+        this.lenght = lenght;
+        this.height = height;
     }
 
-    //TODO write this
-    /*public void PlaceBuilding(){
-        BukkitScheduler
-    }*/
-
+    //Loading
     public static Building loadSchematic(String schematic) {
         String schematicFileName = schematic;
         if (!schematicFileName.endsWith(".schematic")) {
@@ -46,6 +57,143 @@ public class Building {
         }
 
         File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
-        return new Building(schematic, schemFile);
+        if (!schemFile.exists()) {
+            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found creating a fake one");
+            try {
+                InputStream in = Reference.plugin.getResource("chest.schematic");
+                OutputStream writer = new BufferedOutputStream(new FileOutputStream(schemFile));
+                int readbytes;
+                byte[] buffer = new byte[1024];
+                while ((readbytes = in.read(buffer)) > 0) {
+                    Reference.log.info("Read:" + readbytes + " into buffer");
+                    writer.write(buffer, 0, readbytes);
+                }
+                in.close();
+                writer.close();
+            } catch (IOException e) {
+                Reference.log.severe(e.getLocalizedMessage());
+                Reference.log.severe(e.getMessage());
+            }
+        }
+
+        return loadSchematic(schemFile);
     }
+
+    public static Building loadSchematic(File schemFile) {
+        try {
+            FileInputStream stream = new FileInputStream(schemFile);
+            NBTInputStream nbtStream = new NBTInputStream(stream);
+
+            CompoundTag schematicTag = (CompoundTag) nbtStream.readTag();
+            if (!schematicTag.getName().equals("Schematic")) {
+                throw new IllegalArgumentException("Tag \"Schematic\" does not exist or is not first");
+            }
+
+            CompoundMap schematic = schematicTag.getValue();
+            if (!schematic.containsKey("Blocks")) {
+                throw new IllegalArgumentException("Schematic file is missing a \"Blocks\" tag");
+            }
+
+            short width = getChildTag(schematic, "Width", ShortTag.class).getValue();
+            short length = getChildTag(schematic, "Length", ShortTag.class).getValue();
+            short height = getChildTag(schematic, "Height", ShortTag.class).getValue();
+
+            String materials = getChildTag(schematic, "Materials", StringTag.class).getValue();
+            if (!materials.equals("Alpha")) {
+                throw new IllegalArgumentException("Schematic file is not an Alpha schematic");
+            }
+
+            byte[] blocks = getChildTag(schematic, "Blocks", ByteArrayTag.class).getValue();
+            byte[] blockData = getChildTag(schematic, "Data", ByteArrayTag.class).getValue();
+            return new Building(blocks, blockData, width, length, height);
+        } catch (IOException e) {
+            Reference.log.severe(e.getLocalizedMessage());
+            StringBuilder stackTrace = new StringBuilder();
+            Arrays.stream(e.getStackTrace()).forEach(s -> stackTrace.append(s.toString()).append("\r\n"));
+            Reference.log.severe(stackTrace.toString());
+            return null;
+        }
+    }
+
+    //Pasting Really slow for big schematics TODO Check if the runTaskAsynchronously functions
+    public void pasteSchematic(World world, Location loc) {
+        byte[] blocks = this.getBlocks();
+        byte[] blockData = this.getData();
+
+        short length = this.getLenght();
+        short width = this.getWidth();
+        short height = this.getHeight();
+        Reference.plugin.getServer().getScheduler().runTask(Reference.plugin, () -> {
+            for (int x = 0; x < width; ++x) {
+                for (int y = 0; y < height; ++y) {
+                    for (int z = 0; z < length; ++z) {
+                        int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
+                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
+                        block.setTypeIdAndData(blocks[index], blockData[index], false);
+                    }
+                }
+            }
+        });
+
+    }
+
+    /**
+     * Get child tag of a NBT structure.
+     *
+     * @param items    The parent tag map
+     * @param key      The name of the tag to get
+     * @param expected The expected type of the tag
+     * @return child tag casted to the expected type
+     * @throws IllegalArgumentException if the tag does not exist or the tag is not of the
+     *                                  expected type
+     */
+    private static <T extends Tag> T getChildTag(CompoundMap items, String key, Class<T> expected) throws IllegalArgumentException {
+        if (!items.containsKey(key)) {
+            throw new IllegalArgumentException("Schematic file is missing a \"" + key + "\" tag");
+        }
+        Tag tag = items.get(key);
+        if (!expected.isInstance(tag)) {
+            throw new IllegalArgumentException(key + " tag is not of tag type " + expected.getName());
+        }
+        return expected.cast(tag);
+    }
+
+    /**
+     * @return the blocks
+     */
+    public byte[] getBlocks() {
+        return blocks;
+    }
+
+    /**
+     * @return the data
+     */
+    public byte[] getData() {
+        return data;
+    }
+
+    /**
+     * @return the width
+     */
+    public short getWidth() {
+        return width;
+    }
+
+    /**
+     * @return the lenght
+     */
+    public short getLenght() {
+        return lenght;
+    }
+
+    /**
+     * @return the height
+     */
+    public short getHeight() {
+        return height;
+    }
+
+
 }
+
+

@@ -1,5 +1,7 @@
-package com.github.SquadAlpha.AutoBuildFarms;
+package com.github.SquadAlpha.AutoBuildFarms.config;
 
+import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
+import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,8 +12,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.SquadAlpha.AutoBuildFarms.Reference.farmList;
-import static com.github.SquadAlpha.AutoBuildFarms.Reference.plugin;
+import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.farmList;
+import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.plugin;
 
 public class Config{
 
@@ -62,6 +64,7 @@ public class Config{
         general.set(cfgN.ITEM_LORE_HEADER.toString(), Reference.loreHeader);
         general.set(cfgN.FARMBLOCK.toString(), Reference.farmBlock);
         general.set(cfgN.SCHEMATICS_DIR.toString(), getSchematicsDirName());
+        general.set(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
         plugin.saveConfig();
     }
 
@@ -156,6 +159,11 @@ public class Config{
     public static String getSchematicsDirName() {
         return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.SCHEMATICS_DIR.toString(), "schematics");
     }
+
+    public static String getMainMenuTitle() {
+        return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "§6Auto §bBuild §4Farms");
+    }
+
     public enum cfgN{
         PREFIX(plugin.getDescription().getPrefix()),
         FARMS_SECTION("farms"),
@@ -167,7 +175,8 @@ public class Config{
         SCHEMATIC_FILE("schematic"),
         PRICE("price"),
         RESOURCES_SECTION("resources"),
-        SCHEMATICS_DIR("schematicdirectory");
+        SCHEMATICS_DIR("schematicdirectory"),
+        MAIN_MENUTITLE("mainmenutitle");
 
         private final String toString;
 

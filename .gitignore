@@ -12,9 +12,14 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 #Idea
-.idea/
+.idea/*
+!/.idea/workspace.xml
 AutoBuildFarms.iml
 
 #Spigot
-wd/
-
+wd/*
+!/wd/server.properties
+!/wd/bukkit.yml
+!/wd/ops.json
+!/wd/eula.txt
+!/wd/start.bat
