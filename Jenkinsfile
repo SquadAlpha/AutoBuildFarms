@@ -9,7 +9,7 @@ node {
         mvnHome = tool 'M3'
     }
     stage('Build') {
-        configFileProvider([configFile(fileId: 'b2da8a78-1b48-48ed-9757-b601da22db66', variable: 'MAVEN_SETTINGS')]) {
+        configFileProvider([configFile(fileId: 'c926d31d-47bf-46ac-966e-49bd9d62b71e', variable: 'MAVEN_SETTINGS')]) {
             withMaven(maven: 'M3') {
                 // Run the maven build
 
