@@ -19,7 +19,7 @@ public class ChatBuilder{
     }
 
     public ChatBuilder newLine(ChatColor c){
-        this.msg.append("\r\n")
+        this.msg.append("\n")
                 .append(ChatColor.GREEN)
                 .append("[")
                 .append(Reference.plugin.getDescription().getPrefix())

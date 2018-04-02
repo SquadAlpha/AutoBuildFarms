@@ -18,7 +18,7 @@ public abstract class ABFCommand extends Command implements TabCompleter, Comman
 
     protected ABFCommand(String name, String description, String usageMessage, String... aliases){
         super(name, description, usageMessage, Arrays.asList(aliases));
-        this.setPermission(Reference.plugin.getName().toLowerCase() + "." + name);
+        this.setPermission(Reference.plugin.getDescription().getPrefix() + "." + name);
         this.setPermissionMessage(ChatColor.RED + "You don't have permission:" +
                 ChatColor.AQUA + this.getPermission() +
                 ChatColor.RED + " to execute this command");

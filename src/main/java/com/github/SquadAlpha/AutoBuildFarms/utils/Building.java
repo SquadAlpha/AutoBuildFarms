@@ -8,11 +8,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
-import java.util.zip.GZIPInputStream;
 
 
 @SuppressWarnings("deprecation")
@@ -52,28 +49,6 @@ public class Building {
         this.height = height;
     }
 
-    //Pasting Really slow for big schematics TODO
-    public static void pasteSchematic(World world, Location loc, Building building) {
-        byte[] blocks = building.getBlocks();
-        byte[] blockData = building.getData();
-
-        short length = building.getLenght();
-        short width = building.getWidth();
-        short height = building.getHeight();
-        Reference.plugin.getServer().getScheduler().runTaskAsynchronously(Reference.plugin, () -> {
-            for (int x = 0; x < width; ++x) {
-                for (int y = 0; y < height; ++y) {
-                    for (int z = 0; z < length; ++z) {
-                        int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
-                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
-                        block.setTypeIdAndData(blocks[index], blockData[index], false);
-                    }
-                }
-            }
-        });
-
-    }
-
     //Loading
     public static Building loadSchematic(String schematic) {
         String schematicFileName = schematic;
@@ -82,6 +57,24 @@ public class Building {
         }
 
         File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
+        if (!schemFile.exists()) {
+            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found creating a fake one");
+            try {
+                InputStream in = Reference.plugin.getResource("chest.schematic");
+                OutputStream writer = new BufferedOutputStream(new FileOutputStream(schemFile));
+                int readbytes;
+                byte[] buffer = new byte[1024];
+                while ((readbytes = in.read(buffer)) > 0) {
+                    Reference.log.info("Read:" + readbytes + " into buffer");
+                    writer.write(buffer, 0, readbytes);
+                }
+                in.close();
+                writer.close();
+            } catch (IOException e) {
+                Reference.log.severe(e.getLocalizedMessage());
+                Reference.log.severe(e.getMessage());
+            }
+        }
 
         return loadSchematic(schemFile);
     }
@@ -89,7 +82,7 @@ public class Building {
     public static Building loadSchematic(File schemFile) {
         try {
             FileInputStream stream = new FileInputStream(schemFile);
-            NBTInputStream nbtStream = new NBTInputStream(new GZIPInputStream(stream));
+            NBTInputStream nbtStream = new NBTInputStream(stream);
 
             CompoundTag schematicTag = (CompoundTag) nbtStream.readTag();
             if (!schematicTag.getName().equals("Schematic")) {
@@ -120,6 +113,28 @@ public class Building {
             Reference.log.severe(stackTrace.toString());
             return null;
         }
+    }
+
+    //Pasting Really slow for big schematics TODO Check if the runTaskAsynchronously functions
+    public void pasteSchematic(World world, Location loc) {
+        byte[] blocks = this.getBlocks();
+        byte[] blockData = this.getData();
+
+        short length = this.getLenght();
+        short width = this.getWidth();
+        short height = this.getHeight();
+        Reference.plugin.getServer().getScheduler().runTask(Reference.plugin, () -> {
+            for (int x = 0; x < width; ++x) {
+                for (int y = 0; y < height; ++y) {
+                    for (int z = 0; z < length; ++z) {
+                        int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
+                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
+                        block.setTypeIdAndData(blocks[index], blockData[index], false);
+                    }
+                }
+            }
+        });
+
     }
 
     /**
