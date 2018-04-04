@@ -1,7 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
-import com.github.SquadAlpha.AutoBuildFarms.commands.ABFMain;
+import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.ABFMain;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;

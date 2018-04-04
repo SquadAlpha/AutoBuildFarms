@@ -65,7 +65,7 @@ public class Building {
                 int readbytes;
                 byte[] buffer = new byte[1024];
                 while ((readbytes = in.read(buffer)) > 0) {
-                    Reference.log.info("Read:" + readbytes + " into buffer");
+                    Reference.log.finer("Read:" + readbytes + " into buffer");
                     writer.write(buffer, 0, readbytes);
                 }
                 in.close();

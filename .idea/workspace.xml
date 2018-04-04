@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="changed the permission to start with ABF&#10;Added tab completion to the main command&#10;Made placing schematics possible via commands">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/chest.schematic" afterDir="false" />
+    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="Split the main commandclass into suboptions&#10;Demoted some logging">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/helpOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/listOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/subOption.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/ABFMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/chest.schematic" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chest.schematic" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wd/ops.json" beforeDir="false" afterPath="$PROJECT_DIR$/wd/ops.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wd/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/wd/server.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,7 +30,39 @@
     <favorites_list name="AutoBuildFarms" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ABFMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/ABFMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+              <folding>
+                <element signature="e#310#311#0" expanded="true" />
+                <element signature="e#373#374#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="154" column="10" selection-start-line="154" selection-start-column="10" selection-end-line="154" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,9 +112,7 @@
         <option value="$PROJECT_DIR$/wd/eula.txt" />
         <option value="$PROJECT_DIR$/wd/bukkit.yml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/wd/plugins/LuckPerms/config.yml" />
-        <option value="$PROJECT_DIR$/wd/server.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Reference.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" />
         <option value="$PROJECT_DIR$/Jenkinsfile" />
@@ -85,11 +122,18 @@
         <option value="$PROJECT_DIR$/wd/world/advancements/eaf3965a-1f19-460c-b5dc-23c4ea09d955.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/subOption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/helpOption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/listOption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
+        <option value="$PROJECT_DIR$/wd/server.properties" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/ABFMain.java" />
       </list>
     </option>
   </component>
@@ -206,7 +250,26 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
+              <item name="maincommand" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="reference" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
@@ -223,28 +286,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-              <item name="wd" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-              <item name="wd" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-              <item name="wd" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -516,9 +557,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1288" height="1032" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32967034" />
+      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.32929516" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -529,8 +572,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32967034" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4956044" visible="true" weight="0.31502423" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4956044" visible="true" weight="0.31987077" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24959612" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -538,24 +580,24 @@
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.50646204" weight="0.32857144" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.32967034" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32967034" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49353796" visible="true" weight="0.32819384" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4956044" visible="true" weight="0.3101777" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24959612" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32967034" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49353796" visible="true" weight="0.32819384" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32967034" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -614,7 +656,8 @@
     <MESSAGE value="Changed schematic loading to to require mcedit&#10;Added private repo" />
     <MESSAGE value="deploy might  work this time" />
     <MESSAGE value="Made the command class automaticly check for permissions&#10;Added some permissions stuff to the main command&#10;Added a main menu title config option&#10;Moved some files into sub packages&#10;Shedules the placement of buildings&#10;Started writing main menu class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the command class automaticly check for permissions&#10;Added some permissions stuff to the main command&#10;Added a main menu title config option&#10;Moved some files into sub packages&#10;Shedules the placement of buildings&#10;Started writing main menu class" />
+    <MESSAGE value="Split the main commandclass into suboptions&#10;Demoted some logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Split the main commandclass into suboptions&#10;Demoted some logging" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
@@ -629,37 +672,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="623" column="30" selection-start-line="623" selection-start-column="30" selection-end-line="623" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/start.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/world/advancements/eaf3965a-1f19-460c-b5dc-23c4ea09d955.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/world/playerdata/eaf3965a-1f19-460c-b5dc-23c4ea09d955.dat" />
-    <entry file="file://$PROJECT_DIR$/wd/world/level.dat" />
-    <entry file="file://$PROJECT_DIR$/wd/world/level.dat_old" />
     <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/4.2.1/helper-4.2.1-sources.jar!/me/lucko/helper/menu/paginated/PaginatedGui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -678,20 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -779,13 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -804,13 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="274" column="11" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -870,13 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="61" column="81" selection-start-line="61" selection-start-column="81" selection-end-line="61" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/stream/Stream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-84">
@@ -920,12 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="683">
           <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
-          <folding>
-            <element signature="e#5480#5481#0" expanded="true" />
-            <element signature="e#5513#5514#0" expanded="true" />
-            <element signature="e#5724#5725#0" expanded="true" />
-            <element signature="e#5768#5769#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -933,24 +904,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="517" column="68" lean-forward="true" selection-start-line="517" selection-start-column="68" selection-end-line="517" selection-end-column="68" />
-          <folding>
-            <element signature="e#19932#19933#0" expanded="true" />
-            <element signature="e#19961#19962#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/schematics/NoSchematicDefined.schematic" />
+    <entry file="file://$PROJECT_DIR$/release.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/schematics/NoSchematicDefined.schematic">
-      <provider selected="true" editor-type-id="nbt_editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/helpOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/subOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -961,24 +936,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFMain.java">
+    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+        <state relative-caret-position="224">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="20" column="76" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
+        <state relative-caret-position="16">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/listOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/logging/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="217" column="13" selection-start-line="217" selection-start-column="13" selection-end-line="217" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="66" column="59" selection-start-line="66" selection-start-column="59" selection-end-line="66" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="790">
+          <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/server.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2224">
+          <caret line="139" column="31" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/ABFMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+          <folding>
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#373#374#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="188">
+          <caret line="154" column="10" selection-start-line="154" selection-start-column="10" selection-end-line="154" selection-end-column="10" />
         </state>
       </provider>
     </entry>

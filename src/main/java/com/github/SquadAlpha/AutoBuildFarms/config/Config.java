@@ -71,7 +71,7 @@ public class Config{
     private static void initFarms(ConfigurationSection headSection){
         for(String farmName : headSection.getKeys(false)){
             ConfigurationSection fSection = getSubSection(farmName, headSection);
-            Reference.log.info("Loading farm:" + fSection.getString(cfgN.FORMATTED_NAME.toString()));
+            Reference.log.fine("Loading farm:" + fSection.getString(cfgN.FORMATTED_NAME.toString()));
             Farm f = new Farm(farmName, fSection.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + farmName));
 
             ConfigurationSection sesSect = getSubSection(cfgN.SIZES_SECTION, fSection);
@@ -83,7 +83,7 @@ public class Config{
                         sSect.getString(cfgN.SCHEMATIC_FILE.toString(), "NoSchematicDefined.schematic"),
                         sSect.getInt(cfgN.PRICE.toString(), 10),
                         items);
-                Reference.log.info("Adding size:" + size);
+                Reference.log.fine("Adding size:" + size);
             }
 
             Reference.farmList.put(farmName, f);

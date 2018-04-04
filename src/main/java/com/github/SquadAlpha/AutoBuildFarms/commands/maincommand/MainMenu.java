@@ -1,4 +1,4 @@
-package com.github.SquadAlpha.AutoBuildFarms.utils;
+package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import me.lucko.helper.menu.Gui;
