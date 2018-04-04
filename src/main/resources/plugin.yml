@@ -11,7 +11,7 @@ commands:
     permission: ABF.ABF
     usage: /ABF
     description: The main AutoBuildFarms command
-    permission-message: You don't have permission &bServerChangeGui.use
+    permission-message: You don't have permission &bABF.ABF
     aliases: [abf, autobuildfarms]
 
 permissions:
