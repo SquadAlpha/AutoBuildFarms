@@ -3,11 +3,15 @@ package com.github.SquadAlpha.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
 import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.ABFMain;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.*;
@@ -35,6 +39,16 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
             return;
         }
         Config.init();
+        if (farmList.size() == 0) {
+            log.info("No farms found in config adding default one");
+            Farm f = new Farm("cactus", "&6&lCactus");
+            f.addSize("small", "&bSmall", "CactusSmall.schematic", 100, Collections.singletonList(new ItemStack(Material.CACTUS, 5)));
+            f.addSize("medium", "&bMedium", "CactusMedium.schematic", 500, Collections.singletonList(new ItemStack(Material.CACTUS, 25)));
+            Config.addFarm(f);
+            Config.save();
+            Config.reload();
+            Config.init();
+        }
         this.registerListener(new Listeners());
         //TODO this.registerCommand()
         this.easyreg(new ABFMain());

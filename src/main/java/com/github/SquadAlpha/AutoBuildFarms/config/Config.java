@@ -2,6 +2,7 @@ package com.github.SquadAlpha.AutoBuildFarms.config;
 
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
+import com.github.SquadAlpha.AutoBuildFarms.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -12,8 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.farmList;
-import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.plugin;
+import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.*;
 
 public class Config{
 
@@ -23,15 +23,30 @@ public class Config{
     }
 
     public static void init(){
-        plugin.getConfig().options().copyHeader(true);
-        plugin.getConfig().options().copyDefaults(true);
+        getConfig().options().copyHeader(true);
+        getConfig().options().copyDefaults(true);
+        deAndify();
         initFarms(getMainSection(cfgN.FARMS_SECTION));
         initGeneral(getMainSection(cfgN.GENERAL_SECTION));
+        deAndify();
+    }
+
+    private static void deAndify() {
+        getConfig().getValues(true).forEach((k, v) -> {
+            if (v instanceof String) {
+                if (((String) v).contains("&")) {
+                    String nv = Utils.replaceWithParagraph("&", (String) v);
+                    getConfig().set(k, nv);
+                    log.fine("Set:" + k + " = " + v + " to " + nv);
+                }
+            }
+        });
     }
 
     private static void initGeneral(ConfigurationSection configurationSection){
         Reference.loreHeader = configurationSection.getString(cfgN.ITEM_LORE_HEADER.toString(), "&6&k|&r&6AutoFarm&k|&r");
         Reference.farmBlock = configurationSection.getItemStack(cfgN.FARMBLOCK.toString(), new ItemStack(Material.CHEST));
+        configurationSection.getString(cfgN.MAIN_MENUTITLE.toString, "&6Auto &bBuild &4Farms");
         getSchematicsDir();
     }
 
@@ -65,6 +80,7 @@ public class Config{
         general.set(cfgN.FARMBLOCK.toString(), Reference.farmBlock);
         general.set(cfgN.SCHEMATICS_DIR.toString(), getSchematicsDirName());
         general.set(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
+        deAndify();
         plugin.saveConfig();
     }
 
@@ -161,7 +177,7 @@ public class Config{
     }
 
     public static String getMainMenuTitle() {
-        return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "§6Auto §bBuild §4Farms");
+        return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "&6Auto &bBuild &4Farms");
     }
 
     public enum cfgN{

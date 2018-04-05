@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -60,17 +61,28 @@ public class Building {
 
         File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
         if (!schemFile.exists()) {
-            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found creating a fake one");
-            Utils.saveResource(Reference.plugin, "chest.schematic", schemFile.getAbsolutePath(), false);
+            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found loading putting in an example");
+            try {
+                schemFile.createNewFile();
+                FileOutputStream out = new FileOutputStream(schemFile);
+                Arrays.stream(Reference.standardSchematic).forEachOrdered(i -> {
+                    try {
+                        out.write(i);
+                    } catch (IOException e) {
+                        Utils.prettyPrintException(Reference.plugin.getLogger(), e);
+                    }
+                });
+                out.close();
+            } catch (IOException e) {
+                Utils.prettyPrintException(Reference.log, e);
+            }
         }
-
         return loadSchematic(schemFile);
     }
 
-    public static Building loadSchematic(File schemFile) {
+    private static Building loadSchematic(File schemFile) {
         try {
-            FileInputStream stream = new FileInputStream(schemFile);
-            NBTInputStream nbtStream = new NBTInputStream(stream);
+            NBTInputStream nbtStream = new NBTInputStream(new FileInputStream(schemFile));
 
             CompoundTag schematicTag = (CompoundTag) nbtStream.readTag();
             if (!schematicTag.getName().equals("Schematic")) {
