@@ -8,7 +8,9 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 
@@ -59,21 +61,7 @@ public class Building {
         File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
         if (!schemFile.exists()) {
             Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found creating a fake one");
-            try {
-                InputStream in = Reference.plugin.getResource("chest.schematic");
-                OutputStream writer = new BufferedOutputStream(new FileOutputStream(schemFile));
-                int readbytes;
-                byte[] buffer = new byte[1024];
-                while ((readbytes = in.read(buffer)) > 0) {
-                    Reference.log.finer("Read:" + readbytes + " into buffer");
-                    writer.write(buffer, 0, readbytes);
-                }
-                in.close();
-                writer.close();
-            } catch (IOException e) {
-                Reference.log.severe(e.getLocalizedMessage());
-                Reference.log.severe(e.getMessage());
-            }
+            Utils.saveResource(Reference.plugin, "chest.schematic", schemFile.getAbsolutePath(), false);
         }
 
         return loadSchematic(schemFile);
@@ -108,9 +96,7 @@ public class Building {
             return new Building(blocks, blockData, width, length, height);
         } catch (IOException e) {
             Reference.log.severe(e.getLocalizedMessage());
-            StringBuilder stackTrace = new StringBuilder();
-            Arrays.stream(e.getStackTrace()).forEach(s -> stackTrace.append(s.toString()).append("\r\n"));
-            Reference.log.severe(stackTrace.toString());
+            Arrays.stream(e.getStackTrace()).forEachOrdered(s -> Reference.log.severe(s.toString()));
             return null;
         }
     }

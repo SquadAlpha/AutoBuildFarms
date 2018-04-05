@@ -55,7 +55,7 @@ public class Config{
                 sizeSect.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
                 sizeSect.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
                 sizeSect.set(cfgN.PRICE.toString(), s.getPrice());
-                saveResources(s.getResources(), sizeSect);
+                saveMaterials(s.getMaterials(), sizeSect);
             }
         }
 
@@ -77,7 +77,7 @@ public class Config{
             ConfigurationSection sesSect = getSubSection(cfgN.SIZES_SECTION, fSection);
             for(String size : sesSect.getKeys(false)){
                 ConfigurationSection sSect = getSubSection(size, sesSect);
-                ArrayList<ItemStack> items = loadResources(sSect);
+                ArrayList<ItemStack> items = loadMaterials(sSect);
                 f.addSize(size,
                         sSect.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + size),
                         sSect.getString(cfgN.SCHEMATIC_FILE.toString(), "NoSchematicDefined.schematic"),
@@ -98,12 +98,12 @@ public class Config{
             c.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
             c.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
             c.set(cfgN.PRICE.toString(), s.getPrice());
-            saveResources(s.getResources(), c);
+            saveMaterials(s.getMaterials(), c);
         }
     }
 
-    private static void saveResources(List<ItemStack> resources, ConfigurationSection sizeSection){
-        ConfigurationSection resourceSect = getSubSection(cfgN.RESOURCES_SECTION, sizeSection);
+    private static void saveMaterials(List<ItemStack> resources, ConfigurationSection sizeSection) {
+        ConfigurationSection resourceSect = getSubSection(cfgN.MATERIALS_SECTION, sizeSection);
         int i = 0;
         for(ItemStack item : resources){
             resourceSect.set(String.valueOf(i), item);
@@ -111,8 +111,8 @@ public class Config{
         }
     }
 
-    private static ArrayList<ItemStack> loadResources(ConfigurationSection sizeSection){
-        ConfigurationSection resourceSect = getSubSection(cfgN.RESOURCES_SECTION, sizeSection);
+    private static ArrayList<ItemStack> loadMaterials(ConfigurationSection sizeSection) {
+        ConfigurationSection resourceSect = getSubSection(cfgN.MATERIALS_SECTION, sizeSection);
 
         ArrayList<ItemStack> list = new ArrayList<>();
 
@@ -174,7 +174,7 @@ public class Config{
         SIZES_SECTION("sizes"),
         SCHEMATIC_FILE("schematic"),
         PRICE("price"),
-        RESOURCES_SECTION("resources"),
+        MATERIALS_SECTION("materials"),
         SCHEMATICS_DIR("schematicdirectory"),
         MAIN_MENUTITLE("mainmenutitle");
 

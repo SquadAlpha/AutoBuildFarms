@@ -4,17 +4,17 @@ ABF:
       sizes:
         small:
           fancyname: §bSmall
-          schematic: cactusExampleSmall
+          schematic: cactusExampleSmall.schematic
           price: 10
-          resources:
+          materials:
             '0':
               ==: org.bukkit.inventory.ItemStack
               type: CACTUS
         medium:
           fancyname: §6Medium'
-          schematic: cactusExampleMedium
+          schematic: cactusExampleMedium.schematic
           price: 100
-          resources:
+          materials:
             '0':
               ==: org.bukkit.inventory.ItemStack
               type: CACTUS

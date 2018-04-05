@@ -17,7 +17,7 @@ public class Farm{
     private HashMap<String, Size> sizes;
 
     public Farm(String name, String fancyName){
-        this.name = name;
+        this.name = name.toLowerCase();
         this.fancyName = fancyName;
         this.sizes = new HashMap<>();
     }
@@ -26,9 +26,9 @@ public class Farm{
         return sizes.containsKey(sizeName);
     }
 
-    public void addSize(String sname, String fancyName, String schematic, int price, List<ItemStack> resources){
-        sizes.put(sname,
-                new Size(sname, fancyName, schematic, Building.loadSchematic(schematic), price, resources));
+    public void addSize(String sname, String fancyName, String schematic, int price, List<ItemStack> materials) {
+        sizes.put(sname.toLowerCase(),
+                new Size(sname.toLowerCase(), fancyName, schematic, Building.loadSchematic(schematic), price, materials));
     }
 
     @Data
@@ -38,6 +38,6 @@ public class Farm{
         private final String schemName;
         private final Building schem;
         private final int price;
-        private final List<ItemStack> resources;
+        private final List<ItemStack> materials;
     }
 }

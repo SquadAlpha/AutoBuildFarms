@@ -52,8 +52,8 @@ class placeOption extends subOption {
         ArrayList<String> strings = new ArrayList<>();
         String part = args[args.length - 1];
         if (args.length >= 3) {
-            if (Reference.farmList.containsKey(args[2])) {
-                Farm f = Reference.farmList.get(args[2]);
+            if (Reference.farmList.containsKey(args[1])) {
+                Farm f = Reference.farmList.get(args[1]);
                 f.getSizes().keySet().forEach(key -> {
                     if (key.startsWith(part)) {
                         strings.add(key);
