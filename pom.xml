@@ -142,4 +142,13 @@
 		</resources>
 	</build>
 
+    <developers>
+        <developer>
+            <name>bigibas123</name>
+        </developer>
+        <developer>
+            <name>JamesHond7</name>
+        </developer>
+    </developers>
+
 </project>

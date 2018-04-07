@@ -11,6 +11,8 @@ public class Utils {
     }
 
 
+    // Replaces the pattern with a paragraph symbol for easy color conversion.
+    // Keeps into account an escaping slash
     public static String replaceWithParagraph(String pattern, String subject) {
         return subject.replaceAll("(?<!\\\\)" + pattern, "§");
     }

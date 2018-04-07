@@ -50,7 +50,6 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
             Config.init();
         }
         this.registerListener(new Listeners());
-        //TODO this.registerCommand()
         this.easyreg(new ABFMain());
         super.enable();
     }

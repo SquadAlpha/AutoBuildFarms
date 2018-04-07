@@ -28,17 +28,34 @@ public class Config{
         deAndify();
         initFarms(getMainSection(cfgN.FARMS_SECTION));
         initGeneral(getMainSection(cfgN.GENERAL_SECTION));
-        deAndify();
     }
 
-    private static void deAndify() {
+
+    //Replaces most unescaped & with §
+    public static void deAndify() {
         getConfig().getValues(true).forEach((k, v) -> {
+            //Simple string replace
             if (v instanceof String) {
                 if (((String) v).contains("&")) {
                     String nv = Utils.replaceWithParagraph("&", (String) v);
                     getConfig().set(k, nv);
                     log.fine("Set:" + k + " = " + v + " to " + nv);
                 }
+            } else if (v instanceof ArrayList && ((ArrayList) v).size() > 0 && ((ArrayList) v).get(0) instanceof String) {
+                ArrayList<String> tv = (ArrayList<String>) v;
+                ArrayList<String> nv = new ArrayList<>();
+                final int[] i = {0};
+                tv.forEach(s -> {
+                    if (s.contains("&")) {
+                        String ns = Utils.replaceWithParagraph("&", s);
+                        nv.add(ns);
+                        log.fine("Set:" + k + "[" + i[0] + "] = " + ns);
+                    } else {
+                        nv.add(s);
+                    }
+                    i[0]++;
+                });
+                getConfig().set(k, nv);
             }
         });
     }
