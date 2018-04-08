@@ -28,8 +28,8 @@ public class Config{
         deAndify();
         initFarms(getMainSection(cfgN.FARMS_SECTION));
         initGeneral(getMainSection(cfgN.GENERAL_SECTION));
+        initLang(getMainSection(cfgN.LANG_SECTION));
     }
-
 
     //Replaces most unescaped & with §
     public static void deAndify() {
@@ -61,10 +61,14 @@ public class Config{
     }
 
     private static void initGeneral(ConfigurationSection configurationSection){
-        Reference.loreHeader = configurationSection.getString(cfgN.ITEM_LORE_HEADER.toString(), "&6&k|&r&6AutoFarm&k|&r");
         Reference.farmBlock = configurationSection.getItemStack(cfgN.FARMBLOCK.toString(), new ItemStack(Material.CHEST));
-        configurationSection.getString(cfgN.MAIN_MENUTITLE.toString, "&6Auto &bBuild &4Farms");
         getSchematicsDir();
+    }
+
+    private static void initLang(ConfigurationSection lang) {
+        Reference.loreHeader = lang.getString(cfgN.ITEM_LORE_HEADER.toString(), "&6&k|&r&6AutoFarm&k|&r");
+        lang.getString(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
+        lang.getString(cfgN.PLACE_MENUTITLE.toString(), getPlaceMenuTitle());
     }
 
     public static void reload(){
@@ -87,16 +91,20 @@ public class Config{
                 sizeSect.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
                 sizeSect.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
                 sizeSect.set(cfgN.PRICE.toString(), s.getPrice());
+                sizeSect.set(cfgN.FARM_DISPLAYITEM.toString(), s.getDisplayItem());
                 saveMaterials(s.getMaterials(), sizeSect);
             }
         }
 
         //GENERAL
         ConfigurationSection general = getMainSection(cfgN.GENERAL_SECTION);
-        general.set(cfgN.ITEM_LORE_HEADER.toString(), Reference.loreHeader);
         general.set(cfgN.FARMBLOCK.toString(), Reference.farmBlock);
         general.set(cfgN.SCHEMATICS_DIR.toString(), getSchematicsDirName());
-        general.set(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
+        //LANG
+        ConfigurationSection lang = getMainSection(cfgN.LANG_SECTION);
+        lang.set(cfgN.ITEM_LORE_HEADER.toString(), Reference.loreHeader);
+        lang.set(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
+        lang.set(cfgN.PLACE_MENUTITLE.toString(), getPlaceMenuTitle());
         deAndify();
         plugin.saveConfig();
     }
@@ -105,7 +113,7 @@ public class Config{
         for(String farmName : headSection.getKeys(false)){
             ConfigurationSection fSection = getSubSection(farmName, headSection);
             Reference.log.fine("Loading farm:" + fSection.getString(cfgN.FORMATTED_NAME.toString()));
-            Farm f = new Farm(farmName, fSection.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + farmName));
+            Farm f = new Farm(farmName, fSection.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + farmName), fSection.getItemStack(cfgN.FARM_DISPLAYITEM.toString()));
 
             ConfigurationSection sesSect = getSubSection(cfgN.SIZES_SECTION, fSection);
             for(String size : sesSect.getKeys(false)){
@@ -115,6 +123,7 @@ public class Config{
                         sSect.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + size),
                         sSect.getString(cfgN.SCHEMATIC_FILE.toString(), "NoSchematicDefined.schematic"),
                         sSect.getInt(cfgN.PRICE.toString(), 10),
+                        sSect.getItemStack(cfgN.FARM_DISPLAYITEM.toString(), new ItemStack(Material.STICK, 1)),
                         items);
                 Reference.log.fine("Adding size:" + size);
             }
@@ -125,12 +134,15 @@ public class Config{
 
     public static void addFarm(Farm farm){
         ConfigurationSection farmSection = getSubSection(farm.getName(), getMainSection(cfgN.FARMS_SECTION));
+        farmSection.set(cfgN.FORMATTED_NAME.toString(), farm.getFancyName());
+        farmSection.set(cfgN.FARM_DISPLAYITEM.toString(), farm.getDisplayItem());
         ConfigurationSection sizesSection = getSubSection(cfgN.SIZES_SECTION, farmSection);
         for(Farm.Size s : farm.getSizes().values()){
             ConfigurationSection c = getSubSection(s.getName(), sizesSection);
             c.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
             c.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
             c.set(cfgN.PRICE.toString(), s.getPrice());
+            c.set(cfgN.FARM_DISPLAYITEM.toString(), s.getDisplayItem());
             saveMaterials(s.getMaterials(), c);
         }
     }
@@ -194,22 +206,29 @@ public class Config{
     }
 
     public static String getMainMenuTitle() {
-        return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "&6Auto &bBuild &4Farms");
+        return getMainSection(cfgN.LANG_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "&6Auto &bBuild &4Farms");
+    }
+
+    public static String getPlaceMenuTitle() {
+        return getMainSection(cfgN.LANG_SECTION).getString(cfgN.PLACE_MENUTITLE.toString(), "[&6A&bB&4F]Place");
     }
 
     public enum cfgN{
         PREFIX(plugin.getDescription().getPrefix()),
         FARMS_SECTION("farms"),
+        FARM_DISPLAYITEM("displayitem"),
         GENERAL_SECTION("general"),
         FARMBLOCK("farmblock"),
-        ITEM_LORE_HEADER("itemheader"),
         FORMATTED_NAME("fancyname"),
+        ITEM_LORE_HEADER("itemheader"),
         SIZES_SECTION("sizes"),
         SCHEMATIC_FILE("schematic"),
         PRICE("price"),
         MATERIALS_SECTION("materials"),
         SCHEMATICS_DIR("schematicdirectory"),
-        MAIN_MENUTITLE("mainmenutitle");
+        LANG_SECTION("language"),
+        MAIN_MENUTITLE("mainmenutitle"),
+        PLACE_MENUTITLE("placementmenutitle");
 
         private final String toString;
 

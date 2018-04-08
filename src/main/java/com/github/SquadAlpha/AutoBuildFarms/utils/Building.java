@@ -4,15 +4,16 @@ import com.flowpowered.nbt.*;
 import com.flowpowered.nbt.stream.NBTInputStream;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
+import me.lucko.helper.Scheduler;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 
 @SuppressWarnings("deprecation")
@@ -121,13 +122,13 @@ public class Building {
         short length = this.getLenght();
         short width = this.getWidth();
         short height = this.getHeight();
-        Reference.plugin.getServer().getScheduler().runTask(Reference.plugin, () -> {
+        Scheduler.builder().async().after(0).run(() -> {
+            Consumer<ReplaceCommand.replaceBlock> sink = Scheduler.consumingSync(new ReplaceCommand());
             for (int x = 0; x < width; ++x) {
                 for (int y = 0; y < height; ++y) {
                     for (int z = 0; z < length; ++z) {
                         int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
-                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
-                        block.setTypeIdAndData(blocks[index], blockData[index], false);
+                        sink.accept(new ReplaceCommand.replaceBlock(new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()), blocks[index], blockData[index]));
                     }
                 }
             }

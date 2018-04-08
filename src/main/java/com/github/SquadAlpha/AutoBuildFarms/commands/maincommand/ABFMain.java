@@ -1,6 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
+import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.menu.MainMenu;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import lombok.Getter;
 import org.bukkit.command.Command;
@@ -27,10 +28,14 @@ public class ABFMain extends ABFCommand {
 
     @Override
     public boolean _execute(CommandSender sender, String commandLabel, String[] args) {
-        if (args.length <= 0 && this.isPlayerAndYell(sender)) {
-            Player p = (Player) sender;
-            openMenu(p);
-            return true;
+        if (args.length <= 0) {
+            if (this.isPlayerAndYell(sender)) {
+                Player p = (Player) sender;
+                openMenu(p);
+                return true;
+            } else {
+                return false;
+            }
         }
         ArrayList<String> argList = new ArrayList<>();
         Stream.of(args).forEachOrdered(arg -> argList.add(arg.toLowerCase()));
@@ -42,7 +47,8 @@ public class ABFMain extends ABFCommand {
     }
 
     private void openMenu(Player sender) {
-
+        MainMenu menu = new MainMenu(sender);
+        menu.open();
     }
 
 
