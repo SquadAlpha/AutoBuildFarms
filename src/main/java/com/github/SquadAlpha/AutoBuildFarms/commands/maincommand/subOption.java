@@ -1,7 +1,9 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 
+import com.github.SquadAlpha.AutoBuildFarms.commands.ABFWithSubCommand;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,8 +12,9 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class subOption {
-    protected final ABFMain parent;
+public abstract class subOption {
+    @Getter(AccessLevel.PROTECTED)
+    private final ABFWithSubCommand parent;
     @Getter
     private final String name;
     @Getter
@@ -19,10 +22,10 @@ abstract class subOption {
     @Getter
     private final String permission;
 
-    protected subOption(ABFMain abfMain, String name, String helpText) {
+    protected subOption(ABFWithSubCommand parent, String name, String helpText) {
         this.name = name;
         this.helpText = helpText;
-        this.parent = abfMain;
+        this.parent = parent;
         this.permission = this.parent.getPermission() + "." + this.name;
     }
 

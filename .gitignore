@@ -18,7 +18,7 @@ AutoBuildFarms.iml
 
 #Spigot
 wd/*
-!/wd/server.properties
+#!/wd/server.properties
 !/wd/bukkit.yml
 !/wd/ops.json
 !/wd/eula.txt

@@ -28,7 +28,7 @@ public class MainMenu extends Gui {
         this.addItem(new clickItem(new ItemStack(Material.CHEST, 1))
                 .addhandler(ClickType.LEFT, e -> {
                     Player p = (Player) e.getWhoClicked();
-                    PlaceMenu pm = new PlaceMenu(p, this);
+                    PlaceMenu pm = PlaceMenu.get(p, this);
                     pm.open();
                 })
                 .get());
