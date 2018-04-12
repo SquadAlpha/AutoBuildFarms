@@ -6,8 +6,10 @@ import org.bukkit.command.CommandSender;
 
 public class ABFAdmin extends ABFWithSubCommand {
     protected ABFAdmin() {
-        super("ABFadmin", "the administration command for " + Reference.plugin.getName(), "/abfadmin", "abfadmin", "abfa", "autobuildfarmsadmin");
+        super("ABFadmin", "the administration command for " + Reference.plugin.getName(), "/abfadmin",
+                "abfadmin", "abfa", "autobuildfarmsadmin");
         //TODO register subOptions
+
     }
 
     @Override

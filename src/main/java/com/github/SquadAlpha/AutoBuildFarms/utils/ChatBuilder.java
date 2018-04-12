@@ -8,17 +8,18 @@ public class ChatBuilder{
     private StringBuilder msg;
     private final CommandSender target;
 
-    public ChatBuilder(CommandSender target,ChatColor c){
+    public ChatBuilder(CommandSender target, ChatColor c) {
         this.target = target;
         this.msg = new StringBuilder(ChatColor.GREEN + "[" + Reference.plugin.getDescription().getPrefix() + "] " + c);
     }
-    public ChatBuilder append(ChatColor c, String msg){
+
+    public synchronized ChatBuilder append(ChatColor c, String msg) {
         this.msg.append(c)
                 .append(msg);
         return this;
     }
 
-    public ChatBuilder newLine(ChatColor c){
+    public synchronized ChatBuilder newLine(ChatColor c) {
         this.msg.append("\n")
                 .append(ChatColor.GREEN)
                 .append("[")
@@ -29,7 +30,7 @@ public class ChatBuilder{
     }
 
 
-    public void send(){
+    public synchronized void send() {
         target.sendMessage(this.msg.toString());
     }
 }

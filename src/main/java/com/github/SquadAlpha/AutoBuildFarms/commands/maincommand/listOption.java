@@ -7,7 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 class listOption extends subOption {
@@ -20,12 +19,18 @@ class listOption extends subOption {
         ChatBuilder buider = new ChatBuilder(sender, ChatColor.WHITE);
         buider.append(ChatColor.YELLOW, "====Farms====");
 
-        Reference.farmList.forEach((fname, farm) -> buider.newLine(ChatColor.WHITE)
+        Reference.farmList.forEach((fname, farm) -> {
+            buider.newLine(ChatColor.WHITE)
                 .append(ChatColor.YELLOW, farm.getFancyName())
                 .append(ChatColor.YELLOW, " = ")
-                .append(ChatColor.WHITE, farm.getName())
-                .append(ChatColor.AQUA, "->")
-                .append(ChatColor.GOLD, Arrays.toString(farm.getSizes().keySet().toArray())));
+                    .append(ChatColor.WHITE, farm.getName());
+            //.append(ChatColor.GOLD, Arrays.toString(farm.getSizes().keySet().toArray()));
+            farm.getSizes().forEach((name, size) ->
+                    buider.newLine(ChatColor.GOLD)
+                            .append(ChatColor.GOLD, "    ")
+                            .append(ChatColor.GOLD, size.getFancyName())
+                            .append(ChatColor.AQUA, Reference.econ.format(size.getPrice())));
+        });
         buider.send();
         return true;
     }

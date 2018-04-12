@@ -3,6 +3,7 @@ package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
+import com.github.SquadAlpha.AutoBuildFarms.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -28,10 +29,7 @@ class placeOption extends subOption {
                     Farm f = Reference.farmList.get(farm.toLowerCase());
                     String size = args.get(args.size() - 1);
                     if (f.getSizes().containsKey(size)) {
-                        Farm.Size s = f.getSizes().get(size);
-                        builder.append(ChatColor.GREEN, "Placing farm:" + f.getFancyName()).append(ChatColor.GREEN, " size:" + s.getFancyName());
-                        s.getSchem().pasteSchematic(p.getWorld(), p.getLocation());
-                        success = true;
+                        success = doPlace(f, size, builder, p);
                     }
                 } else {
                     builder.append(ChatColor.RED, "farm:" + farm).append(ChatColor.RED, " not found");
@@ -45,6 +43,18 @@ class placeOption extends subOption {
         }
         builder.send();
         return success;
+    }
+
+    private boolean doPlace(Farm f, String size, ChatBuilder builder, Player p) {
+        Farm.Size s = f.getSizes().get(size);
+        if (Utils.perms.checkPlacePermsAndYell(p, f, s, builder, "place")) {
+            if (Utils.econ.takeMoneyForFarmAndYell(p, f, s, builder, "place")) {
+                builder.append(ChatColor.GREEN, "Placing farm:" + f.getFancyName()).append(ChatColor.GREEN, " size:" + s.getFancyName());
+                s.getSchem().pasteSchematic(p.getWorld(), p.getLocation());
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -42,9 +42,7 @@ public abstract class ABFCommand extends Command implements TabCompleter, Comman
 
     public abstract boolean _execute(CommandSender sender, String commandLabel, String[] args);
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return null;
-    }
+    public abstract List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args);
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
