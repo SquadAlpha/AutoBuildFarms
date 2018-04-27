@@ -1,6 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.menu;
 
-import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.Item;
 import org.bukkit.Material;
@@ -18,14 +18,19 @@ public class MainMenu extends Gui {
 
 
     public MainMenu(Player player) {
-        super(player, 1, Config.getMainMenuTitle());
+        super(player, 1, "&6[&4A&3B&2F&1]");
     }
 
 
     @Override
     public void redraw() {
         //TODO add items
-        this.addItem(new clickItem(new ItemStack(Material.CHEST, 1))
+        ItemStackBuilder placechest = ItemStackBuilder.of(new ItemStack(Material.CHEST))
+                .amount(1)
+                .name("&2Place")
+                .lore("Allows you to place the beginnings of a farm");
+
+        this.addItem(new clickItem(placechest.build())
                 .addhandler(ClickType.LEFT, e -> {
                     Player p = (Player) e.getWhoClicked();
                     PlaceMenu pm = PlaceMenu.get(p, this);

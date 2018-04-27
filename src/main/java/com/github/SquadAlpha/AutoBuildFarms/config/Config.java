@@ -67,8 +67,6 @@ public class Config{
 
     private static void initLang(ConfigurationSection lang) {
         Reference.loreHeader = lang.getString(cfgN.ITEM_LORE_HEADER.toString(), "&6&k|&r&6AutoFarm&k|&r");
-        lang.getString(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
-        lang.getString(cfgN.PLACE_MENUTITLE.toString(), getPlaceMenuTitle());
     }
 
     public static void reload(){
@@ -103,8 +101,6 @@ public class Config{
         //LANG
         ConfigurationSection lang = getMainSection(cfgN.LANG_SECTION);
         lang.set(cfgN.ITEM_LORE_HEADER.toString(), Reference.loreHeader);
-        lang.set(cfgN.MAIN_MENUTITLE.toString(), getMainMenuTitle());
-        lang.set(cfgN.PLACE_MENUTITLE.toString(), getPlaceMenuTitle());
         deAndify();
         plugin.saveConfig();
     }
@@ -205,14 +201,6 @@ public class Config{
         return getMainSection(cfgN.GENERAL_SECTION).getString(cfgN.SCHEMATICS_DIR.toString(), "schematics");
     }
 
-    public static String getMainMenuTitle() {
-        return getMainSection(cfgN.LANG_SECTION).getString(cfgN.MAIN_MENUTITLE.toString(), "&6Auto &bBuild &4Farms");
-    }
-
-    public static String getPlaceMenuTitle() {
-        return getMainSection(cfgN.LANG_SECTION).getString(cfgN.PLACE_MENUTITLE.toString(), "[&6A&bB&4F]Place");
-    }
-
     public enum cfgN{
         PREFIX(plugin.getDescription().getPrefix()),
         FARMS_SECTION("farms"),
@@ -226,9 +214,7 @@ public class Config{
         PRICE("price"),
         MATERIALS_SECTION("materials"),
         SCHEMATICS_DIR("schematicdirectory"),
-        LANG_SECTION("language"),
-        MAIN_MENUTITLE("mainmenutitle"),
-        PLACE_MENUTITLE("placementmenutitle");
+        LANG_SECTION("language");
 
         private final String toString;
 

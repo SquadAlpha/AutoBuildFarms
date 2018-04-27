@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>me.lucko</groupId>
 			<artifactId>helper</artifactId>
-			<version>4.2.1</version>
+            <version>5.2.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>

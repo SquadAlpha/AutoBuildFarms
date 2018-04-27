@@ -1,6 +1,5 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.menu;
 
-import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
 import me.lucko.helper.menu.Gui;
@@ -24,7 +23,7 @@ public class PlaceMenu extends PaginatedGui {
     }
 
     public static PlaceMenu get(Player p, MainMenu mainMenu) {
-        PaginatedGuiBuilder builder = PGB.get(Config.getPlaceMenuTitle());
+        PaginatedGuiBuilder builder = PGB.get("&6[&4A&3B&2F&1]&bPlace");
         ArrayList<Item> items = new ArrayList<>();
         PlaceMenu pm = new PlaceMenu(g -> items, p, mainMenu, builder);
         for (Farm f : Reference.farmList.values()) {
@@ -51,7 +50,7 @@ public class PlaceMenu extends PaginatedGui {
         private final Farm farm;
 
         public PlaceFarmGui(Farm f, HumanEntity player, PlaceMenu placeMenu) {
-            super((Player) player, 1, Config.getPlaceMenuTitle() + "&r:" + f.getFancyName());
+            super((Player) player, 1, "&6[&4A&3B&2F&1] Place&r:" + f.getFancyName());
             this.farm = f;
             this.setFallbackGui(a -> placeMenu);
         }

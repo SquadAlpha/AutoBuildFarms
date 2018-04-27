@@ -4,7 +4,8 @@ import com.flowpowered.nbt.*;
 import com.flowpowered.nbt.stream.NBTInputStream;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
-import me.lucko.helper.Scheduler;
+import me.lucko.helper.Schedulers;
+import me.lucko.helper.scheduler.Scheduler;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -13,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 
 @SuppressWarnings("deprecation")
@@ -114,7 +114,6 @@ public class Building {
         }
     }
 
-    //Pasting Really slow for big schematics TODO Check if the runTaskAsynchronously functions
     public void pasteSchematic(World world, Location loc) {
         byte[] blocks = this.getBlocks();
         byte[] blockData = this.getData();
@@ -122,13 +121,20 @@ public class Building {
         short length = this.getLenght();
         short width = this.getWidth();
         short height = this.getHeight();
-        Scheduler.builder().async().after(0).run(() -> {
-            Consumer<ReplaceCommand.replaceBlock> sink = Scheduler.consumingSync(new ReplaceCommand());
+        Schedulers.async().run(() -> {
+            Scheduler syncS = Schedulers.sync();
             for (int x = 0; x < width; ++x) {
                 for (int y = 0; y < height; ++y) {
                     for (int z = 0; z < length; ++z) {
                         int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
-                        sink.accept(new ReplaceCommand.replaceBlock(new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()), blocks[index], blockData[index]));
+                        ReplaceCommand.replaceBlock rplC = new ReplaceCommand.replaceBlock(
+                                new Location(world,
+                                        x + loc.getX(),
+                                        y + loc.getY(),
+                                        z + loc.getZ()),
+                                blocks[index],
+                                blockData[index]);
+                        syncS.run(rplC::go);
                     }
                 }
             }
