@@ -1,8 +1,11 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
-import com.github.SquadAlpha.AutoBuildFarms.commands.ABFMain;
+import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.ABFMain;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import com.github.SquadAlpha.AutoBuildFarms.eventhandling.Listeners;
+import com.github.SquadAlpha.AutoBuildFarms.utils.DataFile;
+import com.github.SquadAlpha.AutoBuildFarms.utils.DefaultFarm;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -35,8 +38,11 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
             return;
         }
         Config.init();
-        this.registerListener(new Listeners());
-        //TODO this.registerCommand()
+        DataFile.init();
+        if (farmList.size() == 0) {
+            DefaultFarm.add(this);
+        }
+        Listeners.init();
         this.easyreg(new ABFMain());
         super.enable();
     }
@@ -66,6 +72,8 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
     @Override
     protected void disable(){
         Config.save();
+        DataFile.save();
+        Listeners.destroy();
         super.disable();
     }
 

@@ -4,11 +4,14 @@ import com.flowpowered.nbt.*;
 import com.flowpowered.nbt.stream.NBTInputStream;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
+import me.lucko.helper.Schedulers;
+import me.lucko.helper.scheduler.Scheduler;
 import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.block.Block;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 
@@ -58,31 +61,28 @@ public class Building {
 
         File schemFile = new File(Config.getSchematicsDir().getAbsolutePath() + File.separator + schematicFileName);
         if (!schemFile.exists()) {
-            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found creating a fake one");
+            Reference.log.warning("Schematic file:" + schemFile.getAbsolutePath() + " not found loading putting in an example");
             try {
-                InputStream in = Reference.plugin.getResource("chest.schematic");
-                OutputStream writer = new BufferedOutputStream(new FileOutputStream(schemFile));
-                int readbytes;
-                byte[] buffer = new byte[1024];
-                while ((readbytes = in.read(buffer)) > 0) {
-                    Reference.log.info("Read:" + readbytes + " into buffer");
-                    writer.write(buffer, 0, readbytes);
-                }
-                in.close();
-                writer.close();
+                schemFile.createNewFile();
+                FileOutputStream out = new FileOutputStream(schemFile);
+                Arrays.stream(Reference.standardSchematic).forEachOrdered(i -> {
+                    try {
+                        out.write(i);
+                    } catch (IOException e) {
+                        Utils.prettyPrintException(Reference.plugin.getLogger(), e);
+                    }
+                });
+                out.close();
             } catch (IOException e) {
-                Reference.log.severe(e.getLocalizedMessage());
-                Reference.log.severe(e.getMessage());
+                Utils.prettyPrintException(Reference.log, e);
             }
         }
-
         return loadSchematic(schemFile);
     }
 
-    public static Building loadSchematic(File schemFile) {
+    private static Building loadSchematic(File schemFile) {
         try {
-            FileInputStream stream = new FileInputStream(schemFile);
-            NBTInputStream nbtStream = new NBTInputStream(stream);
+            NBTInputStream nbtStream = new NBTInputStream(new FileInputStream(schemFile));
 
             CompoundTag schematicTag = (CompoundTag) nbtStream.readTag();
             if (!schematicTag.getName().equals("Schematic")) {
@@ -108,28 +108,32 @@ public class Building {
             return new Building(blocks, blockData, width, length, height);
         } catch (IOException e) {
             Reference.log.severe(e.getLocalizedMessage());
-            StringBuilder stackTrace = new StringBuilder();
-            Arrays.stream(e.getStackTrace()).forEach(s -> stackTrace.append(s.toString()).append("\r\n"));
-            Reference.log.severe(stackTrace.toString());
+            Arrays.stream(e.getStackTrace()).forEachOrdered(s -> Reference.log.severe(s.toString()));
             return null;
         }
     }
 
-    //Pasting Really slow for big schematics TODO Check if the runTaskAsynchronously functions
-    public void pasteSchematic(World world, Location loc) {
+    public void pasteSchematic(Location loc) {
         byte[] blocks = this.getBlocks();
         byte[] blockData = this.getData();
 
         short length = this.getLenght();
         short width = this.getWidth();
         short height = this.getHeight();
-        Reference.plugin.getServer().getScheduler().runTask(Reference.plugin, () -> {
+        Schedulers.async().run(() -> {
+            Scheduler syncS = Schedulers.sync();
             for (int x = 0; x < width; ++x) {
                 for (int y = 0; y < height; ++y) {
                     for (int z = 0; z < length; ++z) {
                         int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
-                        Block block = new Location(world, x + loc.getX(), y + loc.getY(), z + loc.getZ()).getBlock();
-                        block.setTypeIdAndData(blocks[index], blockData[index], false);
+                        ReplaceCommand.replaceBlock rplC = new ReplaceCommand.replaceBlock(
+                                new Location(loc.getWorld(),
+                                        x + loc.getX(),
+                                        y + loc.getY(),
+                                        z + loc.getZ()),
+                                blocks[index],
+                                blockData[index]);
+                        syncS.run(rplC::go);
                     }
                 }
             }

@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>me.lucko</groupId>
 			<artifactId>helper</artifactId>
-			<version>4.2.1</version>
+            <version>5.2.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -137,8 +137,18 @@
 				<includes>
 					<include>*</include>
 				</includes>
+                <filtering>true</filtering>
 			</resource>
 		</resources>
 	</build>
+
+    <developers>
+        <developer>
+            <name>bigibas123</name>
+        </developer>
+        <developer>
+            <name>JamesHond7</name>
+        </developer>
+    </developers>
 
 </project>
