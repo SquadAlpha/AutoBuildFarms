@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="Created a class that handles revenue generation&#10;Created a storage method for existing farms">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/PlacedFarm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DataFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Listeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/Listeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wd/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/wd/server.properties" afterDir="false" />
-    </list>
+    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/Jenkinsfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="64">
-              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+              <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -662,12 +648,12 @@
       <option name="project" value="LOCAL" />
       <updated>1524863373185</updated>
     </task>
-    <task id="LOCAL-00022" summary="Added some economy messages to 18n">
-      <created>1523727515893</created>
+    <task id="LOCAL-00022" summary="Created a class that handles revenue generation&#10;Created a storage method for existing farms">
+      <created>1524915074048</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1523727515893</updated>
+      <updated>1524915074048</updated>
     </task>
     <task id="LOCAL-00023" summary="Continued with translating">
       <created>1523794375612</created>
@@ -683,7 +669,7 @@
       <option name="project" value="LOCAL" />
       <updated>1523795256858</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -697,10 +683,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1288" height="1032" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32929516" />
-      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.32929516" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.32929516" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
@@ -1254,7 +1241,7 @@
     <entry file="file://$PROJECT_DIR$/Jenkinsfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
