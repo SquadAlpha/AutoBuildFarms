@@ -1,5 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 
+import com.github.SquadAlpha.AutoBuildFarms.eventhandling.PlacedFarm;
 import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
@@ -50,7 +51,8 @@ class placeOption extends subOption {
         if (Utils.perms.checkPlacePermsAndYell(p, f, s, builder, "place")) {
             if (Utils.econ.takeMoneyForFarmAndYell(p, f, s, builder, "place")) {
                 builder.append(ChatColor.GREEN, "Placing farm:" + f.getFancyName()).append(ChatColor.GREEN, " size:" + s.getFancyName());
-                s.getSchem().pasteSchematic(p.getWorld(), p.getLocation());
+                s.getSchem().pasteSchematic(p.getLocation());
+                Reference.placedFarms.add(new PlacedFarm(s, p.getLocation()));//TODO give actual location of chest in schematic
                 return true;
             }
         }

@@ -1,4 +1,4 @@
-package com.github.SquadAlpha.AutoBuildFarms;
+package com.github.SquadAlpha.AutoBuildFarms.eventhandling;
 
 
 import org.bukkit.event.Listener;

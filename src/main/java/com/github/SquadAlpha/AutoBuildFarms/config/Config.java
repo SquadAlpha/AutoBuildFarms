@@ -11,7 +11,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.github.SquadAlpha.AutoBuildFarms.reference.Reference.*;
 
@@ -91,6 +93,7 @@ public class Config{
                 sizeSect.set(cfgN.PRICE.toString(), s.getPrice());
                 sizeSect.set(cfgN.FARM_DISPLAYITEM.toString(), s.getDisplayItem());
                 saveMaterials(s.getMaterials(), sizeSect);
+                saveRevenue(s.getRevenue(), sizeSect);
             }
         }
 
@@ -114,13 +117,12 @@ public class Config{
             ConfigurationSection sesSect = getSubSection(cfgN.SIZES_SECTION, fSection);
             for(String size : sesSect.getKeys(false)){
                 ConfigurationSection sSect = getSubSection(size, sesSect);
-                ArrayList<ItemStack> items = loadMaterials(sSect);
                 f.addSize(size,
                         sSect.getString(cfgN.FORMATTED_NAME.toString(), ChatColor.AQUA + size),
                         sSect.getString(cfgN.SCHEMATIC_FILE.toString(), "NoSchematicDefined.schematic"),
                         sSect.getInt(cfgN.PRICE.toString(), 10),
                         sSect.getItemStack(cfgN.FARM_DISPLAYITEM.toString(), new ItemStack(Material.STICK, 1)),
-                        items);
+                        loadMaterials(sSect), loadRevenue(sSect));
                 Reference.log.fine("Adding size:" + size);
             }
 
@@ -128,18 +130,31 @@ public class Config{
         }
     }
 
-    public static void addFarm(Farm farm){
-        ConfigurationSection farmSection = getSubSection(farm.getName(), getMainSection(cfgN.FARMS_SECTION));
-        farmSection.set(cfgN.FORMATTED_NAME.toString(), farm.getFancyName());
-        farmSection.set(cfgN.FARM_DISPLAYITEM.toString(), farm.getDisplayItem());
-        ConfigurationSection sizesSection = getSubSection(cfgN.SIZES_SECTION, farmSection);
-        for(Farm.Size s : farm.getSizes().values()){
-            ConfigurationSection c = getSubSection(s.getName(), sizesSection);
-            c.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
-            c.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
-            c.set(cfgN.PRICE.toString(), s.getPrice());
-            c.set(cfgN.FARM_DISPLAYITEM.toString(), s.getDisplayItem());
-            saveMaterials(s.getMaterials(), c);
+    private static Map<ItemStack, Long> loadRevenue(ConfigurationSection sizeSection) {
+        ConfigurationSection revenueSect = getSubSection(cfgN.REVENUE_SECTION, sizeSection);
+
+        HashMap<ItemStack, Long> list = new HashMap<>();
+
+        for (String s : revenueSect.getKeys(false)) {
+            ConfigurationSection iSect = getSubSection(s, revenueSect);
+            list.put(iSect.getItemStack(cfgN.ITEM.toString(),
+                    new ItemStack(Material.STONE_BUTTON)),
+                    iSect.getLong(cfgN.DELAY.toString(), 20L));
+        }
+        if (list.size() <= 0) {
+            list.put(new ItemStack(Material.WOOD_BUTTON), 20L);
+        }
+        return list;
+    }
+
+    private static void saveRevenue(Map<ItemStack, Long> revs, ConfigurationSection sizeSection) {
+        ConfigurationSection revSect = getSubSection(cfgN.REVENUE_SECTION.toString(), sizeSection);
+        Integer i = 0;
+        for (Map.Entry<ItemStack, Long> rev : revs.entrySet()) {
+            ConfigurationSection rs = getSubSection(i.toString(), revSect);
+            rs.set(cfgN.ITEM.toString(), rev.getKey());
+            rs.set(cfgN.DELAY.toString(), rev.getValue());
+            i++;
         }
     }
 
@@ -165,6 +180,25 @@ public class Config{
         }
         return list;
     }
+
+
+    public static void addFarm(Farm farm) {
+        ConfigurationSection farmSection = getSubSection(farm.getName(), getMainSection(cfgN.FARMS_SECTION));
+        farmSection.set(cfgN.FORMATTED_NAME.toString(), farm.getFancyName());
+        farmSection.set(cfgN.FARM_DISPLAYITEM.toString(), farm.getDisplayItem());
+        ConfigurationSection sizesSection = getSubSection(cfgN.SIZES_SECTION, farmSection);
+        for (Farm.Size s : farm.getSizes().values()) {
+            ConfigurationSection c = getSubSection(s.getName(), sizesSection);
+            c.set(cfgN.FORMATTED_NAME.toString(), s.getFancyName());
+            c.set(cfgN.SCHEMATIC_FILE.toString(), s.getSchemName());
+            c.set(cfgN.PRICE.toString(), s.getPrice());
+            c.set(cfgN.FARM_DISPLAYITEM.toString(), s.getDisplayItem());
+            saveMaterials(s.getMaterials(), c);
+            saveRevenue(s.getRevenue(), c);
+        }
+    }
+
+
 
     private static ConfigurationSection getMainSection(cfgN sectionName){
         return getMainSection(sectionName.toString());
@@ -213,7 +247,10 @@ public class Config{
         SCHEMATIC_FILE("schematic"),
         PRICE("price"),
         MATERIALS_SECTION("materials"),
+        REVENUE_SECTION("revenue"),
         SCHEMATICS_DIR("schematicdirectory"),
+        ITEM("item"),
+        DELAY("delay"),
         LANG_SECTION("language");
 
         private final String toString;

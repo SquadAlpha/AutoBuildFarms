@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Farm{
 
@@ -33,22 +34,24 @@ public class Farm{
         return sizes.containsKey(sizeName);
     }
 
-    public void addSize(String sname, String fancyName, String schematic, int price, ItemStack displayItem, List<ItemStack> materials) {
+    public void addSize(String sname, String fancyName, String schematic, int price, ItemStack displayItem, List<ItemStack> materials, Map<ItemStack, Long> revenue) {
         ItemMeta meta = displayItem.getItemMeta();
         meta.setDisplayName(fancyName);
         displayItem.setItemMeta(meta);
         sizes.put(sname.toLowerCase(),
-                new Size(sname.toLowerCase(), fancyName, schematic, Building.loadSchematic(schematic), price, materials, displayItem));
+                new Size(this, sname.toLowerCase(), fancyName, schematic, Building.loadSchematic(schematic), price, materials, revenue, displayItem));
     }
 
     @Data
     public class Size{
+        private final Farm parent;
         private final String name;
         private final String fancyName;
         private final String schemName;
         private final Building schem;
         private final int price;
         private final List<ItemStack> materials;
+        private final Map<ItemStack, Long> revenue; // And itemstack every long ticks
         private final ItemStack displayItem;
     }
 }

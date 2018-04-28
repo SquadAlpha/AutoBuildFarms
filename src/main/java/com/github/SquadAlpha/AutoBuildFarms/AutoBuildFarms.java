@@ -3,6 +3,8 @@ package com.github.SquadAlpha.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.commands.ABFCommand;
 import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.ABFMain;
 import com.github.SquadAlpha.AutoBuildFarms.config.Config;
+import com.github.SquadAlpha.AutoBuildFarms.eventhandling.Listeners;
+import com.github.SquadAlpha.AutoBuildFarms.utils.DataFile;
 import com.github.SquadAlpha.AutoBuildFarms.utils.DefaultFarm;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import net.milkbowl.vault.economy.Economy;
@@ -36,6 +38,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
             return;
         }
         Config.init();
+        DataFile.init();
         if (farmList.size() == 0) {
             DefaultFarm.add(this);
         }
@@ -69,6 +72,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
     @Override
     protected void disable(){
         Config.save();
+        DataFile.save();
         super.disable();
     }
 

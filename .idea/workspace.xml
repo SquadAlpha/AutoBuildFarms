@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="changed the jenkins file to include the branch&#10;Added names to the place gui&#10;Updated the helper version&#10;&#10;(cherry picked from commit 92fdd7ae3ada247078c2ec2dc8db062d3a50b0ad)&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="98b2eb27-27d8-46f8-97c5-a9dcfcc85d90" name="Default" comment="Created a class that handles revenue generation&#10;Created a storage method for existing farms">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/PlacedFarm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/PlaceMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/PlaceMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Listeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/Listeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wd/server.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wd/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/wd/server.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,14 +29,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Building.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
+      <file leaf-file-name="PlacedFarm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/PlacedFarm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1184">
-              <caret line="132" column="46" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+            <state relative-caret-position="252">
+              <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Jenkinsfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Jenkinsfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -118,29 +132,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ReplaceCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/admincommand/ABFAdmin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFWithSubCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/LangKeys.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Lang.java" />
         <option value="$PROJECT_DIR$/src/main/resources/translations/en.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/LangKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/subOption.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/listOption.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/helpOption.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/ABFMain.java" />
-        <option value="$PROJECT_DIR$/Jenkinsfile" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/menu/PlaceMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java" />
+        <option value="$PROJECT_DIR$/wd/plugins/AutoBuildFarms/data.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DataFile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/PlacedFarm.java" />
+        <option value="$PROJECT_DIR$/Jenkinsfile" />
       </list>
     </option>
   </component>
@@ -259,9 +276,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="maincommand" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
@@ -270,7 +285,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="eventhandling" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
@@ -290,19 +305,52 @@
               <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="wd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="wd" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+              <item name="wd" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="AutoBuildFarms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="AutoBuildFarms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT" type="70bed36:NamedLibraryElementNode" />
+              <item name="spigot-api-1.12.2-R0.1-20180427.134830-10.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ChangesTree.GroupingKeys" value="directory&#10;module" />
     <property name="last.edited.regexp" value=".missingValue" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../libs/I18N-v.1.4.0/I18N-spigot-v.1.4.0-sources.jar!/" />
+    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.27816093" />
@@ -607,12 +655,12 @@
       <option name="project" value="LOCAL" />
       <updated>1523463409515</updated>
     </task>
-    <task id="LOCAL-00021" summary="Added prices to farm list&#10;Added util functions for permissions and economy&#10;made the chatbuilder synchronized&#10;Added new command to plugin.yml and made it depend more on the pom.xml">
-      <created>1523550190052</created>
+    <task id="LOCAL-00021" summary="changed the jenkins file to include the branch&#10;Added names to the place gui&#10;Updated the helper version&#10;&#10;(cherry picked from commit 92fdd7ae3ada247078c2ec2dc8db062d3a50b0ad)&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1524863373185</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1523550190053</updated>
+      <updated>1524863373185</updated>
     </task>
     <task id="LOCAL-00022" summary="Added some economy messages to 18n">
       <created>1523727515893</created>
@@ -635,7 +683,7 @@
       <option name="project" value="LOCAL" />
       <updated>1523795256858</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">
@@ -654,21 +702,22 @@
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32929516" />
       <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.32929516" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info id="Image Layers" order="2" />
+      <window_info id="Image Layers" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50646204" side_tool="true" weight="0.32929516" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.33441034" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49353796" weight="0.32819384" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32929516" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32967034" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49353796" weight="0.32819384" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32929516" />
+      <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49669603" visible="true" weight="0.42407107" />
-      <window_info id="Structure" order="1" sideWeight="0.50330395" side_tool="true" weight="0.39822295" />
-      <window_info id="UI Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49669603" visible="true" weight="0.26979" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
+      <window_info id="Structure" order="5" sideWeight="0.50330395" weight="0.39822295" />
+      <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="4" sideWeight="0.5043956" side_tool="true" weight="0.26171243" />
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.50646204" weight="0.32819384" />
-      <window_info id="Favorites" order="2" sideWeight="0.5043956" side_tool="true" weight="0.26171243" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -676,34 +725,32 @@
       <window_info anchor="right" x="0" y="0" width="272" height="832" id="Documentation" order="8" side_tool="true" weight="0.32956383" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49353796" weight="0.32819384" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4956044" visible="true" weight="0.35702747" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.24959612" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32929516" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669603" visible="true" weight="0.26979" />
+      <window_info id="Structure" order="1" sideWeight="0.50330395" side_tool="true" weight="0.39822295" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32929516" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="11" visible="true" weight="0.33039647" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49353796" weight="0.32819384" />
+      <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32929516" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" x="0" y="0" width="272" height="832" id="Documentation" order="8" side_tool="true" weight="0.32956383" />
       <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.50646204" weight="0.32819384" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32967034" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50646204" side_tool="true" weight="0.32929516" />
       <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32929516" />
+      <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32929516" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.33441034" />
       <window_info id="Favorites" order="6" sideWeight="0.5043956" side_tool="true" weight="0.26171243" />
@@ -762,7 +809,8 @@
     <MESSAGE value="Continued with translating" />
     <MESSAGE value="changed the jenkins file to include the branch" />
     <MESSAGE value="changed the jenkins file to include the branch&#10;Added names to the place gui&#10;Updated the helper version&#10;&#10;(cherry picked from commit 92fdd7ae3ada247078c2ec2dc8db062d3a50b0ad)&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the jenkins file to include the branch&#10;Added names to the place gui&#10;Updated the helper version&#10;&#10;(cherry picked from commit 92fdd7ae3ada247078c2ec2dc8db062d3a50b0ad)&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Created a class that handles revenue generation&#10;Created a storage method for existing farms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a class that handles revenue generation&#10;Created a storage method for existing farms" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
@@ -773,190 +821,10 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="28" />
+      <option name="time" value="29" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/Locale.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="483" column="19" selection-start-line="483" selection-start-column="19" selection-end-line="483" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/blackypaw/mc/i18n-spigot/1.3.0/i18n-spigot-1.3.0.jar!/com/blackypaw/mc/i18n/Localizer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/StringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="110" column="11" selection-start-line="110" selection-start-column="11" selection-end-line="110" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="336" column="22" selection-start-line="336" selection-start-column="19" selection-end-line="336" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Enum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/Listeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
-          <folding>
-            <element signature="e#519#562#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/blackypaw/mc/i18n-spigot/1.3.0/i18n-spigot-1.3.0.jar!/com/blackypaw/mc/i18n/InjectionAwareLocalizer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/4.2.1/helper-4.2.1-sources.jar!/me/lucko/helper/Scheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="371" column="53" lean-forward="true" selection-start-line="371" selection-start-column="53" selection-end-line="371" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/concurrent/Callable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="41" column="2" lean-forward="true" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/blackypaw/mc/i18n-spigot/1.3.0/i18n-spigot-1.3.0.jar!/com/blackypaw/mc/i18n/InjectionHandle.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180413.073700-132-sources.jar!/org/bukkit/command/Command.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/LangKey.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Lang.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/translations/en.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ChatBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/ABFWithSubCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/helpOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="13" column="65" lean-forward="true" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wd/server.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/admincommand/ABFAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -992,17 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding>
-            <element signature="e#578#579#0" expanded="true" />
-            <element signature="e#653#654#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1045,17 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding>
-            <element signature="e#1863#1864#0" expanded="true" />
-            <element signature="e#1908#1909#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
-          <caret line="102" column="73" selection-start-line="102" selection-start-column="73" selection-end-line="102" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -1063,14 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="172" column="30" lean-forward="true" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
-          <folding>
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#2660#2661#0" expanded="true" />
-            <element signature="e#2713#2714#0" expanded="true" />
-            <element signature="e#2792#2793#0" expanded="true" />
-            <element signature="e#6617#6618#0" expanded="true" />
-            <element signature="e#6654#6655#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1085,44 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/scheduler/Task.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/Schedulers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="115" column="58" lean-forward="true" selection-start-line="115" selection-start-column="58" selection-end-line="115" selection-end-column="58" />
-          <folding>
-            <element signature="e#3050#3051#0" expanded="true" />
-            <element signature="e#3087#3088#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/scheduler/Scheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="40" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ReplaceCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-          <folding>
-            <element signature="e#294#295#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1147,13 +947,314 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180427.134830-10.jar!/org/bukkit/block/Block.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/ReplaceCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding>
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/material/DirectionalContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/material/Chest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#231#232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/block/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/configuration/file/FileConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#969#970#0" expanded="true" />
+            <element signature="e#992#993#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="357" column="11" selection-start-line="357" selection-start-column="11" selection-end-line="357" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/configuration/file/YamlConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/Listeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/block/Chest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1184">
-          <caret line="132" column="46" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+          <folding>
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/terminable/Terminable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/Schedulers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="298" column="23" selection-start-line="298" selection-start-column="23" selection-end-line="298" selection-end-column="23" />
+          <folding>
+            <element signature="e#3050#3051#0" expanded="true" />
+            <element signature="e#3087#3088#0" expanded="true" />
+            <element signature="e#10066#10067#0" expanded="true" />
+            <element signature="e#10129#10130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/scheduler/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="106" column="9" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/UUID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="374" column="18" selection-start-line="374" selection-start-column="18" selection-end-line="374" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DefaultFarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/commands/maincommand/placeOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="54" column="126" selection-start-line="54" selection-start-column="126" selection-end-line="54" selection-end-column="126" />
+          <folding>
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Building.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/block/BlockState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="95" column="10" lean-forward="true" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/Location.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="538" column="18" selection-start-line="538" selection-start-column="18" selection-end-line="538" selection-end-column="18" />
+          <folding>
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2752#2753#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/Farm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+          <folding>
+            <element signature="e#871#872#0" expanded="true" />
+            <element signature="e#921#922#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0-sources.jar!/com/google/common/util/concurrent/Runnables.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding>
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/me/lucko/helper/5.2.0/helper-5.2.0-sources.jar!/me/lucko/helper/scheduler/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+          <folding>
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2071#2072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_144x64/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="518" column="19" selection-start-line="518" selection-start-column="19" selection-end-line="518" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/reference/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/AutoBuildFarms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/configuration/MemorySection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+          <folding>
+            <element signature="e#3904#3905#0" expanded="true" />
+            <element signature="e#3931#3932#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/configuration/MemoryConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="67" column="37" lean-forward="true" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+          <folding>
+            <element signature="e#1981#1982#0" expanded="true" />
+            <element signature="e#2008#2009#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/org/bukkit/configuration/ConfigurationSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="147" column="32" selection-start-line="147" selection-start-column="32" selection-end-line="147" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/utils/DataFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wd/plugins/AutoBuildFarms/data.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/SquadAlpha/AutoBuildFarms/eventhandling/PlacedFarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>

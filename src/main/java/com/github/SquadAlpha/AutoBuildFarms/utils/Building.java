@@ -7,7 +7,6 @@ import com.github.SquadAlpha.AutoBuildFarms.reference.Reference;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.scheduler.Scheduler;
 import org.bukkit.Location;
-import org.bukkit.World;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -114,7 +113,7 @@ public class Building {
         }
     }
 
-    public void pasteSchematic(World world, Location loc) {
+    public void pasteSchematic(Location loc) {
         byte[] blocks = this.getBlocks();
         byte[] blockData = this.getData();
 
@@ -128,7 +127,7 @@ public class Building {
                     for (int z = 0; z < length; ++z) {
                         int index = y * width * length + z * width + x; //the equation to store 3d in a 1d array
                         ReplaceCommand.replaceBlock rplC = new ReplaceCommand.replaceBlock(
-                                new Location(world,
+                                new Location(loc.getWorld(),
                                         x + loc.getX(),
                                         y + loc.getY(),
                                         z + loc.getZ()),
