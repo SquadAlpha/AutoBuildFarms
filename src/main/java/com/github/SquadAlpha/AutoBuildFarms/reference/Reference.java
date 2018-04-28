@@ -5,7 +5,6 @@ import com.github.SquadAlpha.AutoBuildFarms.eventhandling.PlacedFarm;
 import com.github.SquadAlpha.AutoBuildFarms.utils.Farm;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ public class Reference{
     public static HashMap<String, Farm> farmList;
     public static ArrayList<PlacedFarm> placedFarms;
     public static String loreHeader;
-    public static ItemStack farmBlock;
 
 
     public static final int[] standardSchematic = new int[]{

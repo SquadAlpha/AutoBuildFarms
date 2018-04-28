@@ -9,7 +9,7 @@ public class ABFAdmin extends ABFWithSubCommand {
         super("ABFadmin", "the administration command for " + Reference.plugin.getName(), "/abfadmin",
                 "abfadmin", "abfa", "autobuildfarmsadmin");
         //TODO register subOptions
-
+        //TODO farm & size creation, editing & deletion
     }
 
     @Override

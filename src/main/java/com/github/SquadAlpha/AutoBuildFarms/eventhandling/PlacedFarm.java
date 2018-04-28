@@ -8,8 +8,10 @@ import me.lucko.helper.Schedulers;
 import me.lucko.helper.scheduler.Task;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -22,19 +24,25 @@ import java.util.UUID;
 public class PlacedFarm {
     @Getter
     private final UUID uuid;
+    @Getter
     private final Farm.Size farm;
+    @Getter
     private final Chest chest;
     private final ConfigurationSection configsect;
+    @Getter
+    private final OfflinePlayer owner;
+    @Getter
     private boolean built;
     private ArrayList<Task> tasks;
 
 
-    public PlacedFarm(Farm.Size s, Location loca) {
+    public PlacedFarm(Farm.Size s, Location chestLocation, OfflinePlayer owner) {
         this.farm = s;
-        if (!(loca.getBlock().getType() == Material.CHEST)) {
-            loca.getBlock().setType(Material.CHEST);
+        this.owner = owner;
+        if (!(chestLocation.getBlock().getType() == Material.CHEST)) {
+            chestLocation.getBlock().setType(Material.CHEST);
         }
-        this.chest = (Chest) loca.getBlock().getState();
+        this.chest = (Chest) chestLocation.getBlock().getState();
         this.configsect = DataFile.getNewPlacedFarmSection();
         this.uuid = UUID.fromString(this.configsect.getString("uuid"));
         this.built = true; //TODO change to false when contruction is working
@@ -44,6 +52,7 @@ public class PlacedFarm {
     public PlacedFarm(ConfigurationSection dataSect) {
         this.uuid = UUID.fromString(dataSect.getString("uuid", UUID.randomUUID().toString()));
         this.configsect = dataSect;
+        this.owner = dataSect.getOfflinePlayer("owner");
         Farm rfarm = Reference.farmList.get(this.configsect.getString("farm"));
         this.farm = rfarm.getSizes().get(this.configsect.getString("size"));
         Location loca = new Location(
@@ -92,6 +101,12 @@ public class PlacedFarm {
         this.configsect.set("z", loc.getBlockZ());
         this.configsect.set("built", this.built);
         this.configsect.set("uuid", this.uuid.toString());
+        this.configsect.set("owner", this.owner);
+    }
+
+    public boolean canBeOpenedBy(Player player) {
+        //TODO make a permissions system for this
+        return this.owner.equals(player);
     }
 
     private static class itemTask implements Runnable {
@@ -111,7 +126,6 @@ public class PlacedFarm {
         public void run() {
             if (this.chest.getBlock().getType() == Material.CHEST) {
                 this.chest.getBlockInventory().addItem(this.item);
-                Reference.log.info("Placed " + this.item.toString() + " into " + this.chest.getLocation());
             } else {
                 this.parent.destroy();
             }

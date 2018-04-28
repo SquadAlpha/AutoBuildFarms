@@ -42,7 +42,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
         if (farmList.size() == 0) {
             DefaultFarm.add(this);
         }
-        this.registerListener(new Listeners());
+        Listeners.init();
         this.easyreg(new ABFMain());
         super.enable();
     }
@@ -73,6 +73,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin{
     protected void disable(){
         Config.save();
         DataFile.save();
+        Listeners.destroy();
         super.disable();
     }
 

@@ -63,7 +63,6 @@ public class Config{
     }
 
     private static void initGeneral(ConfigurationSection configurationSection){
-        Reference.farmBlock = configurationSection.getItemStack(cfgN.FARMBLOCK.toString(), new ItemStack(Material.CHEST));
         getSchematicsDir();
     }
 
@@ -99,7 +98,6 @@ public class Config{
 
         //GENERAL
         ConfigurationSection general = getMainSection(cfgN.GENERAL_SECTION);
-        general.set(cfgN.FARMBLOCK.toString(), Reference.farmBlock);
         general.set(cfgN.SCHEMATICS_DIR.toString(), getSchematicsDirName());
         //LANG
         ConfigurationSection lang = getMainSection(cfgN.LANG_SECTION);
@@ -240,7 +238,6 @@ public class Config{
         FARMS_SECTION("farms"),
         FARM_DISPLAYITEM("displayitem"),
         GENERAL_SECTION("general"),
-        FARMBLOCK("farmblock"),
         FORMATTED_NAME("fancyname"),
         ITEM_LORE_HEADER("itemheader"),
         SIZES_SECTION("sizes"),

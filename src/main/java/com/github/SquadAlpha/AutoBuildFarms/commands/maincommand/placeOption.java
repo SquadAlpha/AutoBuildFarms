@@ -52,7 +52,7 @@ class placeOption extends subOption {
             if (Utils.econ.takeMoneyForFarmAndYell(p, f, s, builder, "place")) {
                 builder.append(ChatColor.GREEN, "Placing farm:" + f.getFancyName()).append(ChatColor.GREEN, " size:" + s.getFancyName());
                 s.getSchem().pasteSchematic(p.getLocation());
-                Reference.placedFarms.add(new PlacedFarm(s, p.getLocation()));//TODO give actual location of chest in schematic
+                Reference.placedFarms.add(new PlacedFarm(s, p.getLocation(), p));//TODO give actual location of chest in schematic
                 return true;
             }
         }
