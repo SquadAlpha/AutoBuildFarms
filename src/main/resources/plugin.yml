@@ -1,0 +1,35 @@
+name: ${project.artifactId}
+main: com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms
+version: ${project.version}
+author: JamesHond7&bigibas123
+database: false
+depend: [Vault]
+softdepend: [helper,worldedit]
+prefix: ABF
+commands:
+  ABF:
+    permission: ABF.ABF
+    usage: /ABF [place|list] [farm] [size]
+    description: The main ${project.artifactId} command
+    permission-message: You don't have permission &bABF.ABF
+    aliases: [abf, autobuildfarms]
+  ABFadmin:
+    permission: ABF.ABFadmin
+    usage: /ABFadmin
+    description: The administration command for ${project.artifactId}
+    permission-message: You don't have permission &bABF.ABFadmin
+    aliases: [abfadmin, abfa, autobuildfarmsadmin]
+
+permissions:
+  ABF.*:
+    description: Gives access to all ${project.artifactId} commands
+    default: op
+    children:
+      ABF.ABF: true
+      ABF.ABFadmin: true
+  ABF.ABF:
+    description: Allows basic usage of the ABF command
+    default: true
+  ABF.ABFadmin:
+    description: Allows usage of the ABFadmin command
+    default: op
