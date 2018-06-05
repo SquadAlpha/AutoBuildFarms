@@ -63,11 +63,11 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
     @Override
     protected void disable() {
         boolean b;
-        b = this.eh.NPE(() -> this.dataFile.save(), this.log);
+        b = this.eh.NPE(() -> this.dataFile.save());
         if (!b) {
             this.log.warning("Failed to save data file");
         }
-        b = this.eh.NPE(() -> this.configFile.save(), this.log);
+        b = this.eh.NPE(() -> this.configFile.save());
         if (!b) {
             this.log.warning("Failed to save config file");
         }
