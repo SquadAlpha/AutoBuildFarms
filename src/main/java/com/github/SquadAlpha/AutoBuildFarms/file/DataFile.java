@@ -35,22 +35,25 @@ public class DataFile {
     }
 
     private void loadFarms() {
-        ConfigurationSection sect = data.getConfigurationSection("farms");
+        ConfigurationSection sect = data.getConfigurationSection("placedfarms");
         if (sect == null) {
-            sect = this.data.createSection("farms");
+            sect = this.data.createSection("placedfarms");
         }
         for (String key : sect.getKeys(false)) {
-            new PlacedFarm(this.plugin, sect.getConfigurationSection(key));
+            ((PlacedFarm) sect.get(key)).registerTasks();
         }
     }
 
-    public ConfigurationSection getPlacedFarmConfigSection() {
+    public ConfigurationSection getNewPlacedFarmConfigSection() {
         return data.createSection("farms." + UUID.randomUUID());
     }
 
     public void save() {
-        this.config.createSection(this.plugin.getDescription().getPrefix());
-        this.plugin.getRegistries().getPlacedFarms().getObjects().forEach(PlacedFarm::save);
+        if (this.data.getConfigurationSection("placedfarms") == null) {
+            this.data.createSection("placedfarms");
+        }
+        ConfigurationSection pf = this.data.getConfigurationSection("placedfarms");
+        this.plugin.getRegistries().getPlacedFarms().getObjects().forEach(o -> pf.set(o.getName(), o));
         try {
             File f = new File(this.plugin.getDataFolder(), "data.yml");
             f.getParentFile().mkdirs();
@@ -62,6 +65,6 @@ public class DataFile {
     }
 
     public void deleteFarm(PlacedFarm placedFarm) {
-        this.data.set("farms." + placedFarm.getName(), null);
+        this.data.set("placedfarms." + placedFarm.getName(), null);
     }
 }

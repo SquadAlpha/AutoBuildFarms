@@ -12,7 +12,7 @@ public class Registry<T extends RegistryObject> {
         objects = new ArrayList<>();
     }
 
-    public T lookupName(String name) {
+    public T get(String name) {
         for (T o : objects) {
             if (o.getName().equals(name)) {
                 return o;
@@ -30,7 +30,27 @@ public class Registry<T extends RegistryObject> {
         }
     }
 
+    public ArrayList<T> search(String name) {
+        ArrayList<T> res = new ArrayList<>();
+        for (T o : this.getObjects()) {
+            if (o.getName().contains(name)) {
+                res.add(o);
+            }
+        }
+        return res;
+    }
+
+    public T searchFirst(String name) {
+        for (T o : this.getObjects()) {
+            if (o.getName().contains(name)) {
+                return o;
+            }
+        }
+        return null;
+    }
+
     public boolean remove(T o) {
         return objects.remove(o);
     }
+
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class FarmType extends RegistryObject {
+public class FarmType implements RegistryObject {//TODO convert to ConfigurationSerializable
 
     private final AutoBuildFarms plugin;
     private final String name;
@@ -30,15 +30,10 @@ public class FarmType extends RegistryObject {
         ItemMeta meta = this.displayItem.getItemMeta();
         meta.setDisplayName(this.fancyName);
         this.displayItem.setItemMeta(meta);
-        List<String> sizes1;
-        sizes1 = sect.getStringList("sizes");
-        if (sizes1 == null) {
-            sizes1 = new ArrayList<>();
-        }
-        this.sizes = new ArrayList<>();
-        sizes1.forEach(s -> this.sizes.add(this.plugin.getRegistries().getFarmSizes().lookupName(s)));
+        this.sizes = (List<FarmSize>) sect.get("sizes", new ArrayList<>());
         this.sect = sect;
         this.plugin.getRegistries().getFarmTypes().add(this);
+        this.sizes.forEach(s -> s.setParent(this));
     }
 
     public FarmType(AutoBuildFarms plugin, String name, String fancyname, List<FarmSize> sizes, ItemStack displayItem) {
@@ -49,14 +44,13 @@ public class FarmType extends RegistryObject {
         this.displayItem = displayItem;
         this.sect = this.getPlugin().getConfigFile().createFarmSection(this.getName());
         this.plugin.getRegistries().getFarmTypes().add(this);
+        this.sizes.forEach(s -> s.setParent(this));
     }
 
     public ConfigurationSection save() {
         this.sect.set("name", this.name);
         this.sect.set("fancyname", this.fancyName);
-        ArrayList<String> nsizes = new ArrayList<>();
-        this.sizes.forEach(s -> nsizes.add(s.getName()));
-        this.sect.set("sizes", nsizes);
+        this.sect.set("sizes", this.sizes);
         this.sect.set("item", this.displayItem);
         return this.sect;
     }

@@ -11,15 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ABFCommand implements TabExecutor {
+    @Getter
+    private final PluginCommand command;
 
     @Getter
-    protected final Command command;
+    private final AutoBuildFarms plugin;
 
     protected ABFCommand(String name, AutoBuildFarms plugin) {
         this.command = register(name, plugin);
+        this.plugin = plugin;
     }
 
-    private Command register(String name, AutoBuildFarms plugin) {
+    private PluginCommand register(String name, AutoBuildFarms plugin) {
         List<String> aliases;
         Object tAliases = plugin.getDescription().getCommands().get(name).get("aliases");
         if (tAliases instanceof List) {

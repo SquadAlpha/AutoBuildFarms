@@ -16,6 +16,11 @@
 
     <repositories>
         <repository>
+            <name>Nexus private repo (NMS e.t.c.)</name>
+            <id>nexus-private-release</id>
+            <url>http://repo.dingemans.mooo.com/repository/private/</url>
+        </repository>
+        <repository>
             <name>Nexus public repo</name>
             <id>nexus-release</id>
             <url>http://repo.dingemans.mooo.com/repository/public/</url>
@@ -28,11 +33,6 @@
             <id>luck-repo</id>
             <url>http://repo.lucko.me/</url>
         </repository>
-        <!--<repository>
-            <name>Nexus private repo (NMS e.t.c.)</name>
-            <id>nexus-private-release</id>
-            <url>http://repo.dingemans.mooo.com/repository/private/</url>
-        </repository>-->
     </repositories>
 
     <dependencies>

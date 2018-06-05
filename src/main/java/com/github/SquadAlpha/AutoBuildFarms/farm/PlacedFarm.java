@@ -2,6 +2,7 @@ package com.github.SquadAlpha.AutoBuildFarms.farm;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.registry.RegistryObject;
+import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.Getter;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.scheduler.Scheduler;
@@ -10,56 +11,58 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 import java.util.ArrayList;
-
-import static org.bukkit.Bukkit.getServer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Getter
-public class PlacedFarm extends RegistryObject {
+public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
 
+    private final String uuid;
     private final FarmSize size;
     private final Location placeLoc;
     private final Chest chest;
     private final boolean built;
 
-    private final ConfigurationSection configSect;
     private final AutoBuildFarms plugin;
     private final ArrayList<Task> tmp;
 
-    public PlacedFarm(AutoBuildFarms plugin, FarmSize size, Location placeLoc) {
-        this.plugin = plugin;
-        this.size = size;
-        this.placeLoc = placeLoc;
-        Location chestLock = this.size.getChestLoc();
-        chestLock.setWorld(this.placeLoc.getWorld());
-        Block b = this.placeLoc.add(chestLock).getBlock();
+    public PlacedFarm(Map<String, Object> map) {
+        this.uuid = (String) map.get("uuid");
+        this.size = (FarmSize) map.get("size");
+        this.placeLoc = (Location) map.get("loc");
+        Block b = ((Location) map.get("chestloc")).getBlock();
         if (!b.getType().equals(Material.CHEST)) {
             b.setType(Material.CHEST);
         }
-        this.chest = (Chest) b;
+        this.chest = (Chest) ((Location) map.get("chestloc")).getBlock();
+        this.built = (boolean) map.get("built");
+        this.tmp = new ArrayList<>();
+        this.plugin = AutoBuildFarms.getPlugin();
+        this.plugin.getRegistries().getPlacedFarms().add(this);
+    }
+
+    public PlacedFarm(AutoBuildFarms plugin, FarmSize size, Location placeLoc) {
+        this.plugin = plugin;
+        this.uuid = UUID.randomUUID().toString();
+        this.size = size;
+        this.placeLoc = placeLoc;
+        xyz tloc = this.size.getChestOffset();
+        Location chestloc = this.placeLoc.clone().add(tloc.getX(), tloc.getY(), tloc.getZ());
+        Block b = chestloc.getBlock();
+        if (!b.getType().equals(Material.CHEST)) {
+            b.setType(Material.CHEST);
+        }
+        this.chest = (Chest) this.placeLoc.clone().add(tloc.getX(), tloc.getY(), tloc.getZ()).getBlock();
         this.built = true;//TODO change to false when building works
-        this.configSect = this.plugin.getDataFile().getPlacedFarmConfigSection();
         this.plugin.getRegistries().getPlacedFarms().add(this);
         this.tmp = new ArrayList<>();
-        registerTasks();
     }
 
-    public PlacedFarm(AutoBuildFarms plugin, ConfigurationSection sect) {
-        this.plugin = plugin;
-        this.size = this.plugin.getRegistries().getFarmSizes().lookupName(sect.getString("size", "NOSIZEPROVIDED"));
-        this.placeLoc = (Location) sect.get("placelocation", new Location(getServer().getWorlds().get(0), 0, 0, 0));
-        Location cLock = (Location) sect.get("chestlocation", new Location(getServer().getWorlds().get(0), 0, 0, 0));
-        if (!cLock.getBlock().getType().equals(Material.CHEST)) cLock.getBlock().setType(Material.CHEST);
-        this.chest = (Chest) cLock.getBlock();
-        this.built = sect.getBoolean("built", true);
-        this.configSect = sect;
-        this.tmp = new ArrayList<>();
-        registerTasks();
-    }
-
-    private void registerTasks() {
+    public void registerTasks() {
         this.unRegisterTasks();
         if (this.built) {
             Scheduler s = Schedulers.async();
@@ -75,13 +78,6 @@ public class PlacedFarm extends RegistryObject {
         }
     }
 
-    public void save() {
-        unRegisterTasks();
-        this.configSect.set("size", this.size.getName());
-        this.configSect.set("placelocation", this.placeLoc);
-        this.configSect.set("chestlocation", this.chest.getLocation());
-        this.configSect.set("built", this.built);
-    }
 
     public void delete() {
         this.unRegisterTasks();
@@ -98,6 +94,17 @@ public class PlacedFarm extends RegistryObject {
 
     @Override
     public String getName() {
-        return this.configSect.getName();
+        return this.getUuid();
+    }
+
+    @Override
+    public Map<String, Object> serialize() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("uuid", this.getUuid());
+        map.put("size", this.getSize());
+        map.put("loc", this.getPlaceLoc());
+        map.put("chestloc", this.getChest().getLocation());
+        map.put("built", this.isBuilt());
+        return map;
     }
 }

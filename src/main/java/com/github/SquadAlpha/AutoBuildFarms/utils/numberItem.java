@@ -3,9 +3,6 @@ package com.github.SquadAlpha.AutoBuildFarms.utils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import me.lucko.helper.item.ItemStackBuilder;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,11 +15,6 @@ import java.util.Map;
 public class numberItem implements ConfigurationSerializable {
     private final long num;
     private final ItemStack item;
-
-    public numberItem(ConfigurationSection sect) {
-        this.num = sect.getLong("num", 10);
-        this.item = sect.getItemStack("item", ItemStackBuilder.of(Material.STICK).name("Error Loading " + sect.getCurrentPath()).build());
-    }
 
     public static numberItem deserialize(Map<String, Object> map) {
         Object num = map.get("num");

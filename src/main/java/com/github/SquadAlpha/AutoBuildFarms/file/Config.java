@@ -1,7 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms.file;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
-import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -17,18 +16,7 @@ public class Config {
             data1 = this.plugin.getConfig().createSection(this.plugin.getDescription().getPrefix());
         }
         this.data = data1;
-        loadSizes(); //Always call sizes first because farms need to have them assigned on construction
         loadFarms();
-    }
-
-    private void loadSizes() {
-        ConfigurationSection sizes = this.data.getConfigurationSection("sizes");
-        if (sizes == null) {
-            sizes = this.data.createSection("sizes");
-        }
-        for (String key : sizes.getKeys(false)) {
-            new FarmSize(this.plugin, sizes.getConfigurationSection(key));
-        }
     }
 
 
@@ -45,7 +33,6 @@ public class Config {
 
     public void save() {
         this.plugin.getRegistries().getFarmTypes().getObjects().forEach(FarmType::save);
-        this.plugin.getRegistries().getFarmSizes().getObjects().forEach(FarmSize::save);
         this.plugin.saveConfig();
     }
 
