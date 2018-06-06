@@ -65,6 +65,11 @@ public class DataFile {
     }
 
     public void deleteFarm(PlacedFarm placedFarm) {
-        this.data.set("placedfarms." + placedFarm.getName(), null);
+        ConfigurationSection pfSect = this.data.getConfigurationSection("placedfarms");
+        if (pfSect == null) {
+            pfSect = this.data.createSection("placedfarms");
+        }
+        this.plugin.getLog().info("Setting " + pfSect.getCurrentPath() + "." + placedFarm.getUuid() + " to null");
+        pfSect.set(placedFarm.getUuid(), null);
     }
 }

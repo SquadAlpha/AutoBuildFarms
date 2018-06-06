@@ -24,21 +24,21 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
     private final String uuid;
     private final FarmSize size;
     private final Location placeLoc;
-    private final Chest chest;
+    private final Location chestLocation;
     private final boolean built;
 
     private final AutoBuildFarms plugin;
     private final ArrayList<Task> tmp;
+    private boolean running;
 
     public PlacedFarm(Map<String, Object> map) {
         this.uuid = (String) map.get("uuid");
         this.size = (FarmSize) map.get("size");
         this.placeLoc = (Location) map.get("loc");
-        Block b = ((Location) map.get("chestloc")).getBlock();
-        if (!b.getType().equals(Material.CHEST)) {
-            b.setType(Material.CHEST);
+        if (!((Location) map.get("chestloc")).getBlock().getType().equals(Material.CHEST)) {
+            ((Location) map.get("chestloc")).getBlock().setType(Material.CHEST);
         }
-        this.chest = (Chest) ((Location) map.get("chestloc")).getBlock();
+        this.chestLocation = (Location) map.get("chestloc");
         this.built = (boolean) map.get("built");
         this.tmp = new ArrayList<>();
         this.plugin = AutoBuildFarms.getPlugin();
@@ -56,7 +56,7 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         if (!b.getType().equals(Material.CHEST)) {
             b.setType(Material.CHEST);
         }
-        this.chest = (Chest) this.placeLoc.clone().add(tloc.getX(), tloc.getY(), tloc.getZ()).getBlock();
+        this.chestLocation = this.placeLoc.clone().add(tloc.getVector());
         this.built = true;//TODO change to false when building works
         this.plugin.getRegistries().getPlacedFarms().add(this);
         this.tmp = new ArrayList<>();
@@ -66,11 +66,24 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         this.unRegisterTasks();
         if (this.built) {
             Scheduler s = Schedulers.async();
+            this.running = true;
             this.size.getRevenue().forEach(r -> this.tmp.add(s.runRepeating(() -> {
-                if (this.getChest() != null && this.getChest().getBlockInventory() != null) {
-                    this.getChest().getBlockInventory().addItem(r.getItem());
-                } else {
+                try {
+                    if (!this.isRunning()) {
+                        return;
+                    }
+                    if (this.getChestLocation() != null &&
+                            this.getChestLocation().getBlock() != null &&
+                            this.getChestLocation().getBlock().getState() != null &&
+                            this.getChestLocation().getBlock().getState() instanceof Chest) {
+                        ((Chest) this.getChestLocation().getBlock().getState()).getBlockInventory().addItem(r.getItem());
+                    } else {
+                        this.delete();
+                    }
+                } catch (IllegalStateException e) {
                     this.delete();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
                 }
             }, 1, r.getNum())));
         } else {
@@ -80,12 +93,15 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
 
 
     public void delete() {
+        this.running = false;
+        if (!this.plugin.getRegistries().getPlacedFarms().remove(this)) {
+            this.plugin.getRegistries().getPlacedFarms().remove(this.plugin.getRegistries().getPlacedFarms().get(this.getName()));
+        }
         this.unRegisterTasks();
         this.plugin.getDataFile().deleteFarm(this);
-        this.plugin.getRegistries().getPlacedFarms().remove(this);
     }
 
-    public void unRegisterTasks() {
+    public synchronized void unRegisterTasks() {
         this.tmp.forEach(t -> {
             t.close();
             this.tmp.remove(t);
@@ -102,8 +118,8 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         HashMap<String, Object> map = new HashMap<>();
         map.put("uuid", this.getUuid());
         map.put("size", this.getSize());
-        map.put("loc", this.getPlaceLoc());
-        map.put("chestloc", this.getChest().getLocation());
+        map.put("loc", this.getPlaceLoc().getBlock().getLocation()); // this converts the doubles in location to ints
+        map.put("chestloc", this.getChestLocation().getBlock().getLocation());
         map.put("built", this.isBuilt());
         return map;
     }

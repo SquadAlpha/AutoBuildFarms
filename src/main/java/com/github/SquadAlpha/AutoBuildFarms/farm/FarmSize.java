@@ -72,6 +72,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
     public boolean canBePlacedBy(CommandSender sender) {
         return sender.hasPermission(this.plugin.getDescription().getPrefix() + ".place." +
                 this.parent.getName() + "." + this.getName());
+        //TODO check money and building materials
     }
 
     public void setParent(FarmType farmType) {

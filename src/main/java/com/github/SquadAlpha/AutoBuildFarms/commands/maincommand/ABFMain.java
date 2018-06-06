@@ -35,7 +35,6 @@ public class ABFMain extends CommandwithSubcommands {
                     });
                     if (size.get() != null) {
                         if (size.get().canBePlacedBy(a.getSender())) {
-                            //TODO check money and other things I can think off
                             PlacedFarm pf = new PlacedFarm(this.getPlugin(), size.get(), ((Player) a.getSender()).getLocation());
                             this.getPlugin().getRegistries().getPlacedFarms().add(pf);
                             pf.registerTasks();
