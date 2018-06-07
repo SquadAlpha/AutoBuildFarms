@@ -93,19 +93,19 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
 
 
     public void delete() {
-        this.running = false;
-        if (!this.plugin.getRegistries().getPlacedFarms().remove(this)) {
-            this.plugin.getRegistries().getPlacedFarms().remove(this.plugin.getRegistries().getPlacedFarms().get(this.getName()));
+        if (this.isRunning()) {
+            this.running = false;
+            if (!this.plugin.getRegistries().getPlacedFarms().remove(this)) {
+                this.plugin.getRegistries().getPlacedFarms().remove(this.plugin.getRegistries().getPlacedFarms().get(this.getName()));
+            }
+            this.unRegisterTasks();
+            this.plugin.getDataFile().deleteFarm(this);
         }
-        this.unRegisterTasks();
-        this.plugin.getDataFile().deleteFarm(this);
     }
 
     public synchronized void unRegisterTasks() {
-        this.tmp.forEach(t -> {
-            t.close();
-            this.tmp.remove(t);
-        });
+        this.tmp.forEach(Task::close);
+        this.tmp.clear();
     }
 
     @Override

@@ -3,11 +3,13 @@ package com.github.SquadAlpha.AutoBuildFarms.farm;
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.file.Schematic;
 import com.github.SquadAlpha.AutoBuildFarms.registry.RegistryObject;
+import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import com.github.SquadAlpha.AutoBuildFarms.utils.numberItem;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -69,10 +71,35 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
         return map;
     }
 
+
+    public String getPlacePermission() {
+        return this.plugin.getDescription().getPrefix() + ".place." +
+                this.parent.getName() + "." + this.getName();
+    }
+
     public boolean canBePlacedBy(CommandSender sender) {
         return sender.hasPermission(this.plugin.getDescription().getPrefix() + ".place." +
                 this.parent.getName() + "." + this.getName());
         //TODO check money and building materials
+    }
+
+    public boolean canBePlacedByAndYell(CommandSender sender) {
+        ChatBuilder builder = new ChatBuilder(sender);
+        boolean success;
+        if (sender.hasPermission(this.getPlacePermission())) {
+            //TODO check money and building materials
+            success = true;
+        } else {
+            success = false;
+            builder.append(ChatColor.RED, "You don't have permission:")
+                    .append(ChatColor.AQUA, this.getPlacePermission())
+                    .append(ChatColor.RED, " to place ")
+                    .append(ChatColor.GOLD, this.parent.getFancyName())
+                    .append(ChatColor.WHITE, " ")
+                    .append(ChatColor.GOLD, this.getFancyName());
+        }
+        builder.send();
+        return success;
     }
 
     public void setParent(FarmType farmType) {

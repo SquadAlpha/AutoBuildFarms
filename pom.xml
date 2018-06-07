@@ -16,14 +16,14 @@
 
     <repositories>
         <repository>
-            <name>Nexus private repo (NMS e.t.c.)</name>
-            <id>nexus-private</id>
-            <url>http://repo.dingemans.mooo.com/repository/private/</url>
-        </repository>
-        <repository>
             <name>Nexus public repo</name>
             <id>nexus-release</id>
             <url>http://repo.dingemans.mooo.com/repository/public/</url>
+        </repository>
+        <repository>
+            <name>Nexus private repo (NMS e.t.c.)</name>
+            <id>nexus-private</id>
+            <url>http://repo.dingemans.mooo.com/repository/private/</url>
         </repository>
         <repository>
             <id>public-spigot-repo</id>

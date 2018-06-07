@@ -7,7 +7,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 public class DataFile {
 
@@ -35,24 +34,14 @@ public class DataFile {
     }
 
     private void loadFarms() {
-        ConfigurationSection sect = data.getConfigurationSection("placedfarms");
-        if (sect == null) {
-            sect = this.data.createSection("placedfarms");
-        }
+        ConfigurationSection sect = this.getSection(this.data, "placedfarms");
         for (String key : sect.getKeys(false)) {
             ((PlacedFarm) sect.get(key)).registerTasks();
         }
     }
 
-    public ConfigurationSection getNewPlacedFarmConfigSection() {
-        return data.createSection("farms." + UUID.randomUUID());
-    }
-
     public void save() {
-        if (this.data.getConfigurationSection("placedfarms") == null) {
-            this.data.createSection("placedfarms");
-        }
-        ConfigurationSection pf = this.data.getConfigurationSection("placedfarms");
+        ConfigurationSection pf = this.getSection(this.data, "placedfarms");
         this.plugin.getRegistries().getPlacedFarms().getObjects().forEach(o -> pf.set(o.getName(), o));
         try {
             File f = new File(this.plugin.getDataFolder(), "data.yml");
@@ -64,12 +53,16 @@ public class DataFile {
         }
     }
 
-    public void deleteFarm(PlacedFarm placedFarm) {
-        ConfigurationSection pfSect = this.data.getConfigurationSection("placedfarms");
-        if (pfSect == null) {
-            pfSect = this.data.createSection("placedfarms");
+    private ConfigurationSection getSection(ConfigurationSection origin, String name) {
+        ConfigurationSection newSect = origin.getConfigurationSection(name);
+        if (newSect == null) {
+            newSect = this.data.createSection(name);
         }
-        this.plugin.getLog().info("Setting " + pfSect.getCurrentPath() + "." + placedFarm.getUuid() + " to null");
+        return newSect;
+    }
+
+    public void deleteFarm(PlacedFarm placedFarm) {
+        ConfigurationSection pfSect = this.getSection(this.data, "placedfarms");
         pfSect.set(placedFarm.getUuid(), null);
     }
 }

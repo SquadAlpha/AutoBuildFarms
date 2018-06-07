@@ -6,9 +6,8 @@ import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.farm.PlacedFarm;
 import com.github.SquadAlpha.AutoBuildFarms.registry.RegistryObject;
+import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,12 +33,17 @@ public class ABFMain extends CommandwithSubcommands {
                         }
                     });
                     if (size.get() != null) {
-                        if (size.get().canBePlacedBy(a.getSender())) {
+                        if (size.get().canBePlacedByAndYell(a.getSender())) {
                             PlacedFarm pf = new PlacedFarm(this.getPlugin(), size.get(), ((Player) a.getSender()).getLocation());
                             this.getPlugin().getRegistries().getPlacedFarms().add(pf);
                             pf.registerTasks();
-                        } else {
-                            //TODO check whats wrong or let it be handled by canBePlacedBy
+                            new ChatBuilder(a.getSender())
+                                    .append(ChatColor.GREEN, "Placed: ")
+                                    .append(ChatColor.GOLD, pf.getSize().getParent().getFancyName())
+                                    .append(ChatColor.GOLD, " ")
+                                    .append(ChatColor.GOLD, pf.getSize().getFancyName())
+                                    .append(ChatColor.GREEN, " successfully")
+                                    .send();
                         }
                     } else {
                         invalidSometingSpiel("size", farm.getSizes(), a.getSender());
@@ -54,22 +58,19 @@ public class ABFMain extends CommandwithSubcommands {
         }));
     }
 
-    public static void invalidSometingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
-        ComponentBuilder builder = new ComponentBuilder("");
-        TextComponent error = new TextComponent("invalid " + what + " ");
-        error.setColor(ChatColor.RED);
-        builder.append(error);
-
-        ComponentBuilder ncb = new ComponentBuilder("Possible options:").color(ChatColor.YELLOW);
-        options.forEach(o -> ncb.append((o.getName().concat(", "))));
-        builder.append(ncb.create());
-        sender.spigot().sendMessage(builder.create());
+    private static void invalidSometingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
+        ChatBuilder cb = new ChatBuilder(sender)
+                .append(ChatColor.RED, "invalid " + what + " ")
+                .append(ChatColor.YELLOW, "Possible options:");
+        options.forEach(o -> cb.append(ChatColor.GOLD, o.getName().concat(", ")));
+        cb.send();
     }
 
     @Override
     protected boolean mainCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
             sender.sendMessage("NOOP");
+            //TODO design menu
             return true;
         } catch (Throwable t) {
             return false;
