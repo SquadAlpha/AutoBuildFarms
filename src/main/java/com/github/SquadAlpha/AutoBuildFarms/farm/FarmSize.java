@@ -28,7 +28,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
     private final String fancyName;
     private final String schemName;
     private final Schematic schem;
-    private final int price;
+    private final double price;
     private final List<ItemStack> materials;
     private final List<numberItem> revenue;
     private final ItemStack displayItem;
@@ -36,7 +36,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
 
     private FarmType parent;
 
-    public FarmSize(AutoBuildFarms plugin, String name, String fancyName, String schemName, int price,
+    public FarmSize(AutoBuildFarms plugin, String name, String fancyName, String schemName, double price,
                     List<ItemStack> materials, List<numberItem> revenue, ItemStack displayItem, xyz chestOffset) {
         this.plugin = plugin;
         this.name = name;
@@ -53,7 +53,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
     public FarmSize(Map<String, Object> map) {
         this((AutoBuildFarms) Bukkit.getPluginManager().getPlugin("AutoBuildFarms"),
                 (String) map.get("name"), (String) map.get("fancyname"), (String) map.get("schemfile"),
-                (int) map.get("price"), (List<ItemStack>) map.get("materials"), (List<numberItem>) map.get("revenue"),
+                (double) map.get("price"), (List<ItemStack>) map.get("materials"), (List<numberItem>) map.get("revenue"),
                 (ItemStack) map.get("item"), (xyz) map.get("chestoffset"));
     }
 

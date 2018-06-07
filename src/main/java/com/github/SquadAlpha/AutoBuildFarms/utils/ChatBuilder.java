@@ -21,6 +21,10 @@ public class ChatBuilder {
         return this;
     }
 
+    public ChatBuilder newLine() {
+        this.builder.append("\n");
+        return this;
+    }
 
     public void send() {
         this.sender.spigot().sendMessage(this.builder.create());

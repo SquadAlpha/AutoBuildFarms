@@ -1,6 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms.farm;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
+import com.github.SquadAlpha.AutoBuildFarms.registry.Registry;
 import com.github.SquadAlpha.AutoBuildFarms.registry.RegistryObject;
 import lombok.Getter;
 import org.bukkit.Material;
@@ -17,7 +18,7 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
     private final AutoBuildFarms plugin;
     private final String name;
     private final String fancyName;
-    private final List<FarmSize> sizes;
+    private final Registry<FarmSize> sizes;
     private final ItemStack displayItem;
 
     private final ConfigurationSection sect;
@@ -30,7 +31,8 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         ItemMeta meta = this.displayItem.getItemMeta();
         meta.setDisplayName(this.fancyName);
         this.displayItem.setItemMeta(meta);
-        this.sizes = (List<FarmSize>) sect.get("sizes", new ArrayList<>());
+        this.sizes = new Registry<>();
+        this.sizes.addAll((List<FarmSize>) sect.get("sizes", new ArrayList<>()));
         this.sect = sect;
         this.plugin.getRegistries().getFarmTypes().add(this);
         this.sizes.forEach(s -> s.setParent(this));
@@ -40,7 +42,8 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         this.plugin = plugin;
         this.name = name;
         this.fancyName = fancyname;
-        this.sizes = sizes;
+        this.sizes = new Registry<>();
+        this.sizes.addAll(sizes);
         this.displayItem = displayItem;
         this.sect = this.getPlugin().getConfigFile().createFarmSection(this.getName());
         this.plugin.getRegistries().getFarmTypes().add(this);
@@ -50,7 +53,7 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
     public ConfigurationSection save() {
         this.sect.set("name", this.name);
         this.sect.set("fancyname", this.fancyName);
-        this.sect.set("sizes", this.sizes);
+        this.sect.set("sizes", this.sizes.getObjects());
         this.sect.set("item", this.displayItem);
         return this.sect;
     }

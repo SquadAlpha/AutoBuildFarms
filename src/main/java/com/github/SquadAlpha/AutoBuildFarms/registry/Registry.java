@@ -3,6 +3,8 @@ package com.github.SquadAlpha.AutoBuildFarms.registry;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.Consumer;
 
 public class Registry<T extends RegistryObject> {
     @Getter
@@ -30,6 +32,10 @@ public class Registry<T extends RegistryObject> {
         }
     }
 
+    public boolean addAll(Collection<T> l) {
+        return this.objects.addAll(l);
+    }
+
     public ArrayList<T> search(String name) {
         ArrayList<T> res = new ArrayList<>();
         for (T o : this.getObjects()) {
@@ -51,6 +57,10 @@ public class Registry<T extends RegistryObject> {
 
     public boolean remove(T o) {
         return objects.remove(o);
+    }
+
+    public void forEach(Consumer<? super T> c) {
+        this.getObjects().forEach(c);
     }
 
 }

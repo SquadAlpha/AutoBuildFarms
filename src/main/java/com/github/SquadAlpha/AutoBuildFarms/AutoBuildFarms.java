@@ -12,24 +12,22 @@ import com.github.SquadAlpha.AutoBuildFarms.utils.numberItem;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.Getter;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.util.logging.Logger;
 
-
+@Getter
 public class AutoBuildFarms extends ExtendedJavaPlugin {
-    @Getter
     private Config configFile;
-    @Getter
     private Logger log;
-    @Getter
-    private static AutoBuildFarms plugin;
-    @Getter
     private DataFile dataFile;
-    @Getter
     private Registries registries;
     @Getter
+    private static AutoBuildFarms plugin;
     private ErrorHandling eh;
+    private Economy econ;
 
     @Override
     protected void load() {
@@ -50,7 +48,26 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
         this.dataFile = new DataFile(this);
         this.setDefaultFarms();
         new ABFMain(this);
+
+        if (!setupEconomy()) {
+            log.severe("Disabled due to no Vault dependency found!");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         super.enable();
+    }
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        this.econ = rsp.getProvider();
+        return this.econ != null;
     }
 
     private void setDefaultFarms() {
