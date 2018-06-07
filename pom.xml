@@ -17,7 +17,7 @@
     <repositories>
         <repository>
             <name>Nexus private repo (NMS e.t.c.)</name>
-            <id>nexus-private-release</id>
+            <id>nexus-private</id>
             <url>http://repo.dingemans.mooo.com/repository/private/</url>
         </repository>
         <repository>
@@ -90,10 +90,10 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/SquadAlpha/AutoBuildFarms.git</connection>
-        <developerConnection>scm:git:https://github.com/SquadAlpha/AutoBuildFarms.git</developerConnection>
+        <connection>scm:git:https://gitlab.com/SquadAlpha/AutoBuildFarms.git</connection>
+        <developerConnection>scm:git:https://gitlab.com/SquadAlpha/AutoBuildFarms.git</developerConnection>
         <tag>HEAD</tag>
-        <url>https://github.com/SquadAlpha/AutoBuildFarms/</url>
+        <url>https://gitlab.com/SquadAlpha/AutoBuildFarms</url>
     </scm>
 
     <build>

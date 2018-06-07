@@ -13,21 +13,6 @@
       <password>${env.MAVEN_REPO_PASS}</password>
     </server>
     <server>
-      <id>bigi-nexus</id>
-      <username>${env.MAVEN_REPO_USER}</username>
-      <password>${env.MAVEN_REPO_PASS}</password>
-    </server>
-    <server>
-      <id>nexus-private-release</id>
-      <username>${env.MAVEN_REPO_USER}</username>
-      <password>${env.MAVEN_REPO_PASS}</password>
-    </server>
-    <server>
-      <id>nexus-private-mixed</id>
-      <username>${env.MAVEN_REPO_USER}</username>
-      <password>${env.MAVEN_REPO_PASS}</password>
-    </server>
-    <server>
       <id>nexus-private</id>
       <username>${env.MAVEN_REPO_USER}</username>
       <password>${env.MAVEN_REPO_PASS}</password>
