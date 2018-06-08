@@ -24,10 +24,11 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
     private Logger log;
     private DataFile dataFile;
     private Registries registries;
-    @Getter
-    private static AutoBuildFarms plugin;
     private ErrorHandling eh;
     private Economy econ;
+
+    @Getter
+    private static AutoBuildFarms plugin;
 
     @Override
     protected void load() {

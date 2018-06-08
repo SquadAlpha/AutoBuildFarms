@@ -18,6 +18,7 @@ import java.util.function.Function;
 
 
 public class ABFMain extends CommandwithSubcommands {
+
     @SuppressWarnings("FieldCanBeLocal")
     private final Function<onCommandArgs, Boolean> place = a -> {
 
@@ -40,6 +41,7 @@ public class ABFMain extends CommandwithSubcommands {
                                 .append(ChatColor.GOLD, pf.getSize().getFancyName())
                                 .append(ChatColor.GREEN, " successfully")
                                 .send();
+                        size.getSchem().place(((Player) a.getSender()).getLocation());//TODO do building and stuff
                     }
                 } else {
                     invalidSometingSpiel("size", farm.getSizes().getObjects(), a.getSender());
@@ -97,4 +99,5 @@ public class ABFMain extends CommandwithSubcommands {
         this.registerSubOption(new subOption("place", this.place));
         this.registerSubOption(new subOption("list", this.list));
     }
+
 }

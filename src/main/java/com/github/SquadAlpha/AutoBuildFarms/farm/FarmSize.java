@@ -15,6 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,16 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
         this.name = name;
         this.fancyName = fancyName;
         this.schemName = schemName;
-        this.schem = new Schematic(this.schemName);
+        Schematic schem1;
+        try {
+            schem1 = Schematic.load(this.getPlugin(), this.schemName, this.schemName);
+        } catch (IOException e) {
+            this.plugin.getLog().severe(e.getLocalizedMessage());
+            this.plugin.getLog().severe(e.getMessage());
+            this.plugin.getLog().throwing(this.getClass().getCanonicalName(), "init", e);
+            schem1 = Schematic.chest(this.getPlugin(), this.getSchemName());
+        }
+        this.schem = schem1;
         this.price = price;
         this.materials = materials;
         this.revenue = revenue;
@@ -77,17 +87,11 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
                 this.parent.getName() + "." + this.getName();
     }
 
-    public boolean canBePlacedBy(CommandSender sender) {
-        return sender.hasPermission(this.plugin.getDescription().getPrefix() + ".place." +
-                this.parent.getName() + "." + this.getName());
-        //TODO check money and building materials
-    }
-
     public boolean canBePlacedByAndYell(CommandSender sender) {
         ChatBuilder builder = new ChatBuilder(sender);
         boolean success;
         if (sender.hasPermission(this.getPlacePermission())) {
-            //TODO check money and building materials
+            //TODO check if space is free, money and building materials
             success = true;
         } else {
             success = false;

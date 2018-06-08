@@ -13,16 +13,16 @@ public class Defaults {
     public static void createDefaultFarms(AutoBuildFarms plugin) {
         ArrayList<FarmSize> sizes = new ArrayList<>();
         sizes.add(new FarmSize(plugin,
-                "small", "§6Small", "cactus_small",
+                "small", "§bSmall", "cactus_small",
                 100, Collections.singletonList(new ItemStack(Material.CACTUS, 5)),
                 Collections.singletonList(new numberItem(30, new ItemStack(Material.CACTUS, 1))),
                 new ItemStack(Material.CACTUS, 1), new xyz(0, 0, 0)));
         sizes.add(new FarmSize(plugin,
-                "medium", "§6Medium", "cactus_medium",
+                "medium", "§bMedium", "cactus_medium",
                 100, Collections.singletonList(new ItemStack(Material.CACTUS, 20)),
                 Collections.singletonList(new numberItem(10, new ItemStack(Material.CACTUS, 2))),
                 new ItemStack(Material.CACTUS, 2), new xyz(0, 0, 0)));
         new FarmType(plugin,
-                "cactus", "§6Cactus", sizes, new ItemStack(Material.CACTUS, 1));
+                "cactus", "§2Cactus", sizes, new ItemStack(Material.CACTUS, 1));
     }
 }

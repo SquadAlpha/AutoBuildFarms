@@ -48,7 +48,7 @@ public class Registry<T extends RegistryObject> {
 
     public T searchFirst(String name) {
         for (T o : this.getObjects()) {
-            if (o.getName().contains(name)) {
+            if (o.getName().startsWith(name)) {
                 return o;
             }
         }
