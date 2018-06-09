@@ -38,7 +38,7 @@ public class ABFMain extends CommandwithSubcommands {
         }
     }
 
-    //Start suboptions
+    //Start subOptions
     @SuppressWarnings("FieldCanBeLocal")
     private final Function<onCommandArgs, Boolean> list = a -> {
         ChatBuilder cb = new ChatBuilder(a.getSender())

@@ -15,7 +15,7 @@ commands:
     aliases: [abf, autobuildfarms]
   ABFadmin:
     permission: ABF.ABFadmin
-    usage: /ABFadmin [create] [farmname]
+    usage: /ABFadmin [createtype|createsize] [farmname]
     description: The administration command for ${project.artifactId}
     permission-message: You don't have permission &bABF.ABFadmin
     aliases: [abfadmin, abfa, autobuildfarmsadmin]
