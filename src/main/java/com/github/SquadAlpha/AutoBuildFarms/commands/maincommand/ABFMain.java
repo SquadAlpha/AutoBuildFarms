@@ -19,6 +19,46 @@ import java.util.function.Function;
 
 public class ABFMain extends CommandwithSubcommands {
 
+    private static void invalidSometingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
+        ChatBuilder cb = new ChatBuilder(sender)
+                .append(ChatColor.RED, "invalid " + what + " ")
+                .append(ChatColor.YELLOW, "Possible options:");
+        options.forEach(o -> cb.append(ChatColor.GOLD, o.getName().concat(", ")));
+        cb.send();
+    }
+
+    @Override
+    protected boolean mainCommand(CommandSender sender, Command command, String label, String[] args) {
+        try {
+            sender.sendMessage("NOOP");
+            //TODO design menu
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    //Start suboptions
+    @SuppressWarnings("FieldCanBeLocal")
+    private final Function<onCommandArgs, Boolean> list = a -> {
+        ChatBuilder cb = new ChatBuilder(a.getSender())
+                .append(ChatColor.GOLD, "Farms:");
+        this.getPlugin().getRegistries().getFarmTypes().forEach(ft -> {
+
+            cb.newLine().append(ChatColor.GOLD, " ")
+                    .append(ChatColor.RESET, ft.getFancyName())
+                    .append(ChatColor.GOLD, ":")
+                    .append(ChatColor.WHITE, ft.getName());
+            ft.getSizes().forEach(fs -> cb.newLine().append(ChatColor.GOLD, "  ")
+                    .append(ChatColor.RESET, fs.getFancyName())
+                    .append(ChatColor.GOLD, ":")
+                    .append(ChatColor.AQUA, this.getPlugin().getEcon().format(fs.getPrice()))
+                    .append(ChatColor.WHITE, " " + fs.getName()));
+        });
+        cb.send();
+        return true;
+    };
+
     @SuppressWarnings("FieldCanBeLocal")
     private final Function<onCommandArgs, Boolean> place = a -> {
 
@@ -55,49 +95,10 @@ public class ABFMain extends CommandwithSubcommands {
         return true;
     };
 
-    private static void invalidSometingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
-        ChatBuilder cb = new ChatBuilder(sender)
-                .append(ChatColor.RED, "invalid " + what + " ")
-                .append(ChatColor.YELLOW, "Possible options:");
-        options.forEach(o -> cb.append(ChatColor.GOLD, o.getName().concat(", ")));
-        cb.send();
-    }
-
-    @Override
-    protected boolean mainCommand(CommandSender sender, Command command, String label, String[] args) {
-        try {
-            sender.sendMessage("NOOP");
-            //TODO design menu
-            return true;
-        } catch (Throwable t) {
-            return false;
-        }
-    }
-
-    //Start suboptions
-    @SuppressWarnings("FieldCanBeLocal")
-    private final Function<onCommandArgs, Boolean> list = a -> {
-        ChatBuilder cb = new ChatBuilder(a.getSender())
-                .append(ChatColor.GOLD, "Farms:");
-        this.getPlugin().getRegistries().getFarmTypes().forEach(ft -> {
-
-            cb.newLine().append(ChatColor.GOLD, " ")
-                    .append(ChatColor.RESET, ft.getFancyName())
-                    .append(ChatColor.GOLD, ":");
-            ft.getSizes().forEach(fs -> cb.newLine().append(ChatColor.GOLD, "  ")
-                    .append(ChatColor.RESET, fs.getFancyName())
-                    .append(ChatColor.GOLD, ":")
-                    .append(ChatColor.AQUA, this.getPlugin().getEcon().format(fs.getPrice()))
-                    .append(ChatColor.WHITE, " " + fs.getName()));
-        });
-        cb.send();
-        return true;
-    };
-
     public ABFMain(AutoBuildFarms plugin) {
         super("ABF", plugin);
-        this.registerSubOption(new subOption("place", this.place));
-        this.registerSubOption(new subOption("list", this.list));
+        this.registerSubOption(new subOption(this, "place", this.place));
+        this.registerSubOption(new subOption(this, "list", this.list));
     }
 
 }

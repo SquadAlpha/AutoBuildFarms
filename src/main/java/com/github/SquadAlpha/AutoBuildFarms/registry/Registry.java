@@ -63,4 +63,10 @@ public class Registry<T extends RegistryObject> {
         this.getObjects().forEach(c);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Registry{");
+        forEach(o -> builder.append(o.toString()).append(", "));
+        return builder.substring(0, builder.length() - 2) + "}";
+    }
 }

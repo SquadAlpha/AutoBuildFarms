@@ -1,5 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms;
 
+import com.github.SquadAlpha.AutoBuildFarms.commands.admincommand.ABFAdmin;
 import com.github.SquadAlpha.AutoBuildFarms.commands.maincommand.ABFMain;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.PlacedFarm;
@@ -38,6 +39,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
     @Override
     protected void enable() {
         AutoBuildFarms.plugin = this;
+        this.log = super.getLogger();
         this.eh = new ErrorHandling(this);
         ConfigurationSerialization.registerClass(numberItem.class);
         ConfigurationSerialization.registerClass(xyz.class);
@@ -45,10 +47,10 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
         ConfigurationSerialization.registerClass(PlacedFarm.class);
         this.registries = new Registries();
         this.configFile = new Config(this);
-        this.log = super.getLogger();
         this.dataFile = new DataFile(this);
         this.setDefaultFarms();
         new ABFMain(this);
+        new ABFAdmin(this);
 
         if (!setupEconomy()) {
             log.severe("Disabled due to no Vault dependency found!");
