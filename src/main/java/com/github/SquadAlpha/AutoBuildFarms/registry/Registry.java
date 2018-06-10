@@ -48,7 +48,7 @@ public class Registry<T extends RegistryObject> {
 
     public T searchFirst(String name) {
         for (T o : this.getObjects()) {
-            if (o.getName().contains(name)) {
+            if (o.getName().startsWith(name)) {
                 return o;
             }
         }
@@ -63,4 +63,10 @@ public class Registry<T extends RegistryObject> {
         this.getObjects().forEach(c);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Registry{");
+        forEach(o -> builder.append(o.toString()).append(", "));
+        return builder.substring(0, builder.length() - 2) + "}";
+    }
 }

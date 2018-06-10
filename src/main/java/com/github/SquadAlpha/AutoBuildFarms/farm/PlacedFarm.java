@@ -7,6 +7,7 @@ import lombok.Getter;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.scheduler.Scheduler;
 import me.lucko.helper.scheduler.Task;
+import me.lucko.helper.scheduler.threadlock.ServerThreadLock;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -25,7 +26,6 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
     private final FarmSize size;
     private final Location placeLoc;
     private final Location chestLocation;
-    private final boolean built;
 
     private final AutoBuildFarms plugin;
     private final ArrayList<Task> tmp;
@@ -39,7 +39,6 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
             ((Location) map.get("chestloc")).getBlock().setType(Material.CHEST);
         }
         this.chestLocation = (Location) map.get("chestloc");
-        this.built = (boolean) map.get("built");
         this.tmp = new ArrayList<>();
         this.plugin = AutoBuildFarms.getPlugin();
         this.plugin.getRegistries().getPlacedFarms().add(this);
@@ -57,38 +56,35 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
             b.setType(Material.CHEST);
         }
         this.chestLocation = this.placeLoc.clone().add(tloc.getVector());
-        this.built = true;//TODO change to false when building works
         this.plugin.getRegistries().getPlacedFarms().add(this);
         this.tmp = new ArrayList<>();
     }
 
     public void registerTasks() {
         this.unRegisterTasks();
-        if (this.built) {
-            Scheduler s = Schedulers.async();
-            this.running = true;
-            this.size.getRevenue().forEach(r -> this.tmp.add(s.runRepeating(() -> {
-                try {
-                    if (!this.isRunning()) {
-                        return;
-                    }
-                    if (this.getChestLocation() != null &&
-                            this.getChestLocation().getBlock() != null &&
-                            this.getChestLocation().getBlock().getState() != null &&
-                            this.getChestLocation().getBlock().getState() instanceof Chest) {
-                        ((Chest) this.getChestLocation().getBlock().getState()).getBlockInventory().addItem(r.getItem());
-                    } else {
-                        this.delete();
-                    }
-                } catch (IllegalStateException e) {
-                    this.delete();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
+        Scheduler s = Schedulers.async();
+        this.running = true;
+        this.size.getRevenue().forEach(r -> this.tmp.add(s.runRepeating(() -> {
+            try {
+                if (!this.isRunning()) {
+                    return;
                 }
-            }, 1, r.getNum())));
-        } else {
-            //TODO register building handlers
-        }
+                if (this.getChestLocation() != null &&
+                        this.getChestLocation().getBlock() != null &&
+                        this.getChestLocation().getBlock().getState() != null &&
+                        this.getChestLocation().getBlock().getState() instanceof Chest) {
+                    try (ServerThreadLock ignored = ServerThreadLock.obtain()) {
+                        ((Chest) this.getChestLocation().getBlock().getState()).getBlockInventory().addItem(r.getItem());
+                    }
+                } else {
+                    this.delete();
+                }
+            } catch (IllegalStateException e) {
+                this.delete();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }, 1, r.getNum())));
     }
 
 
@@ -120,7 +116,6 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         map.put("size", this.getSize());
         map.put("loc", this.getPlaceLoc().getBlock().getLocation()); // this converts the doubles in location to ints
         map.put("chestloc", this.getChestLocation().getBlock().getLocation());
-        map.put("built", this.isBuilt());
         return map;
     }
 }

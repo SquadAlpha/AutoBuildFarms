@@ -1,6 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms.utils;
 
 import lombok.Data;
+import org.bukkit.Location;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.util.Vector;
 
@@ -16,6 +17,13 @@ public class xyz implements ConfigurationSerializable {
         this.x = (int) map.get("x");
         this.y = (int) map.get("y");
         this.z = (int) map.get("z");
+        this.vector = new Vector(x, y, z);
+    }
+
+    public xyz(Location l) {
+        this.x = l.getBlockX();
+        this.y = l.getBlockY();
+        this.z = l.getBlockZ();
         this.vector = new Vector(x, y, z);
     }
 

@@ -38,6 +38,10 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         this.sizes.forEach(s -> s.setParent(this));
     }
 
+    public void redoSizes() {
+        this.sizes.forEach(s -> s.setParent(this));
+    }
+
     public FarmType(AutoBuildFarms plugin, String name, String fancyname, List<FarmSize> sizes, ItemStack displayItem) {
         this.plugin = plugin;
         this.name = name;
@@ -56,5 +60,9 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         this.sect.set("sizes", this.sizes.getObjects());
         this.sect.set("item", this.displayItem);
         return this.sect;
+    }
+
+    public String toString() {
+        return "FarmType(name=" + this.getName() + ", fancyName=" + this.getFancyName() + ", sizes=" + this.getSizes() + ", displayItem=" + this.getDisplayItem() + ")";
     }
 }
