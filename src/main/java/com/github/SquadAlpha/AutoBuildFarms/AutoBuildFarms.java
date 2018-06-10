@@ -41,10 +41,7 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
         AutoBuildFarms.plugin = this;
         this.log = super.getLogger();
         this.eh = new ErrorHandling(this);
-        ConfigurationSerialization.registerClass(numberItem.class);
-        ConfigurationSerialization.registerClass(xyz.class);
-        ConfigurationSerialization.registerClass(FarmSize.class);
-        ConfigurationSerialization.registerClass(PlacedFarm.class);
+        this.registerConfigSerializable();
         this.registries = new Registries();
         this.configFile = new Config(this);
         this.dataFile = new DataFile(this);
@@ -59,6 +56,13 @@ public class AutoBuildFarms extends ExtendedJavaPlugin {
         }
 
         super.enable();
+    }
+
+    private void registerConfigSerializable(){
+        ConfigurationSerialization.registerClass(numberItem.class);
+        ConfigurationSerialization.registerClass(xyz.class);
+        ConfigurationSerialization.registerClass(FarmSize.class);
+        ConfigurationSerialization.registerClass(PlacedFarm.class);
     }
 
     private boolean setupEconomy() {

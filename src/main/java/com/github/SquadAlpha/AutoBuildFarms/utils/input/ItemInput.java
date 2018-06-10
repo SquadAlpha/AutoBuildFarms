@@ -1,6 +1,8 @@
-package com.github.SquadAlpha.AutoBuildFarms.utils;
+package com.github.SquadAlpha.AutoBuildFarms.utils.input;
 
+import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import me.lucko.helper.Events;
+import me.lucko.helper.event.SingleSubscription;
 import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.Item;
@@ -17,25 +19,43 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-public class ItemChooser extends Gui {
+public class ItemInput extends Gui implements PlayerInput<ItemStack> {
+
+    private ItemStack item;
 
     private final CountDownLatch cdl;
     private final AtomicBoolean canceled;
-    private ItemStack item;
+    private SingleSubscription<InventoryClickEvent> sub;
 
-    public ItemChooser(Player player, String title, AtomicBoolean canceled) {
+    public ItemInput(Player player, String title, AtomicBoolean canceled) {
         super(player, 1, title);
-        this.cdl = new CountDownLatch(1);
         this.canceled = canceled;
+        this.cdl = new CountDownLatch(1);
     }
 
-    public ItemStack await() {
-        this.open();
+    protected final void done(){
+        this.cdl.countDown();
+    }
+
+    protected final void waitUntilDone(){
         try {
             this.cdl.await();
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public ItemStack await(){
+        this.waitUntilDone();
+        this.sub.unregister();
         return this.item;
+    }
+
+    @Override
+    public void go(){
+        new ChatBuilder(this.getPlayer()).append(ChatColor.WHITE,this.getInitialTitle()).send();
+        this.open();
     }
 
     @Override
@@ -43,14 +63,14 @@ public class ItemChooser extends Gui {
         Map<ClickType, Consumer<InventoryClickEvent>> handlers = new HashMap<>();
         handlers.put(ClickType.LEFT, iCE -> {
             canceled.set(true);
-            this.cdl.countDown();
+            this.done();
         });
         this.addItem(new Item(handlers, ItemStackBuilder.of(Material.BARRIER).name(ChatColor.RED + "Cancel").build()));
     }
 
     @Override
     public void open() {
-        Events.subscribe(InventoryClickEvent.class)
+        this.sub = Events.subscribe(InventoryClickEvent.class)
                 .filter(e -> e.getInventory().getHolder() != null)
                 .filter(e -> e.getWhoClicked().equals(this.getPlayer()))
                 .filter(e -> !e.getCurrentItem().getType().equals(Material.AIR))
@@ -60,8 +80,9 @@ public class ItemChooser extends Gui {
                     e.setCancelled(true);
                     this.item = e.getCurrentItem();
                     this.close();
-                    this.cdl.countDown();
+                    this.done();
                 });
         super.open();
     }
+
 }

@@ -7,8 +7,6 @@ import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import com.github.SquadAlpha.AutoBuildFarms.utils.numberItem;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -21,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 @Getter
-@RequiredArgsConstructor
-@NoArgsConstructor(force = true)
 public class FarmSize implements RegistryObject, ConfigurationSerializable {
     private final AutoBuildFarms plugin;
     private final String name;

@@ -3,21 +3,20 @@ package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
-import com.github.SquadAlpha.AutoBuildFarms.utils.ItemChooser;
+import com.github.SquadAlpha.AutoBuildFarms.utils.input.ItemInput;
+import com.github.SquadAlpha.AutoBuildFarms.utils.input.PlayerInput;
+import com.github.SquadAlpha.AutoBuildFarms.utils.input.StringInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
 import lombok.AccessLevel;
 import lombok.Getter;
-import me.lucko.helper.Events;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.scheduler.Scheduler;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
@@ -58,40 +57,19 @@ public class CreateType {
                         .send();
                 return;
             }
-            CountDownLatch cdl = new CountDownLatch(1);
 
-            new ChatBuilder(this.getA().getSender())
-                    .append(ChatColor.WHITE, "Please enter the fancy name of the farm")
-                    .newLine().append(ChatColor.GRAY, "color code paragraphs replaced by &'s").send();
-
-            Events.subscribe(AsyncPlayerChatEvent.class)
-                    .filter(e -> e.getPlayer().equals(this.getA().getSender()))
-                    .biHandler((sub, event) -> {
-                        if (event.getMessage().equals("cancel")) {
-                            canceled.set(true);
-                            cdl.countDown();
-                        }
-                        this.fancyName = event.getMessage().replaceAll("(?<!\\\\)&", "§");
-                        sub.unregister();
-                        cdl.countDown();
-                        event.setCancelled(true);
-                    });
-            try {
-                cdl.await();
-            } catch (InterruptedException ignored) {
-            }
+            PlayerInput<String> sc = new StringInput((Player) this.getA().getSender(),
+                    ChatColor.AQUA, "Please enter the fancy name of the farm",
+                    ChatColor.GREEN, "Name registered:%1", canceled);
+            sc.go();
+            this.fancyName = sc.await();
             if (canceled.get()) {
                 sayCanceled();
                 return;
             }
-            new ChatBuilder(this.getA().getSender())
-                    .append(ChatColor.GREEN, "Name registered:")
-                    .append(ChatColor.RESET, this.getFancyName()).send();
-            new ChatBuilder(this.getA().getSender())
-                    .append(ChatColor.WHITE, "Please click the display item").send();
 
-
-            ItemChooser menu = new ItemChooser((Player) this.getA().getSender(), "Click the item that represents this farm", canceled);
+            PlayerInput<ItemStack> menu = new ItemInput((Player) this.getA().getSender(), "Click the item that represents this farm", canceled);
+            menu.go();
             this.displayItem = menu.await();
             if (canceled.get()) {
                 sayCanceled();
