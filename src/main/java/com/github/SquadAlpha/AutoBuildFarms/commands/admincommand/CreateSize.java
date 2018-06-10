@@ -3,6 +3,7 @@ package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
+import com.github.SquadAlpha.AutoBuildFarms.utils.input.DoubleInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.PlayerInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.StringInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
@@ -100,12 +101,19 @@ public class CreateSize {
                     sayCanceled();
                     return;
                 }
-                new ChatBuilder(this.getA().getSender())
-                        .append(ChatColor.GREEN, "Name registered:")
-                        .append(ChatColor.RESET, this.getFancyName()).send();
+
+                PlayerInput<Double> pr = new DoubleInput((Player) this.getA().getSender(),
+                        ChatColor.AQUA,"Please enter the price "+this.getFancyName()+" costs",
+                        ChatColor.GREEN,"Price set to %1"+
+                        ((AutoBuildFarms) this.getA().getCmd().getPlugin()).getEcon().currencyNamePlural(), this.canceled);
+                pr.go();
+                this.price = pr.await();
+                if (canceled.get()) {
+                    sayCanceled();
+                    return;
+                }
 
 
-                //TODO price
                 //TODO schemfile
                 //TODO chestOffset
 
