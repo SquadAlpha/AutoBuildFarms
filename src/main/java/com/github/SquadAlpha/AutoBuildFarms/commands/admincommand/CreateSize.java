@@ -52,7 +52,7 @@ public class CreateSize {
 
         private String fancyName;
         private double price;
-        private String schemfile;
+        private String schematicFile;
         private xyz chestOffset;
 
         private ItemStack displayItem;
@@ -92,9 +92,10 @@ public class CreateSize {
                 }
 
                 PlayerInput<String> sc = new StringInput((Player) this.getA().getSender(),
-                        ChatColor.AQUA,"Please enter the fancy name of this size",
-                        ChatColor.GREEN,"Fancy name registered:%1",this.canceled);
-                sc.go();
+                        "Please enter the fancy name of this size",
+                        "Fancy name registered:%1",
+                        "Fancy name setting failed",this.canceled);
+                sc.start();
                 this.fancyName = sc.await();
 
                 if (canceled.get()) {
@@ -103,10 +104,11 @@ public class CreateSize {
                 }
 
                 PlayerInput<Double> pr = new DoubleInput((Player) this.getA().getSender(),
-                        ChatColor.AQUA,"Please enter the price "+this.getFancyName()+" costs",
-                        ChatColor.GREEN,"Price set to %1"+
-                        ((AutoBuildFarms) this.getA().getCmd().getPlugin()).getEcon().currencyNamePlural(), this.canceled);
-                pr.go();
+                        "Please enter the price "+ ChatColor.RESET+this.getFancyName()+ChatColor.RESET+" costs",
+                        "Price set to %1"+
+                        ((AutoBuildFarms) this.getA().getCmd().getPlugin()).getEcon().currencyNamePlural(),
+                        "Price setting failed",this.canceled);
+                pr.start();
                 this.price = pr.await();
                 if (canceled.get()) {
                     sayCanceled();
@@ -114,14 +116,14 @@ public class CreateSize {
                 }
 
 
-                //TODO schemfile
+                //TODO schematicFile
                 //TODO chestOffset
 
 
                 //TODO display item
-                //TODO materials
+                //TODO materials (Item selection in a loop)
 
-                //TODO revenue (Item selection and number parsing)
+                //TODO revenue (Item selection and number parsing combined in a loop)
             };
         }
 

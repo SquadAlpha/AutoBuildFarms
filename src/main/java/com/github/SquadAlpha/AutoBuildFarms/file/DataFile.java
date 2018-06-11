@@ -34,14 +34,14 @@ public class DataFile {
     }
 
     private void loadFarms() {
-        ConfigurationSection sect = this.getSection(this.data, "placedfarms");
+        ConfigurationSection sect = this.getSection(this.data, "placedFarms");
         for (String key : sect.getKeys(false)) {
             ((PlacedFarm) sect.get(key)).registerTasks();
         }
     }
 
     public void save() {
-        ConfigurationSection pf = this.getSection(this.data, "placedfarms");
+        ConfigurationSection pf = this.getSection(this.data, "placedFarms");
         this.plugin.getRegistries().getPlacedFarms().getObjects().forEach(o -> pf.set(o.getName(), o));
         try {
             File f = new File(this.plugin.getDataFolder(), "data.yml");
@@ -62,7 +62,7 @@ public class DataFile {
     }
 
     public void deleteFarm(PlacedFarm placedFarm) {
-        ConfigurationSection pfSect = this.getSection(this.data, "placedfarms");
+        ConfigurationSection pfSect = this.getSection(this.data, "placedFarms");
         pfSect.set(placedFarm.getUuid(), null);
     }
 }

@@ -16,17 +16,17 @@ import org.bukkit.command.PluginCommand;
 import java.util.List;
 import java.util.function.Function;
 
-public abstract class CommandwithSubcommands extends ABFCommand {
+public abstract class CommandWithSubCommands extends ABFCommand {
     @Getter(AccessLevel.PROTECTED)
-    private final Registry<subOption> suboptions;
+    private final Registry<SubOption> subOptions;
 
-    protected CommandwithSubcommands(String name, AutoBuildFarms plugin) {
+    protected CommandWithSubCommands(String name, AutoBuildFarms plugin) {
         super(name, plugin);
-        this.suboptions = new Registry<>();
+        this.subOptions = new Registry<>();
     }
 
-    protected final void registerSubOption(subOption opt) {
-        this.suboptions.add(opt);
+    protected final void registerSubOption(SubOption opt) {
+        this.subOptions.add(opt);
     }
 
     @Override
@@ -34,12 +34,12 @@ public abstract class CommandwithSubcommands extends ABFCommand {
         if (args.length <= 0) {
             return this.mainCommand(sender, command, label, args);
         }
-        subOption opt = this.getSuboptions().searchFirst(args[0]);
+        SubOption opt = this.getSubOptions().searchFirst(args[0]);
         if (opt == null) {
             ChatBuilder builder = new ChatBuilder(sender)
                     .append(ChatColor.RED, "Wrong sub-command")
                     .append(ChatColor.WHITE, "Possible options:");
-            this.suboptions.getObjects().forEach(o -> builder
+            this.subOptions.getObjects().forEach(o -> builder
                     .append(ChatColor.YELLOW, o.getName())
                     .append(ChatColor.WHITE, ", "));
             builder.send();
@@ -67,8 +67,8 @@ public abstract class CommandwithSubcommands extends ABFCommand {
 
     @RequiredArgsConstructor
     @Getter
-    public static class subOption implements RegistryObject {
-        private final CommandwithSubcommands parent;
+    public static class SubOption implements RegistryObject {
+        private final CommandWithSubCommands parent;
         private final String name;
         private final Function<onCommandArgs, Boolean> exec;
 

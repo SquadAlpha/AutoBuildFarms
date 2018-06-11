@@ -1,7 +1,7 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.maincommand;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
-import com.github.SquadAlpha.AutoBuildFarms.commands.CommandwithSubcommands;
+import com.github.SquadAlpha.AutoBuildFarms.commands.CommandWithSubCommands;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.farm.PlacedFarm;
@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.function.Function;
 
 
-public class ABFMain extends CommandwithSubcommands {
+public class ABFMain extends CommandWithSubCommands {
 
-    private static void invalidSometingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
+    private static void invalidSomethingSpiel(String what, List<? extends RegistryObject> options, CommandSender sender) {
         ChatBuilder cb = new ChatBuilder(sender)
                 .append(ChatColor.RED, "invalid " + what + " ")
                 .append(ChatColor.YELLOW, "Possible options:");
@@ -81,24 +81,24 @@ public class ABFMain extends CommandwithSubcommands {
                                 .append(ChatColor.GOLD, pf.getSize().getFancyName())
                                 .append(ChatColor.GREEN, " successfully")
                                 .send();
-                        size.getSchem().place(((Player) a.getSender()).getLocation());//TODO do building and stuff
+                        size.getSchematic().place(((Player) a.getSender()).getLocation());//TODO do building and stuff
                     }
                 } else {
-                    invalidSometingSpiel("size", farm.getSizes().getObjects(), a.getSender());
+                    invalidSomethingSpiel("size", farm.getSizes().getObjects(), a.getSender());
                 }
             } else {
-                invalidSometingSpiel("size", farm.getSizes().getObjects(), a.getSender());
+                invalidSomethingSpiel("size", farm.getSizes().getObjects(), a.getSender());
             }
         } else {
-            invalidSometingSpiel("farm", this.getPlugin().getRegistries().getFarmTypes().getObjects(), a.getSender());
+            invalidSomethingSpiel("farm", this.getPlugin().getRegistries().getFarmTypes().getObjects(), a.getSender());
         }
         return true;
     };
 
     public ABFMain(AutoBuildFarms plugin) {
         super("ABF", plugin);
-        this.registerSubOption(new subOption(this, "place", this.place));
-        this.registerSubOption(new subOption(this, "list", this.list));
+        this.registerSubOption(new SubOption(this, "place", this.place));
+        this.registerSubOption(new SubOption(this, "list", this.list));
     }
 
 }

@@ -1,16 +1,16 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
-import com.github.SquadAlpha.AutoBuildFarms.commands.CommandwithSubcommands;
+import com.github.SquadAlpha.AutoBuildFarms.commands.CommandWithSubCommands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-public class ABFAdmin extends CommandwithSubcommands {
+public class ABFAdmin extends CommandWithSubCommands {
 
     public ABFAdmin(AutoBuildFarms plugin) {
         super("ABFadmin", plugin);
-        this.registerSubOption(new subOption(this, "createtype", CreateType.func));
-        this.registerSubOption(new subOption(this,"createsize",CreateSize.func));
+        this.registerSubOption(new SubOption(this, "createtype", CreateType.func));
+        this.registerSubOption(new SubOption(this,"createsize",CreateSize.func));
     }
 
     @Override

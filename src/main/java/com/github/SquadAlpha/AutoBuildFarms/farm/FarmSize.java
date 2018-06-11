@@ -23,8 +23,8 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
     private final AutoBuildFarms plugin;
     private final String name;
     private final String fancyName;
-    private final String schemName;
-    private final Schematic schem;
+    private final String schematicName;
+    private final Schematic schematic;
     private final double price;
     private final List<ItemStack> materials;
     private final List<numberItem> revenue;
@@ -33,22 +33,22 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
 
     private FarmType parent;
 
-    public FarmSize(AutoBuildFarms plugin, String name, String fancyName, String schemName, double price,
+    public FarmSize(AutoBuildFarms plugin, String name, String fancyName, String schematicName, double price,
                     List<ItemStack> materials, List<numberItem> revenue, ItemStack displayItem, xyz chestOffset) {
         this.plugin = plugin;
         this.name = name;
         this.fancyName = fancyName;
-        this.schemName = schemName;
-        Schematic schem1;
+        this.schematicName = schematicName;
+        Schematic schematic1;
         try {
-            schem1 = Schematic.load(this.getPlugin(), this.schemName, this.schemName);
+            schematic1 = Schematic.load(this.getPlugin(), this.schematicName, this.schematicName);
         } catch (IOException e) {
             this.plugin.getLog().severe(e.getLocalizedMessage());
             this.plugin.getLog().severe(e.getMessage());
             this.plugin.getLog().throwing(this.getClass().getCanonicalName(), "init", e);
-            schem1 = Schematic.chest(this.getPlugin(), this.getSchemName());
+            schematic1 = Schematic.chest(this.getPlugin(), this.getSchematicName());
         }
-        this.schem = schem1;
+        this.schematic = schematic1;
         this.price = price;
         this.materials = materials;
         this.revenue = revenue;
@@ -58,22 +58,22 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
 
     public FarmSize(Map<String, Object> map) {
         this((AutoBuildFarms) Bukkit.getPluginManager().getPlugin("AutoBuildFarms"),
-                (String) map.get("name"), (String) map.get("fancyname"), (String) map.get("schemfile"),
+                (String) map.get("name"), (String) map.get("fancyName"), (String) map.get("schematicFile"),
                 (double) map.get("price"), (List<ItemStack>) map.get("materials"), (List<numberItem>) map.get("revenue"),
-                (ItemStack) map.get("item"), (xyz) map.get("chestoffset"));
+                (ItemStack) map.get("item"), (xyz) map.get("chestOffset"));
     }
 
     @Override
     public Map<String, Object> serialize() {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("chestoffset", this.chestOffset);
-        map.put("fancyname", this.fancyName);
+        map.put("chestOffset", this.chestOffset);
+        map.put("fancyName", this.fancyName);
         map.put("item", this.displayItem);
         map.put("materials", this.materials);
         map.put("name", this.name);
         map.put("price", this.price);
         map.put("revenue", this.revenue);
-        map.put("schemfile", this.schemName);
+        map.put("schematicFile", this.schematicName);
         return map;
     }
 

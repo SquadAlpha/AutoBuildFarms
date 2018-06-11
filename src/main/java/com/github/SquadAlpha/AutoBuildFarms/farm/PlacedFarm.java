@@ -35,10 +35,10 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         this.uuid = (String) map.get("uuid");
         this.size = (FarmSize) map.get("size");
         this.placeLoc = (Location) map.get("loc");
-        if (!((Location) map.get("chestloc")).getBlock().getType().equals(Material.CHEST)) {
-            ((Location) map.get("chestloc")).getBlock().setType(Material.CHEST);
+        if (!((Location) map.get("chestLocation")).getBlock().getType().equals(Material.CHEST)) {
+            ((Location) map.get("chestLocation")).getBlock().setType(Material.CHEST);
         }
-        this.chestLocation = (Location) map.get("chestloc");
+        this.chestLocation = (Location) map.get("chestLocation");
         this.tmp = new ArrayList<>();
         this.plugin = AutoBuildFarms.getPlugin();
         this.plugin.getRegistries().getPlacedFarms().add(this);
@@ -49,13 +49,13 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         this.uuid = UUID.randomUUID().toString();
         this.size = size;
         this.placeLoc = placeLoc;
-        xyz tloc = this.size.getChestOffset();
-        Location chestloc = this.placeLoc.clone().add(tloc.getX(), tloc.getY(), tloc.getZ());
-        Block b = chestloc.getBlock();
+        xyz tempLocation = this.size.getChestOffset();
+        Location chestLocation = this.placeLoc.clone().add(tempLocation.getX(), tempLocation.getY(), tempLocation.getZ());
+        Block b = chestLocation.getBlock();
         if (!b.getType().equals(Material.CHEST)) {
             b.setType(Material.CHEST);
         }
-        this.chestLocation = this.placeLoc.clone().add(tloc.getVector());
+        this.chestLocation = this.placeLoc.clone().add(tempLocation.getVector());
         this.plugin.getRegistries().getPlacedFarms().add(this);
         this.tmp = new ArrayList<>();
     }
@@ -115,7 +115,7 @@ public class PlacedFarm implements RegistryObject, ConfigurationSerializable {
         map.put("uuid", this.getUuid());
         map.put("size", this.getSize());
         map.put("loc", this.getPlaceLoc().getBlock().getLocation()); // this converts the doubles in location to ints
-        map.put("chestloc", this.getChestLocation().getBlock().getLocation());
+        map.put("chestLocation", this.getChestLocation().getBlock().getLocation());
         return map;
     }
 }

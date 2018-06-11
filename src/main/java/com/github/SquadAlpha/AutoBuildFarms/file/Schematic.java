@@ -34,19 +34,19 @@ public class Schematic {
 
     private HashMap<BlockVector, BaseBlock> blocks;
 
-    private Schematic(AutoBuildFarms plugin, String schemName, Vector size) {
+    private Schematic(AutoBuildFarms plugin, String schematicName, Vector size) {
         this.plugin = plugin;
-        this.name = schemName;
+        this.name = schematicName;
         this.size = size;
         this.blocks = new HashMap<>();
     }
 
     public static Schematic chest(AutoBuildFarms plugin, String name) {
-        Schematic schem = new Schematic(plugin, name, new Vector(1, 1, 1));
+        Schematic schematic = new Schematic(plugin, name, new Vector(1, 1, 1));
         //noinspection deprecation
-        schem.setBlock(new BlockVector(0, 0, 0), new BaseBlock(Material.CHEST.getId()));
-        plugin.getLog().warning("Loaded default chest:" + schem.getName() + " with " + schem.getBlocks().size() + " blocks");
-        return schem;
+        schematic.setBlock(new BlockVector(0, 0, 0), new BaseBlock(Material.CHEST.getId()));
+        plugin.getLog().warning("Loaded default chest:" + schematic.getName() + " with " + schematic.getBlocks().size() + " blocks");
+        return schematic;
     }
 
     public static Schematic load(AutoBuildFarms plugin, String name, InputStream stream) throws IOException {
@@ -145,7 +145,7 @@ public class Schematic {
         }
 
         Vector size = new Vector(width, height, length);
-        Schematic schem = new Schematic(plugin, name, size);
+        Schematic schematic = new Schematic(plugin, name, size);
 
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
@@ -157,25 +157,25 @@ public class Schematic {
                     if (tileEntitiesMap.containsKey(pt)) {
                         block.setNbtData(new CompoundTag("", new CompoundMap(tileEntitiesMap.get(pt))));
                     }
-                    schem.setBlock(pt, block);
+                    schematic.setBlock(pt, block);
                 }
             }
         }
-        plugin.getLog().info("Loaded schematic:" + schem.getName() + " with " + schem.getBlocks().size() + " blocks");
-        return schem;
+        plugin.getLog().info("Loaded schematic:" + schematic.getName() + " with " + schematic.getBlocks().size() + " blocks");
+        return schematic;
     }
 
     public static Schematic load(AutoBuildFarms plugin, String name, File file) throws IOException {
         return load(plugin, name, new FileInputStream(file));
     }
 
-    public static Schematic load(AutoBuildFarms plugin, String schemName, String fileName) throws IOException {
+    public static Schematic load(AutoBuildFarms plugin, String schematicName, String fileName) throws IOException {
         File file;
         try {
             file = AutoBuildFarms.getPlugin().getBundledFile(fileName);
-            return load(plugin, schemName, file);
+            return load(plugin, schematicName, file);
         } catch (IllegalArgumentException e) {
-            return chest(plugin, schemName);
+            return chest(plugin, schematicName);
         }
     }
 

@@ -38,13 +38,13 @@ public class CreateType {
     @Getter(AccessLevel.PRIVATE)
     private static class farmCreation {
 
-        private final onCommandArgs a;//
+        private final onCommandArgs a;
 
-        private final String name;//
-        private final ConfigurationSection sect;//
-        private final AutoBuildFarms plugin;//
+        private final String name;
+        private final ConfigurationSection sect;
+        private final AutoBuildFarms plugin;
 
-        private String fancyName;//
+        private String fancyName;
         private ItemStack displayItem;
         @Getter
         private final Runnable go = () -> {
@@ -59,17 +59,21 @@ public class CreateType {
             }
 
             PlayerInput<String> sc = new StringInput((Player) this.getA().getSender(),
-                    ChatColor.AQUA, "Please enter the fancy name of the farm",
-                    ChatColor.GREEN, "Name registered:%1", canceled);
-            sc.go();
+                    "Please enter the fancy name of the farm",
+                    "Name registered:%1",
+                    "fancyName setting canceled",canceled);
+            sc.start();
             this.fancyName = sc.await();
             if (canceled.get()) {
                 sayCanceled();
                 return;
             }
 
-            PlayerInput<ItemStack> menu = new ItemInput((Player) this.getA().getSender(), "Click the item that represents this farm", canceled);
-            menu.go();
+            PlayerInput<ItemStack> menu = new ItemInput((Player) this.getA().getSender(),
+                    "Click the item that represents this farm",
+                    "Item successfully set to %1",
+                    "display item setting canceled",canceled);
+            menu.start();
             this.displayItem = menu.await();
             if (canceled.get()) {
                 sayCanceled();

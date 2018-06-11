@@ -26,7 +26,7 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
     public FarmType(AutoBuildFarms plugin, ConfigurationSection sect) {
         this.plugin = plugin;
         this.name = sect.getString("name", "NONAMEGIVEN");
-        this.fancyName = sect.getString("fancyname", "§6NONAMEGIVEN");
+        this.fancyName = sect.getString("fancyName", "§6NONAMEGIVEN");
         this.displayItem = sect.getItemStack("item", new ItemStack(Material.STICK));
         ItemMeta meta = this.displayItem.getItemMeta();
         meta.setDisplayName(this.fancyName);
@@ -42,10 +42,10 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         this.sizes.forEach(s -> s.setParent(this));
     }
 
-    public FarmType(AutoBuildFarms plugin, String name, String fancyname, List<FarmSize> sizes, ItemStack displayItem) {
+    public FarmType(AutoBuildFarms plugin, String name, String fancyName, List<FarmSize> sizes, ItemStack displayItem) {
         this.plugin = plugin;
         this.name = name;
-        this.fancyName = fancyname;
+        this.fancyName = fancyName;
         this.sizes = new Registry<>();
         this.sizes.addAll(sizes);
         this.displayItem = displayItem;
@@ -56,7 +56,7 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
 
     public ConfigurationSection save() {
         this.sect.set("name", this.name);
-        this.sect.set("fancyname", this.fancyName);
+        this.sect.set("fancyName", this.fancyName);
         this.sect.set("sizes", this.sizes.getObjects());
         this.sect.set("item", this.displayItem);
         return this.sect;

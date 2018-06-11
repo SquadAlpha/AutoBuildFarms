@@ -1,6 +1,5 @@
 package com.github.SquadAlpha.AutoBuildFarms.utils.input;
 
-import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import me.lucko.helper.Events;
 import me.lucko.helper.event.SingleSubscription;
 import me.lucko.helper.item.ItemStackBuilder;
@@ -15,74 +14,61 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-public class ItemInput extends Gui implements PlayerInput<ItemStack> {
+public class ItemInput extends PlayerInput<ItemStack> {
 
-    private ItemStack item;
+    private final Menu menu;
 
-    private final CountDownLatch cdl;
-    private final AtomicBoolean canceled;
-    private SingleSubscription<InventoryClickEvent> sub;
 
-    public ItemInput(Player player, String title, AtomicBoolean canceled) {
-        super(player, 1, title);
-        this.canceled = canceled;
-        this.cdl = new CountDownLatch(1);
+    public ItemInput(Player player, String requestText, String successText, String cancelText, AtomicBoolean canceled) {
+        super(player, requestText, successText, cancelText, canceled);
+        this.menu = new Menu(player,ChatColor.AQUA+requestText,this);
     }
 
-    protected final void done(){
-        this.cdl.countDown();
+    @Override
+    protected void go() {
+     this.menu.open();
     }
 
-    protected final void waitUntilDone(){
-        try {
-            this.cdl.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private static class Menu extends Gui{
+
+        private SingleSubscription<InventoryClickEvent> sub;
+        private final ItemInput parent;
+
+        public Menu(Player player, String title, ItemInput parent) {
+            super(player, 1, title);
+            this.parent = parent;
+        }
+
+        @Override
+        public void redraw() {
+            Map<ClickType, Consumer<InventoryClickEvent>> handlers = new HashMap<>();
+            handlers.put(ClickType.LEFT, iCE -> {
+                this.parent.cancel();
+                this.close();
+            });
+            this.addItem(new Item(handlers, ItemStackBuilder.of(Material.BARRIER).name(ChatColor.RED + "Cancel").build()));
+        }
+
+        @Override
+        public void open() {
+            this.sub = Events.subscribe(InventoryClickEvent.class)
+                    .filter(e -> e.getInventory().getHolder() != null)
+                    .filter(e -> e.getWhoClicked().equals(this.getPlayer()))
+                    .filter(e -> !e.getCurrentItem().getType().equals(Material.AIR))
+                    .filter(e -> !(e.getCurrentItem().getType().equals(Material.BARRIER) &&
+                            e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.RED + "Cancel")))
+                    .handler(e -> {
+                        e.setCancelled(true);
+                        this.parent.setAnswer(e.getCurrentItem());
+                        this.close();
+                        this.sub.unregister();
+                    });
+            super.open();
         }
     }
 
-    @Override
-    public ItemStack await(){
-        this.waitUntilDone();
-        this.sub.unregister();
-        return this.item;
-    }
-
-    @Override
-    public void go(){
-        new ChatBuilder(this.getPlayer()).append(ChatColor.WHITE,this.getInitialTitle()).send();
-        this.open();
-    }
-
-    @Override
-    public void redraw() {
-        Map<ClickType, Consumer<InventoryClickEvent>> handlers = new HashMap<>();
-        handlers.put(ClickType.LEFT, iCE -> {
-            canceled.set(true);
-            this.done();
-        });
-        this.addItem(new Item(handlers, ItemStackBuilder.of(Material.BARRIER).name(ChatColor.RED + "Cancel").build()));
-    }
-
-    @Override
-    public void open() {
-        this.sub = Events.subscribe(InventoryClickEvent.class)
-                .filter(e -> e.getInventory().getHolder() != null)
-                .filter(e -> e.getWhoClicked().equals(this.getPlayer()))
-                .filter(e -> !e.getCurrentItem().getType().equals(Material.AIR))
-                .filter(e -> !(e.getCurrentItem().getType().equals(Material.BARRIER) &&
-                        e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.RED + "Cancel")))
-                .handler(e -> {
-                    e.setCancelled(true);
-                    this.item = e.getCurrentItem();
-                    this.close();
-                    this.done();
-                });
-        super.open();
-    }
 
 }
