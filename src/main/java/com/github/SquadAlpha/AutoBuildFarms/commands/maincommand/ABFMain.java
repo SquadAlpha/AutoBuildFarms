@@ -81,7 +81,7 @@ public class ABFMain extends CommandWithSubCommands {
                                 .append(ChatColor.GOLD, pf.getSize().getFancyName())
                                 .append(ChatColor.GREEN, " successfully")
                                 .send();
-                        size.getSchematic().place(((Player) a.getSender()).getLocation());//TODO do building and stuff
+                        size.getSchematic().place(((Player) a.getSender()).getLocation());//TODO do farm building with materials and stuff
                     }
                 } else {
                     invalidSomethingSpiel("size", farm.getSizes().getObjects(), a.getSender());
