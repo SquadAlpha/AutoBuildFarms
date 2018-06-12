@@ -8,9 +8,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class DoubleInput extends PlayerInput<Double> {
+public class IntegerInput extends PlayerInput<Integer> {
 
-    public DoubleInput(Player player, String requestText, String successText, String cancelText, AtomicBoolean canceled) {
+    public IntegerInput(Player player, String requestText, String successText, String cancelText, AtomicBoolean canceled) {
         super(player, requestText, successText, cancelText, canceled);
     }
 
@@ -23,11 +23,11 @@ public class DoubleInput extends PlayerInput<Double> {
                         this.cancel();
                     }
                     try {
-                        this.setAnswer(Double.parseDouble(event.getMessage()));
+                        this.setAnswer(Integer.parseInt(event.getMessage()));
                         sub.unregister();
                     } catch (NumberFormatException e) {
                         new ChatBuilder(event.getPlayer())
-                                .append(ChatColor.RED,"Invalid double please the 10.99 notation").send();
+                                .append(ChatColor.RED,"Invalid integer please enter an unformatted whole number").send();
                     }
                     event.setCancelled(true);
                 });

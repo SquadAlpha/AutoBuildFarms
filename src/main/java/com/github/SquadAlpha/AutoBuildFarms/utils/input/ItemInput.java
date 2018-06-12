@@ -80,7 +80,13 @@ public class ItemInput extends PlayerInput<ItemStack> {
                             this.asyncOpen();
                         }
                     });
-            super.open();
+            this.realOpen();
+        }
+
+        public void realOpen(){
+            if(!this.isValid()){
+                super.open();
+            }
         }
 
         @Override
@@ -91,7 +97,7 @@ public class ItemInput extends PlayerInput<ItemStack> {
         }
 
         private void asyncOpen() {
-            Schedulers.async().runLater(this::open, (long) 10);
+            Schedulers.async().runLater(this::realOpen, (long) 10);
         }
     }
 

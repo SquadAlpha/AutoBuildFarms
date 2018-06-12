@@ -1,7 +1,6 @@
 package com.github.SquadAlpha.AutoBuildFarms.utils;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
@@ -11,26 +10,27 @@ import java.util.Map;
 
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor(force = true)
 public class numberItem implements ConfigurationSerializable {
     private final long num;
     private final ItemStack item;
 
-    public static numberItem deserialize(Map<String, Object> map) {
+    public numberItem(Map<String, Object> map){
+
         Object num = map.get("num");
-        ItemStack stack = (ItemStack) map.get("item");
+        this.item = (ItemStack) map.get("item");
         if (num instanceof Long) {
-            return new numberItem((Long) num, stack);
+            this.num = (long) num;
         } else if (num instanceof Integer) {
-            long i = ((Integer) num).longValue();
-            return new numberItem(i, stack);
+            this.num = ((Integer) num).longValue();
         } else {
+            long num1;
             try {
-                return new numberItem(Long.valueOf(String.valueOf(num)), stack);
+                num1 = Long.valueOf(String.valueOf(num));
             } catch (ClassCastException e) {
                 e.printStackTrace();
-                return new numberItem(20, stack);
+                num1 = 20;
             }
+            this.num = num1;
         }
     }
 

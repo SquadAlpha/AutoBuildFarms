@@ -1,9 +1,11 @@
 package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
+import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.*;
+import com.github.SquadAlpha.AutoBuildFarms.utils.numberItem;
 import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.AccessLevel;
@@ -55,7 +57,7 @@ public class CreateSize {
 
         private ItemStack displayItem;
         private ArrayList<ItemStack> materials;
-        private ArrayList<ItemStack> revenue;
+        private ArrayList<numberItem> revenue;
 
 
         public SizeCreation(onCommandArgs a) {
@@ -149,10 +151,62 @@ public class CreateSize {
                     ItemStack mat = pi.await();
                     if(!matCanceled.get()) {
                         this.materials.add(mat);
+                    }else{
+                        if(i == 1) {
+                            this.canceled.set(true);
+                        }
                     }
                 }while (!matCanceled.get());
 
-                //TODO revenue (Item selection and number parsing combined in a loop)
+                if (canceled.get()) {
+                    sayCanceled();
+                    return;
+                }
+
+                AtomicBoolean revCanceled = new AtomicBoolean(false);
+                i = 1;
+                this.revenue = new ArrayList<>();
+                do{
+                    PlayerInput<ItemStack> pi = new ItemInput((Player) this.getA().getSender(),
+                            "Please select the "+i+"th revenue stack",
+                            "Set item "+ i +" to %1",
+                            "Done setting revenue",revCanceled);
+
+                    pi.start();
+                    ItemStack itm = pi.await();
+                    if(!revCanceled.get()) {
+
+                        PlayerInput<Integer> every = new IntegerInput((Player) this.getA().getSender(),
+                                "Please enter the number of ticks between dispensings of:" + itm.getAmount() + "x" + itm.getType().toString(),
+                                "Set dispensing rate of " + itm.getAmount() + "x" + itm.getType().toString() + " to %1",
+                                "Done setting revenue " + i, revCanceled);
+
+                        every.start();
+                        int ticks = every.await();
+                        i++;
+                        if (!revCanceled.get()) {
+                            this.revenue.add(new numberItem(ticks, itm));
+                        } else {
+                            if (i == 1) {
+                                this.canceled.set(true);
+                            }
+                        }
+                    }
+                }while (!revCanceled.get());
+
+                if (canceled.get()) {
+                    sayCanceled();
+                    return;
+                }
+
+                this.parent.getSizes().add(new FarmSize((AutoBuildFarms) this.getA().getCmd().getPlugin(),
+                        this.name,this.fancyName,this.schematicFile,this.price,this.materials,this.revenue,
+                        this.displayItem,this.chestOffset));
+                new ChatBuilder(this.getA().getSender())
+                        .append(ChatColor.GREEN,"Successfully added ")
+                        .append(ChatColor.RESET,this.fancyName)
+                        .append(ChatColor.GREEN, " to ")
+                        .append(ChatColor.RESET,this.parent.getFancyName()).send();
             };
         }
 
