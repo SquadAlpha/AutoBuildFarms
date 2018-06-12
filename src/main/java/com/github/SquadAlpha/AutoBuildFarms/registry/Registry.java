@@ -3,7 +3,6 @@ package com.github.SquadAlpha.AutoBuildFarms.registry;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.function.Consumer;
 
 public class Registry<T extends RegistryObject> {
@@ -32,9 +31,6 @@ public class Registry<T extends RegistryObject> {
         }
     }
 
-    public boolean addAll(Collection<T> l) {
-        return this.objects.addAll(l);
-    }
 
     public ArrayList<T> search(String name) {
         ArrayList<T> res = new ArrayList<>();

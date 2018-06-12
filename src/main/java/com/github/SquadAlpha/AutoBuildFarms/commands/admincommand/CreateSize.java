@@ -3,9 +3,7 @@ package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
-import com.github.SquadAlpha.AutoBuildFarms.utils.input.DoubleInput;
-import com.github.SquadAlpha.AutoBuildFarms.utils.input.PlayerInput;
-import com.github.SquadAlpha.AutoBuildFarms.utils.input.StringInput;
+import com.github.SquadAlpha.AutoBuildFarms.utils.input.*;
 import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.AccessLevel;
@@ -59,11 +57,6 @@ public class CreateSize {
         private ArrayList<ItemStack> materials;
         private ArrayList<ItemStack> revenue;
 
-        /*
-        map.put("item", this.displayItem);
-        map.put("materials", this.materials);
-        map.put("revenue", this.revenue);
-         */
 
         public SizeCreation(onCommandArgs a) {
             this.canceled = new AtomicBoolean(false);
@@ -115,13 +108,49 @@ public class CreateSize {
                     return;
                 }
 
+                PlayerInput<String> sf = new StringInput((Player) this.getA().getSender(),
+                        "Please enter the name of the schematic file including the .schematic extension",
+                        "Set the schematic file to:%1",
+                        "Schematic file setting failed",this.canceled);
+                sf.start();
+                this.schematicFile = sf.await();
+                if (canceled.get()) {
+                    sayCanceled();
+                    return;
+                }
 
-                //TODO schematicFile
-                //TODO chestOffset
+                PlayerInput<xyz> co = new xyzInput((Player) this.getA().getSender(),
+                        "Please enter the location of the chest relative to the schematic",
+                        "Set the chest offset location to:%1",
+                        "Canceled setting the chestoffset",this.canceled);
+                co.start();
+                this.chestOffset = co.await();
 
-
-                //TODO display item
-                //TODO materials (Item selection in a loop)
+                PlayerInput<ItemStack> di = new ItemInput((Player) this.getA().getSender(),
+                        "Click the item that represents this size",
+                        "Item successfully set to %1",
+                        "display item setting canceled",canceled);
+                di.start();
+                this.displayItem = di.await();
+                if (canceled.get()) {
+                    sayCanceled();
+                    return;
+                }
+                this.materials = new ArrayList<>();
+                int i = 1;
+                AtomicBoolean matCanceled = new AtomicBoolean(false);
+                do{
+                    PlayerInput<ItemStack> pi = new ItemInput((Player) this.getA().getSender(),
+                            "Please select the "+i+"th construction material stack",
+                            "Set material "+i+" to %1",
+                            "Done setting materials",matCanceled);
+                    pi.start();
+                    i++;
+                    ItemStack mat = pi.await();
+                    if(!matCanceled.get()) {
+                        this.materials.add(mat);
+                    }
+                }while (!matCanceled.get());
 
                 //TODO revenue (Item selection and number parsing combined in a loop)
             };

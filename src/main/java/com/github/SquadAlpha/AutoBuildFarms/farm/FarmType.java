@@ -32,10 +32,10 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         meta.setDisplayName(this.fancyName);
         this.displayItem.setItemMeta(meta);
         this.sizes = new Registry<>();
-        this.sizes.addAll((List<FarmSize>) sect.get("sizes", new ArrayList<>()));
+        ((List<FarmSize>) sect.getList("sizes", new ArrayList<FarmSize>())).forEach(this.sizes::add);
         this.sect = sect;
         this.plugin.getRegistries().getFarmTypes().add(this);
-        this.sizes.forEach(s -> s.setParent(this));
+        this.redoSizes();
     }
 
     public void redoSizes() {
@@ -47,11 +47,11 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         this.name = name;
         this.fancyName = fancyName;
         this.sizes = new Registry<>();
-        this.sizes.addAll(sizes);
+        sizes.forEach(this.sizes::add);
         this.displayItem = displayItem;
         this.sect = this.getPlugin().getConfigFile().createFarmSection(this.getName());
         this.plugin.getRegistries().getFarmTypes().add(this);
-        this.sizes.forEach(s -> s.setParent(this));
+        this.redoSizes();
     }
 
     public ConfigurationSection save() {
