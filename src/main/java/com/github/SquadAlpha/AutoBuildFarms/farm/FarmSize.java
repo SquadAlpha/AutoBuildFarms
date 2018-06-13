@@ -11,9 +11,11 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,12 +87,46 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
 
     public boolean canBePlacedByAndYell(CommandSender sender) {
         ChatBuilder builder = new ChatBuilder(sender);
-        boolean success;
+        boolean success = false;
         if (sender.hasPermission(this.getPlacePermission())) {
-            //TODO check if space is free, money and building materials
-            success = true;
+            //TODO check if space is free
+            //TODO check if enough money money
+            //Both of these tasks before this material checking step
+            if(sender instanceof Player){
+                //// Mat check starts here
+                Player player = ((Player) sender);
+                boolean hasitems = true;
+                ArrayList<ItemStack> removed = new ArrayList<>();
+                ItemStack missing = null;
+                for(ItemStack mat:this.getMaterials()){
+                    if(player.getInventory().contains(mat)){
+                        player.getInventory().remove(mat);
+                        removed.add(mat);
+                    }else{
+                        hasitems = false;
+                        missing = mat;
+                    }
+                }
+                if(hasitems){
+                    success = true;
+                }else{
+                    player.getInventory().addItem(removed.toArray(new ItemStack[0]));
+                    builder.append(ChatColor.RED,"You don't have enough items")
+                            .append(ChatColor.YELLOW,"You are missing at least:")
+                            .append(ChatColor.LIGHT_PURPLE,missing.getType().toString())
+                            .append(ChatColor.DARK_PURPLE,"x")
+                            .append(ChatColor.LIGHT_PURPLE, String.valueOf(missing.getAmount()));
+                }
+                //// Mat check ends here
+            }else{
+                builder.append(ChatColor.RED,"This command can only be executed by a player").newLine()
+                        .append(ChatColor.YELLOW,"You are:")
+                        .append(ChatColor.GREEN,sender.getName())
+                        .append(ChatColor.WHITE,":")
+                        .append(ChatColor.GOLD,sender.toString());
+            }
+
         } else {
-            success = false;
             builder.append(ChatColor.RED, "You don't have permission:")
                     .append(ChatColor.AQUA, this.getPlacePermission())
                     .append(ChatColor.RED, " to place ")
