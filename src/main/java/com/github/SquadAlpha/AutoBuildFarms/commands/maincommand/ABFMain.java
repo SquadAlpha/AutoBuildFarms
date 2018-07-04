@@ -73,6 +73,7 @@ public class ABFMain extends CommandWithSubCommands {
                     if (size.canBePlacedByAndYell(a.getSender())) {
                         PlacedFarm pf = new PlacedFarm(this.getPlugin(), size, ((Player) a.getSender()).getLocation());
                         this.getPlugin().getRegistries().getPlacedFarms().add(pf);
+                        size.getSchematic().place(((Player) a.getSender()).getLocation());
                         pf.registerTasks();
                         new ChatBuilder(a.getSender())
                                 .append(ChatColor.GREEN, "Placed: ")
@@ -81,7 +82,7 @@ public class ABFMain extends CommandWithSubCommands {
                                 .append(ChatColor.GOLD, pf.getSize().getFancyName())
                                 .append(ChatColor.GREEN, " successfully")
                                 .send();
-                        size.getSchematic().place(((Player) a.getSender()).getLocation());//TODO do farm building with materials and stuff
+
                     }
                 } else {
                     invalidSomethingSpiel("size", farm.getSizes().getObjects(), a.getSender());
