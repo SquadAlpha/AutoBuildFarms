@@ -148,7 +148,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
                 } else {
                     builder.append(ChatColor.RED,"Not enough space").newLine()
                             .append(ChatColor.YELLOW,"Try removing the ")
-                            .append(ChatColor.RESET,player.getLocation().add(nf.getVector()))
+                            .append(ChatColor.RESET,player.getLocation().add(nf.getVector()));
                    success = false;
                 }
             } else {
