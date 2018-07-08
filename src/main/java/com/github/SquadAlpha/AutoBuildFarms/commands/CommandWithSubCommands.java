@@ -4,7 +4,7 @@ import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.registry.Registry;
 import com.github.SquadAlpha.AutoBuildFarms.registry.RegistryObject;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
-import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
+import com.github.SquadAlpha.AutoBuildFarms.utils.commandArgs;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -45,7 +46,7 @@ public abstract class CommandWithSubCommands extends ABFCommand {
             builder.send();
             return true;
         } else {
-            if (sender.hasPermission(this.getCommand().getPermission() + "." + opt.getName())) {
+            if (sender.hasPermission(opt.getPermission())) {
                 return opt.go(sender, command, label, args);
             } else {
                 new ChatBuilder(sender)
@@ -62,7 +63,28 @@ public abstract class CommandWithSubCommands extends ABFCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return null;
+        ArrayList<String> suggestions = new ArrayList<>();
+        if (args.length <= 1) {
+            String search;
+            if (args.length == 1) {
+                search = args[0];
+            } else {
+                search = "";
+            }
+            this.getSubOptions().forEach(so -> {
+                if (so.getName().startsWith(search)) {
+                    suggestions.add(so.getName());
+                }
+            });
+        } else {
+            SubOption opt = this.getSubOptions().searchFirst(args[0]);
+            if (opt != null) {
+                if (sender.hasPermission(opt.getPermission())) {
+                    return opt.goTabComplete(sender, command, alias, args);
+                }
+            }
+        }
+        return suggestions;
     }
 
     @RequiredArgsConstructor
@@ -70,14 +92,19 @@ public abstract class CommandWithSubCommands extends ABFCommand {
     public static class SubOption implements RegistryObject {
         private final CommandWithSubCommands parent;
         private final String name;
-        private final Function<onCommandArgs, Boolean> exec;
+        private final Function<commandArgs, Boolean> exec;
+        private final Function<commandArgs, List<String>> tabComplete;
 
         public final boolean go(CommandSender sender, Command cmd, String label, String[] args) {
-            return this.exec.apply(new onCommandArgs(sender, (PluginCommand) cmd, label, args));
+            return this.exec.apply(new commandArgs(sender, (PluginCommand) cmd, label, args));
         }
 
         public final String getPermission() {
             return this.getParent().getCommand().getPermission() + "." + this.getName();
+        }
+
+        public List<String> goTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+            return this.tabComplete.apply(new commandArgs(sender, (PluginCommand) command, alias, args));
         }
     }
 

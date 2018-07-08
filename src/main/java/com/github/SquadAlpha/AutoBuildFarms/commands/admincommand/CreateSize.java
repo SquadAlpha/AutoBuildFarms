@@ -4,9 +4,9 @@ import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmSize;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
+import com.github.SquadAlpha.AutoBuildFarms.utils.commandArgs;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.*;
 import com.github.SquadAlpha.AutoBuildFarms.utils.numberItem;
-import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
 import com.github.SquadAlpha.AutoBuildFarms.utils.xyz;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -17,11 +17,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
 public class CreateSize {
-    static final Function<onCommandArgs, Boolean> func = (a) -> {
+    @Getter
+    private static final Function<commandArgs, Boolean> func = (a) -> {
         if (a.getArgs().length <= 1) {
             new ChatBuilder(a.getSender())
                     .append(ChatColor.RED, "No farm name specified")
@@ -33,7 +35,7 @@ public class CreateSize {
                     .send();
             return false;
         } else {
-            CreateSize.SizeCreation fc = new SizeCreation(a);
+            SizeCreation fc = new SizeCreation(a);
             Scheduler s = Schedulers.async();
             s.run(fc.go);
 
@@ -41,9 +43,24 @@ public class CreateSize {
         }
     };
 
+    @Getter
+    private static final Function<commandArgs, List<String>> tabComplete = a -> {
+        ArrayList<String> suggestions = new ArrayList<>();
+
+        if (a.getArgs().length <= 1) {
+            ((AutoBuildFarms) a.getCmd().getPlugin()).getRegistries().getFarmTypes().forEach(ft -> suggestions.add(ft.getName()));
+        } else if (a.getArgs().length <= 2) {
+            String search = a.getArgs()[1];
+            ((AutoBuildFarms) a.getCmd().getPlugin()).getRegistries().getFarmTypes().startSearch(search).forEach(ft -> suggestions.add(ft.getName()));
+        }
+
+        return suggestions;
+    };
+
+
     @Getter(AccessLevel.PRIVATE)
     private static class SizeCreation {
-        private final onCommandArgs a;
+        private final commandArgs a;
         public final Runnable go;
         private final AtomicBoolean canceled;
 
@@ -60,7 +77,7 @@ public class CreateSize {
         private ArrayList<numberItem> revenue;
 
 
-        public SizeCreation(onCommandArgs a) {
+        public SizeCreation(commandArgs a) {
             this.canceled = new AtomicBoolean(false);
             this.a = a;
             this.name = a.getArgs()[2];

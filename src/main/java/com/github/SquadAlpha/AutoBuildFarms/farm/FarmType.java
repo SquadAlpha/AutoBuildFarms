@@ -62,6 +62,11 @@ public class FarmType implements RegistryObject {//TODO convert to Configuration
         return this.sect;
     }
 
+    public String getPlacePermission() {
+        return this.plugin.getDescription().getPrefix() + ".place." +
+                this.getName();
+    }
+
     public String toString() {
         return "FarmType(name=" + this.getName() + ", fancyName=" + this.getFancyName() + ", sizes=" + this.getSizes() + ", displayItem=" + this.getDisplayItem() + ")";
     }

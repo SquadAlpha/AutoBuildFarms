@@ -12,7 +12,6 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
@@ -85,8 +84,7 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
 
 
     public String getPlacePermission() {
-        return this.plugin.getDescription().getPrefix() + ".place." +
-                this.parent.getName() + "." + this.getName();
+        return this.getParent().getPlacePermission() + "." + this.getName();
     }
 
     public boolean canBePlacedByAndYell(CommandSender sender) {
@@ -119,15 +117,13 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
             }
             if (hasItems) {
                 boolean isSpace = true;
-                xyz nf;
+                xyz nf = null;
                 Location pLoc = player.getLocation();
                 for(int x = 0;x<this.getSchematic().getSize().getBlockX();x++){
                     for(int y = 0;y<this.getSchematic().getSize().getBlockY();y++){
                         for(int z = 0;z<this.getSchematic().getSize().getBlockZ();z++){
                             Location cLoc = pLoc.clone().add(x,y,z);
-                            if(cLoc.getBlock().getType().equals(Material.AIR)) {
-
-                            }else{
+                            if (!cLoc.getBlock().getType().equals(Material.AIR)) {
                                 isSpace = false;
                                 nf = new xyz(x,y,z);
                                 break;
@@ -135,7 +131,9 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
                         }
                     }
                 }
-                success = true;
+                if (nf == null) {
+                    nf = new xyz(0, 0, 0);
+                }
                 if (isSpace) {
                     EconomyResponse trans = this.getPlugin().getEcon().withdrawPlayer(player, player.getWorld().getName(), this.getPrice());
                     if (trans.transactionSuccess()) {
@@ -147,8 +145,8 @@ public class FarmSize implements RegistryObject, ConfigurationSerializable {
                     }
                 } else {
                     builder.append(ChatColor.RED,"Not enough space").newLine()
-                            .append(ChatColor.YELLOW,"Try removing the ")
-                            .append(ChatColor.RESET,player.getLocation().add(nf.getVector()));
+                            .append(ChatColor.YELLOW, "Try removing the block at ")
+                            .append(ChatColor.RESET, player.getLocation().add(nf.getVector()).toString());
                    success = false;
                 }
             } else {

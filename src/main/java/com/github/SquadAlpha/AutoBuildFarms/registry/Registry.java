@@ -51,6 +51,16 @@ public class Registry<T extends RegistryObject> {
         return null;
     }
 
+    public ArrayList<T> startSearch(String name) {
+        ArrayList<T> res = new ArrayList<>();
+        for (T o : this.getObjects()) {
+            if (o.getName().startsWith(name)) {
+                res.add(o);
+            }
+        }
+        return res;
+    }
+
     public boolean remove(T o) {
         return objects.remove(o);
     }

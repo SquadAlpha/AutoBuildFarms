@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 
 @Data
-public class onCommandArgs {
+public class commandArgs {
     private final CommandSender sender;
     private final PluginCommand cmd;
     private final String label;

@@ -3,10 +3,10 @@ package com.github.SquadAlpha.AutoBuildFarms.commands.admincommand;
 import com.github.SquadAlpha.AutoBuildFarms.AutoBuildFarms;
 import com.github.SquadAlpha.AutoBuildFarms.farm.FarmType;
 import com.github.SquadAlpha.AutoBuildFarms.utils.ChatBuilder;
+import com.github.SquadAlpha.AutoBuildFarms.utils.commandArgs;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.ItemInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.PlayerInput;
 import com.github.SquadAlpha.AutoBuildFarms.utils.input.StringInput;
-import com.github.SquadAlpha.AutoBuildFarms.utils.onCommandArgs;
 import lombok.AccessLevel;
 import lombok.Getter;
 import me.lucko.helper.Schedulers;
@@ -17,11 +17,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
 public class CreateType {
-    static final Function<onCommandArgs, Boolean> func = (a) -> {
+    @Getter
+    private static final Function<commandArgs, Boolean> func = (a) -> {
         if (a.getArgs().length <= 1) {
             new ChatBuilder(a.getSender())
                     .append(ChatColor.RED, "No farm name specified")
@@ -35,10 +37,19 @@ public class CreateType {
         }
     };
 
+    @Getter
+    private static final Function<commandArgs, List<String>> tabComplete = a -> {
+        ArrayList<String> suggestions = new ArrayList<>();
+        if (a.getArgs().length <= 1) {
+            suggestions.add("createtype");
+        }
+        return suggestions;
+    };
+
     @Getter(AccessLevel.PRIVATE)
     private static class farmCreation {
 
-        private final onCommandArgs a;
+        private final commandArgs a;
 
         private final String name;
         private final ConfigurationSection sect;
@@ -86,7 +97,7 @@ public class CreateType {
                     .append(ChatColor.GOLD, ft.toString()).send();
         };
 
-        public farmCreation(onCommandArgs a) {
+        public farmCreation(commandArgs a) {
             this.a = a;
             this.name = this.getA().getArgs()[1];
             this.plugin = (AutoBuildFarms) this.getA().getCmd().getPlugin();

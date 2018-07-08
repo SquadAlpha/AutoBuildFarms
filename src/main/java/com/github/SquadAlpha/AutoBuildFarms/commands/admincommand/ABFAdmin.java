@@ -9,8 +9,8 @@ public class ABFAdmin extends CommandWithSubCommands {
 
     public ABFAdmin(AutoBuildFarms plugin) {
         super("ABFadmin", plugin);
-        this.registerSubOption(new SubOption(this, "createtype", CreateType.func));
-        this.registerSubOption(new SubOption(this,"createsize",CreateSize.func));
+        this.registerSubOption(new SubOption(this, "createtype", CreateType.getFunc(), CreateType.getTabComplete()));
+        this.registerSubOption(new SubOption(this, "createsize", CreateSize.getFunc(), CreateSize.getTabComplete()));
     }
 
     @Override
